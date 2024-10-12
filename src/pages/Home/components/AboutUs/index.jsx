@@ -104,11 +104,11 @@ const AboutUs = () => {
           <h2 className="mb-5 text-left text-3xl font-bold uppercase xl:text-4xl">
             {language === "fr" ? (
               <>
-                À propos de <span className="text-red-600">nous</span>
+                À propos de <span className="text-[#b0181c]">nous</span>
               </>
             ) : (
               <>
-                About <span className="text-red-600">us</span>
+                About <span className="text-[#b0181c]">us</span>
               </>
             )}
           </h2>

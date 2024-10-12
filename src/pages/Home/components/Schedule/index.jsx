@@ -36,7 +36,7 @@ const Schedule = () => {
   return (
     <section
       id="schedule"
-      className="relative flex min-h-screen flex-col justify-center bg-white px-5 py-12"
+      className="relative flex min-h-screen flex-col justify-center bg-white px-5 py-20"
     >
       <div className="z-10 md:mx-auto md:w-[90%] lg:w-[95%] xl:w-[1230px]">
         <h2 className="mb-5 text-3xl font-bold uppercase lg:text-4xl">

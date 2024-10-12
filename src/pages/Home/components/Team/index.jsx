@@ -15,7 +15,7 @@ const Team = () => {
   return (
     <section
       id="team"
-      className="relative flex min-h-screen flex-col bg-[#fbfcfd] px-5 py-12 xl:gap-y-10 xl:pt-24"
+      className="relative flex min-h-screen flex-col bg-[#fbfcfd] px-5 py-20 xl:gap-y-10 xl:pt-24"
     >
       <div className="xl:basis-[88px]">
         <h2 className="mb-5 text-center text-3xl font-bold uppercase lg:text-4xl">
