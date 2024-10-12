@@ -17,7 +17,7 @@ const Rates = () => {
   return (
     <section
       id="rates"
-      className="relative flex min-h-screen flex-col justify-center bg-[#fbfcfd] px-5 py-12"
+      className="relative flex min-h-screen flex-col justify-center bg-[#fbfcfd] px-5 py-20"
     >
       <h2 className="z-20 mb-5 text-center text-3xl font-bold uppercase lg:text-4xl">
         {language === "fr" ? (
