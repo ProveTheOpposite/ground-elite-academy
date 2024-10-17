@@ -9,4 +9,4 @@ English
 
 This site is a Single Page Application (SPA) built with React, using Vite as the local development server. It showcases a sports club focused on wrestling and grappling in Nice.
 
-[Lien du site](https://www.groundeliteacademy.fr/)
+[Lien du site](https://ground-elite-academy.vercel.app/)
