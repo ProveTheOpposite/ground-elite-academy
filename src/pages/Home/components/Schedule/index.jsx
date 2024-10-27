@@ -76,7 +76,7 @@ const Schedule = () => {
               placeholder={
                 language === "fr" ? "Sélectionner une date" : "Select date"
               }
-              className="w-full min-w-full rounded-xl border border-gray-300 p-2.5 pl-10 shadow-md focus:border-[#b0181c] focus:ring-[#b0181c]"
+              className="w-full min-w-full rounded-xl border border-gray-300 p-2.5 pl-10 shadow-md"
             />
           </div>
         </div>
