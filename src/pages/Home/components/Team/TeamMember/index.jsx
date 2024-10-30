@@ -38,11 +38,11 @@ const TeamMember = ({
 
         <div className="mt-5">
           <div
-            className={`mb-8 ${align === "right" ? "min-[1920px]:items-end" : ""} min-[1000px]:mx-auto min-[1000px]:w-[820px] min-[1920px]:flex min-[1920px]:w-auto min-[1920px]:flex-col min-[1920px]:gap-y-3`}
+            className={`mb-10 ${align === "right" ? "min-[1920px]:items-end" : ""} min-[1000px]:mx-auto min-[1000px]:w-[820px] lg:mb-12 min-[1920px]:mb-16 min-[1920px]:w-auto min-[1920px]:gap-y-3`}
           >
-            <IconWrapper icon={icon1} />
+            <IconWrapper align={align} icon={icon1} />
             {name === "Nazim Djamalov" ? (
-              <p className="mt-5 text-center text-gray-600 xl:text-lg min-[1920px]:mb-7 min-[1920px]:mt-0 min-[1920px]:text-left">
+              <p className="text-justify text-gray-600 xl:text-lg min-[1920px]:mb-7 min-[1920px]:mt-0 min-[1920px]:text-left">
                 {language === "fr" ? (
                   <>
                     Nazim Djamalov,{" "}
@@ -61,7 +61,7 @@ const TeamMember = ({
                 )}
               </p>
             ) : (
-              <p className="mt-5 text-center text-gray-600 xl:text-lg min-[1920px]:mb-7 min-[1920px]:mt-0 min-[1920px]:flex min-[1920px]:flex-col min-[1920px]:text-right">
+              <p className="text-justify text-gray-600 xl:text-lg min-[1920px]:mb-7 min-[1920px]:mt-0 min-[1920px]:text-right">
                 {language === "fr" ? (
                   <>
                     <span>
@@ -92,11 +92,11 @@ const TeamMember = ({
           </div>
 
           <div
-            className={`${align === "right" ? "min-[1920px]:items-end" : ""} min-[1000px]:mx-auto min-[1000px]:w-[820px] min-[1920px]:flex min-[1920px]:w-auto min-[1920px]:flex-col min-[1920px]:gap-y-3`}
+            className={`${align === "right" ? "min-[1920px]:items-end" : ""} min-[1000px]:mx-auto min-[1000px]:w-[820px] min-[1920px]:w-auto min-[1920px]:gap-y-3`}
           >
-            <IconWrapper icon={icon2} />
+            <IconWrapper align={align} icon={icon2} />
             {name === "Nazim Djamalov" ? (
-              <p className="mt-5 text-center text-gray-600 xl:text-lg min-[1920px]:mt-0 min-[1920px]:text-left">
+              <p className="text-justify text-gray-600 xl:text-lg min-[1920px]:mt-0 min-[1920px]:text-left">
                 {language === "fr" ? (
                   <>
                     Avec sa <strong>créativité</strong> et sa{" "}
@@ -116,7 +116,7 @@ const TeamMember = ({
                 )}
               </p>
             ) : (
-              <p className="mt-5 text-center text-gray-600 xl:text-lg min-[1920px]:mt-0 min-[1920px]:text-right">
+              <p className="text-justify text-gray-600 xl:text-lg min-[1920px]:mt-0 min-[1920px]:text-right">
                 {language === "fr" ? (
                   <>
                     Son approche <strong>dynamique</strong> et{" "}
