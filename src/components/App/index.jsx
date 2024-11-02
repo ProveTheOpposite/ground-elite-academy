@@ -6,10 +6,12 @@ import { Route, Routes } from "react-router-dom";
 // javascript
 import { initEmailJs } from "src/assets/javascript/emailJs/emailJs";
 // components
+import { useSetRecoilState } from "recoil";
 import ContactUs from "src/pages/ContactUs";
 import Home from "src/pages/Home";
 import PrivacyAndPolicy from "src/pages/PrivacyAndPolicy";
 import TermsAndConditions from "src/pages/TermsAndConditions";
+import { languageState } from "src/recoil";
 import ErrorElement from "../../pages/ErrorElement";
 import Footer from "../Footer";
 import Header from "../Header";
@@ -29,6 +31,8 @@ const ROUTES = [
 const App = () => {
   // state to handle opening of modals
   const [openModal, setOpenModal] = useState(null);
+  // state to set the natif language of the browser of the user
+  const setLanguage = useSetRecoilState(languageState);
 
   // function to open/close a modal with a type
   const toggleModal = (modalType) => setOpenModal(modalType);
@@ -37,11 +41,15 @@ const App = () => {
     initEmailJs();
   }, []);
 
+  // effect to set the language according to the language of the user
+  useEffect(() => {
+    const lang = navigator.language;
+    setLanguage(lang.slice(0, 2));
+  }, [setLanguage]);
+
   return (
     <div className="flex min-h-screen flex-col">
-      <Header
-        openChangeLanguageModal={() => toggleModal("changeLanguage")}
-      />
+      <Header openChangeLanguageModal={() => toggleModal("changeLanguage")} />
 
       {openModal === "changeLanguage" && (
         <Modal

@@ -3,7 +3,7 @@ import { useEffect } from "react";
 import { useRecoilState, useRecoilValue } from "recoil";
 
 // Fullcalendar
-import enLocale from "@fullcalendar/core/locales/en-au";
+import enLocale from "@fullcalendar/core/locales/en-gb";
 import frLocale from "@fullcalendar/core/locales/fr";
 import dayGridPlugin from "@fullcalendar/daygrid";
 import interactionPlugin from "@fullcalendar/interaction";
