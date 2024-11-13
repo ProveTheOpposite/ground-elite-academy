@@ -1,10 +1,12 @@
 // hook
 import { useRecoilValue } from "recoil";
+// react router dom
+import { Link } from "react-router-dom";
 // atom
 import { languageState } from "src/recoil";
-// assets
-import { Link } from "react-router-dom";
+// components
 import Button from "src/components/Button";
+// assets
 import translations from "src/language/translations";
 
 const AboutUs = () => {
@@ -13,80 +15,59 @@ const AboutUs = () => {
   const sections = [
     {
       icon: "medal",
-      title:
-        language === "fr" ? "Entraîneur et expertise" : "Coaches and Expertise",
-      text:
-        language === "fr" ? (
-          <>
-            Avec deux entraîneurs <strong>professionnels</strong>, chacun expert
-            dans sa discipline, nous offrons un encadrement de qualité pour tous
-            les niveaux, du débutant au compétiteur.
-          </>
-        ) : (
-          <>
-            With two <strong>professional</strong> coaches, each an expert in
-            their respective discipline, we offer high-quality training for all
-            levels, from beginners to competitors.
-          </>
-        ),
+      title: translations[language].home.aboutUs.list.itemOne.title,
+      text: (
+        <>
+          {translations[language].home.aboutUs.list.itemOne.text[0]}
+          <strong>
+            {translations[language].home.aboutUs.list.itemOne.text[1]}
+          </strong>
+          {translations[language].home.aboutUs.list.itemOne.text[2]}
+        </>
+      ),
     },
     {
       icon: "handshake",
-      title: language === "fr" ? "Philosophie du club" : "Club Philosophy",
-      text:
-        language === "fr" ? (
-          <>
-            Notre club se distingue par une ambiance conviviale où
-            l&apos;entraide et le <strong>respect</strong> sont au cœur de notre
-            philosophie.
-          </>
-        ) : (
-          <>
-            Our club stands out for its friendly atmosphere, where mutual
-            support and <strong>respect</strong> are at the core of our
-            philosophy.
-          </>
-        ),
+      title: translations[language].home.aboutUs.list.itemTwo.title,
+      text: (
+        <>
+          {translations[language].home.aboutUs.list.itemTwo.text[0]}
+          <strong>
+            {translations[language].home.aboutUs.list.itemTwo.text[1]}
+          </strong>
+          {translations[language].home.aboutUs.list.itemTwo.text[2]}
+        </>
+      ),
     },
     {
       icon: "users",
-      title: language === "fr" ? "Accueil des enfants" : "Welcoming Children",
-      text:
-        language === "fr" ? (
-          <>
-            Les enfants sont également les bienvenus chez nous, où ils peuvent
-            non seulement développer leurs compétences physiques, mais aussi
-            apprendre des valeurs essentielles comme le <strong>respect</strong>
-            , la <strong>discipline</strong>, et l&apos;entraide.
-          </>
-        ) : (
-          <>
-            Children are also warmly welcomed here, where they can not only
-            develop their physical skills but also learn essential values such
-            as <strong>respect</strong>, <strong>discipline</strong>, and mutual
-            support.
-          </>
-        ),
+      title: translations[language].home.aboutUs.list.itemThree.title,
+      text: (
+        <>
+          {translations[language].home.aboutUs.list.itemThree.text[0]}
+          <strong>
+            {translations[language].home.aboutUs.list.itemThree.text[1]}
+          </strong>
+          {translations[language].home.aboutUs.list.itemThree.text[2]}
+          <strong>
+            {translations[language].home.aboutUs.list.itemThree.text[3]}
+          </strong>
+          {translations[language].home.aboutUs.list.itemThree.text[4]}
+        </>
+      ),
     },
     {
       icon: "bullseye",
-      title:
-        language === "fr" ? "Objectifs pour les membres" : "Goals for Members",
-      text:
-        language === "fr" ? (
-          <>
-            Que vous cherchiez à améliorer votre forme physique, à apprendre un
-            nouvel art martial, ou à vous préparer pour la{" "}
-            <strong>compétition</strong>, vous trouverez chez nous un cadre
-            accueillant et stimulant.
-          </>
-        ) : (
-          <>
-            Whether you&apos;re looking to improve your fitness, learn a new
-            martial art, or prepare for <strong>competition</strong>,
-            you&apos;ll find a welcoming and motivating environment with us.
-          </>
-        ),
+      title: translations[language].home.aboutUs.list.itemFour.title,
+      text: (
+        <>
+          {translations[language].home.aboutUs.list.itemFour.text[0]}
+          <strong>
+            {translations[language].home.aboutUs.list.itemFour.text[1]}
+          </strong>
+          {translations[language].home.aboutUs.list.itemFour.text[2]}
+        </>
+      ),
     },
   ];
 
@@ -102,34 +83,21 @@ const AboutUs = () => {
       <div className="container mx-auto flex flex-col gap-x-20 rounded-xl xl:flex-row">
         <div className="px-3 py-4 sm:px-6 md:mb-12 xl:flex-1">
           <h2 className="mb-5 text-left text-3xl font-bold uppercase xl:text-4xl">
-            {language === "fr" ? (
-              <>
-                À propos de <span className="text-[#b0181c]">nous</span>
-              </>
-            ) : (
-              <>
-                About <span className="text-[#b0181c]">us</span>
-              </>
-            )}
+            {translations[language].home.aboutUs.title[0]}{" "}
+            <span className="text-[#b0181c]">
+              {translations[language].home.aboutUs.title[1]}
+            </span>
           </h2>
 
           <div className="flex flex-col">
             <h2 className="text-lg text-gray-600">
-              {language === "fr" ? (
-                <>
-                  Bienvenue chez <strong>Ground Elit Academy</strong>, votre
-                  destination pour la <strong>lutte</strong> et le{" "}
-                  <strong>grappling</strong> à Nice, située au 10 Boulevard
-                  Comte de Falicon.
-                </>
-              ) : (
-                <>
-                  Welcome to <strong>Ground Elit Academy</strong>, your
-                  destination for <strong>wrestling</strong> and{" "}
-                  <strong>grappling</strong> in Nice, located at 10 Boulevard
-                  Comte de Falicon.
-                </>
-              )}
+              {translations[language].home.aboutUs.subTitle[0]}
+              <strong>{translations[language].home.aboutUs.subTitle[1]}</strong>
+              {translations[language].home.aboutUs.subTitle[2]}
+              <strong>{translations[language].home.aboutUs.subTitle[3]}</strong>
+              {translations[language].home.aboutUs.subTitle[4]}
+              <strong>{translations[language].home.aboutUs.subTitle[5]}</strong>
+              {translations[language].home.aboutUs.subTitle[6]}
             </h2>
 
             <div className="mt-10 grid grid-cols-1 gap-y-10 md:grid-cols-2 md:grid-rows-2 md:gap-10">

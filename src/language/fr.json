@@ -19,11 +19,14 @@
     "btnContactUs": "Contactez-nous",
 
     "banner": {
-      "btnRegistration": "Inscrivez-vous"
-    },
-
-    "aboutUs": {
-      "title": "À propos de nous",
+      "title": [
+        "Découvrez la",
+        "Lutte",
+        "et le",
+        "Grappling",
+        "à Nice avec les experts de Ground Elite Academy"
+      ],
+      "btnRegistration": "Inscrivez-vous",
       "buttonVideo": {
         "play": "Lire",
         "pause": "Pause"
@@ -31,19 +34,96 @@
       "videoNotSupported": "Votre navigateur ne supporte pas la vidéo HTML."
     },
 
+    "aboutUs": {
+      "title": ["À propos de", "nous"],
+      "subTitle": [
+        "Bienvenue chez ",
+        "Ground Elit Academy",
+        ", votre destination pour la ",
+        "lutte",
+        " et le ",
+        "grappling",
+        " à Nice, située au 10 Boulevard Comte de Falicon."
+      ],
+      "list": {
+        "itemOne": {
+          "title": "Entraîneur et Expertise",
+          "text": [
+            "Avec deux entraîneurs ",
+            "professionnels",
+            ", chacun expert dans sa discipline, nous offrons un encadrement de qualité pour tous les niveaux, du débutant au compétiteur."
+          ]
+        },
+        "itemTwo": {
+          "title": "Philosophie du Club",
+          "text": [
+            "Notre club se distingue par une ambiance conviviale où l'entraide et le ",
+            "respect",
+            " sont au cœur de notre philosophie."
+          ]
+        },
+        "itemThree": {
+          "title": "Accueil des Enfants",
+          "text": [
+            "Les enfants sont également les bienvenus chez nous, où ils peuvent non seulement développer leurs compétences physiques, mais aussi apprendre des valeurs essentielles comme le ",
+            "respect",
+            " et la ",
+            "discipline",
+            ", et l'entraide."
+          ]
+        },
+        "itemFour": {
+          "title": "Objectifs pour les Membres",
+          "text": [
+            "Que vous cherchiez à améliorer votre forme physique, à apprendre un nouvel art martial, ou à vous préparer pour la ",
+            "compétition",
+            ", vous trouverez chez nous un cadre accueillant et stimulant."
+          ]
+        }
+      }
+    },
+
     "team": {
-      "title": "Notre équipe",
+      "title": ["Notre", "équipe"],
       "subTitle": "Nos entraîneurs allient expertise et passion pour vous accompagner vers l'excellence, quel que soit votre niveau. Ensemble, nous vous aiderons à surpasser vos limites et à révéler le meilleur de vous-même.",
       "nazim": {
-        "text": "Nazim Djamalov, plusieurs fois champion de France et ancien membre de l'équipe nationale, est un entraîneur dont l'expérience et le talent sont reconnus au-delà des frontières. Avec sa créativité et sa pédagogie, il vous guidera pas à pas pour perfectionner votre technique et développer votre potentiel. Que vous soyez débutant ou compétiteur, Nazim saura adapter son enseignement à vos besoins pour vous faire progresser rapidement."
+        "textOne": [
+          "Nazim Djamalov, ",
+          "plusieurs fois champion de France",
+          " et ancien membre de ",
+          "l'équipe nationale",
+          ", est un entraîneur dont l'expérience et le talent sont reconnus au-delà des frontières."
+        ],
+        "textTwo": [
+          "Avec sa ",
+          "créativité",
+          " et sa ",
+          "pédagogie",
+          ", il vous guidera pas à pas pour perfectionner votre technique et développer votre potentiel. Que vous soyez débutant ou compétiteur, Nazim saura adapter son enseignement à vos besoins pour vous faire progresser."
+        ]
       },
       "gaetan": {
-        "text": "Gaetan Houara, plusieurs fois champion d'open de France, est un expert du grappling et de la lutte, connu pour sa maîtrise technique et son sens stratégique. Son approche dynamique et motivante vous poussera à donner le meilleur de vous-même à chaque entraînement. Avec son soutien, vous améliorerez vos compétences et atteindrez de nouveaux sommets dans votre pratique."
+        "textOne": [
+          "Gaetan Houara, ",
+          "plusieurs fois champion d'open de France",
+          ", est un expert du grappling et de la lutte. Il est reconnu pour sa maîtrise ",
+          "technique",
+          " et son sens ",
+          "stratégique",
+          ", des qualités qui en font un coach exceptionnel."
+        ],
+        "textTwo": [
+          "Son approche ",
+          "dynamique",
+          " et ",
+          "motivante",
+          " vous poussera à donner le meilleur de vous-même à chaque entraînement. Grâce à son soutien, vous améliorerez vos compétences et atteindrez de nouveaux sommets dans votre pratique."
+        ]
       }
     },
 
     "schedule": {
-      "title": "Nos horaires",
+      "title": ["Nos", "horaires"],
       "subTitle": "Les entraînement ont lieu le lundi et jeudi. Les cours de lutte et de grappling s'alternent chaque semaine. Consultez régulièrement notre planning pour être au courant des futurs changements.",
       "daysOfWeek": {
         "monday": "Lundi",
@@ -67,6 +147,7 @@
     },
 
     "rates": {
+      "title": ["Nos", "tarifs"],
       "subTitle": "Abonnement mensuel",
       "content": "Les paiements se font en espèces directement au club avec les fiches d'inscription. De plus, l'abonnement prend en compte les deux disciplines (lutte et grappling). Et le montant doit être payant entre le 1er et le 9ème jour du mois courant.",
       "secondContent": "Un cours d'essai gratuit est disponible pour les deux disciplines.",
@@ -84,6 +165,12 @@
     },
 
     "faq": {
+      "title": ["Questions fréquemment", "posées"],
+      "text": [
+        "Vous trouverez ici les réponses à vos questions. Si, malgré cela, vous ne trouvez pas la réponse que vous chercher ou que vous avez une autre question,",
+        "contactez-nous",
+        "."
+      ],
       "btnTheme": {
         "general": "Général",
         "new": "Nouveaux",
@@ -148,12 +235,14 @@
     },
 
     "requestForInformations": {
+      "title": ["Contactez-nous pour plus", "d'informations"],
       "content": "Pour toute demande d'information ou autre, contactez-nous dès maintenant !"
     }
   },
 
   "contactUs": {
     "title": "Restons en contact",
+    "subTitle": "Ou contactez-nous simplement à",
     "form": {
       "label": {
         "firstName": "Prénom",

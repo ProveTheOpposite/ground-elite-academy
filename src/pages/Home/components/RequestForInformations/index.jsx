@@ -27,16 +27,10 @@ const RequestForInformations = () => {
       </svg>
 
       <h2 className="mb-5 text-3xl font-bold uppercase lg:text-4xl">
-        {language === "fr" ? (
-          <>
-            Contactez-nous pour plus{" "}
-            <span className="text-[#b0181c]">d&apos;informations</span>
-          </>
-        ) : (
-          <>
-            Request more <span className="text-[#b0181c]">information</span>
-          </>
-        )}
+        {translations[language].home.requestForInformations.title[0]}{" "}
+        <span className="text-[#b0181c]">
+          {translations[language].home.requestForInformations.title[1]}
+        </span>
       </h2>
 
       <div>

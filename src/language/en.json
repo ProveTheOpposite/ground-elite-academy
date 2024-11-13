@@ -19,11 +19,14 @@
     "btnContactUs": "Contact Us",
 
     "banner": {
-      "btnRegistration": "Join us"
-    },
-
-    "aboutUs": {
-      "title": "About us",
+      "title": [
+        "Discover",
+        "Wrestling",
+        "and",
+        "Grappling",
+        "in Nice with the experts at Ground Elite Academy"
+      ],
+      "btnRegistration": "Join us",
       "buttonVideo": {
         "play": "Play",
         "pause": "Pause"
@@ -31,19 +34,96 @@
       "videoNotSupported": "Your browser does not support HTML video."
     },
 
+    "aboutUs": {
+      "title": ["About", "us"],
+      "subTitle": [
+        "Welcome to ",
+        "Ground Elit Academy",
+        ", your destination for ",
+        "wrestling",
+        " and ",
+        "grappling",
+        " in Nice, located at 10 Boulevard Comte de Falicon."
+      ],
+      "list": {
+        "itemOne": {
+          "title": "Coaches and Expertise",
+          "text": [
+            "With two ",
+            "professional",
+            " coaches, each an expert in their respective discipline, we offer high-quality training for all levels, from beginners to competitors."
+          ]
+        },
+        "itemTwo": {
+          "title": "Club Philosophy",
+          "text": [
+            "Our club stands out for its friendly atmosphere, where mutual support and ",
+            "respect",
+            " are at the core of our philosophy."
+          ]
+        },
+        "itemThree": {
+          "title": "Welcoming Children",
+          "text": [
+            "Children are also warmly welcomed here, where they can not only develop their physical skills but also learn essential values such as ",
+            "respect",
+            ", ",
+            "discipline",
+            ", and mutual support."
+          ]
+        },
+        "itemFour": {
+          "title": "Goals for Members",
+          "text": [
+            "Whether you're looking to improve your fitness, learn a new martial art, or prepare for ",
+            "competition",
+            ", you'll find a welcoming and motivating environment with us."
+          ]
+        }
+      }
+    },
+
     "team": {
-      "title": "Our team",
+      "title": ["Our", "team"],
       "subTitle": "Our coaches combine expertise and passion to guide you towards excellence, regardless of your level. Together, we will help you surpass your limits and reveal the best version of yourself.",
       "nazim": {
-        "text": "Nazim Djamalov, a multiple-time French champion and former member of the national team, is a coach whose experience and talent are recognized beyond borders. With his creativity and teaching skills, he will guide you step by step to perfect your technique and develop your potential. Whether you are a beginner or a competitor, Nazim will tailor his instruction to your needs, helping you progress quickly."
+        "textOne": [
+          "Nazim Djamalov, ",
+          "multiple-time French champion",
+          " and former member of the ",
+          "national team",
+          ", is a coach whose experience and talent are recognized beyond borders."
+        ],
+        "textTwo": [
+          "With his ",
+          "creativity",
+          " and ",
+          "teaching ",
+          "skills, he will guide you step by step to perfect your technique and develop your potential. Whether you are a beginner or a competitor, Nazim will adapt his teaching to your needs to help you improve."
+        ]
       },
       "gaetan": {
-        "text": "Gaetan Houara, a multiple-time French Open champion, is an expert in grappling and wrestling, known for his technical mastery and strategic insight. His dynamic and motivating approach will push you to give your best in every training session. With his support, you'll improve your skills and reach new heights in your practice."
+        "textOne": [
+          "Gaetan Houara, ",
+          "multiple-time French Open champion",
+          ", is an expert in grappling and wrestling. He is renowned for his ",
+          "technical ",
+          " mastery and ",
+          "strategic",
+          " sense, qualities that make him an exceptional coach."
+        ],
+        "textTwo": [
+          "His ",
+          "dynamic",
+          " and ",
+          "motivating",
+          " approach will push you to give your best in every training session. With his support, you will improve your skills and reach new heights in your practice."
+        ]
       }
     },
 
     "schedule": {
-      "title": "Our Hours",
+      "title": ["Our", "hours"],
       "subTitle": "The training sessions take place on Monday and Thursday. Wrestling and grappling classes alternate each week. Regularly check our schedule to stay informed about upcoming changes.",
       "daysOfWeek": {
         "monday": "Monday",
@@ -67,6 +147,7 @@
     },
 
     "rates": {
+      "title": ["Our", "prices"],
       "subTitle": "Monthly subscription",
       "content": "Payments are made in cash directly at the club along with the registration forms. Moreover, the subscription covers both disciplines (wrestling and grappling). And the amount must be paid between the 1st and the 9th day of the current month.",
       "secondContent": "A free trial class is available for both disciplines.",
@@ -84,6 +165,12 @@
     },
 
     "faq": {
+      "title": ["Frequently asked", "questions"],
+      "text": [
+        "Here you will find the answers to your questions. If, despite this, you do not find the answer you are looking for or if you have another question, please",
+        "contact us",
+        "."
+      ],
       "btnTheme": {
         "general": "General",
         "new": "New",
@@ -148,12 +235,14 @@
     },
 
     "requestForInformations": {
+      "title": ["Request more", "information"],
       "content": "For any information request or other inquiries, contact us now!"
     }
   },
 
   "contactUs": {
     "title": "Let's Stay in Touch",
+    "subTitle": "Or just reach out to us at",
     "form": {
       "label": {
         "firstName": "First Name",
