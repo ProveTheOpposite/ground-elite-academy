@@ -34,45 +34,21 @@ const Faq = () => {
       </h2>
 
       <h2 className="z-10 mb-6 text-center text-3xl font-bold uppercase md:mb-8 lg:text-4xl">
-        {language === "fr" ? (
-          <>
-            Questions fréquemment <span className="text-[#b0181c]">posées</span>
-          </>
-        ) : (
-          <>
-            Frequently asked <span className="text-[#b0181c]">questions</span>
-          </>
-        )}
+        {translations[language].home.faq.title[0]}{" "}
+        <span className="text-[#b0181c]">
+          {translations[language].home.faq.title[1]}
+        </span>
       </h2>
 
       <h2 className="z-10 mb-6 text-center text-lg text-gray-600 md:mx-auto md:mb-8 md:w-[650px]">
-        {language === "fr" ? (
-          <>
-            Vous trouverez ici les réponses à vos questions. Si, malgré cela,
-            vous ne trouvez pas la réponse que vous chercher ou que vous avez
-            une autre question,{" "}
-            <Link
-              className="font-bold text-[#b0181c] underline hover:no-underline"
-              to="/contact-us"
-            >
-              contactez-nous
-            </Link>
-            .
-          </>
-        ) : (
-          <>
-            Here you will find the answers to your questions. If, despite this,
-            you do not find the answer you are looking for or if you have
-            another question, please{" "}
-            <Link
-              className="font-bold text-[#b0181c] underline hover:no-underline"
-              to="/contact-us"
-            >
-              contact us
-            </Link>
-            .
-          </>
-        )}
+        {translations[language].home.faq.text[0]}{" "}
+        <Link
+          className="font-bold text-[#b0181c] underline hover:no-underline"
+          to="/contact-us"
+        >
+          {translations[language].home.faq.text[1]}
+        </Link>
+        {translations[language].home.faq.text[2]}
       </h2>
 
       <div className="z-20">

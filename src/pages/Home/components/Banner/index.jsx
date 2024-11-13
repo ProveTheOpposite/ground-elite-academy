@@ -39,7 +39,7 @@ const Banner = () => {
         loop
       >
         <source src="/src/assets/videos/video-banner.mp4" type="video/mp4" />
-        {translations[language].home.aboutUs.videoNotSupported}
+        {translations[language].home.banner.videoNotSupported}
       </video> */}
 
       {/* Overlay */}
@@ -50,19 +50,15 @@ const Banner = () => {
         {/* <div className="text-center lg:flex-[0.55] lg:text-left 2xl:flex-[0.4]"> */}
         <div className="text-center lg:flex-[0.42] lg:text-left">
           <h1 className="mb-10 text-4xl font-bold leading-tight text-white lg:leading-snug xl:leading-tight 2xl:text-5xl 2xl:leading-tight">
-            {language === "fr" ? (
-              <>
-                Découvrez la <span className="text-red-600">Lutte</span> et le{" "}
-                <span className="text-red-600">Grappling</span> à Nice avec les
-                experts de Ground Elite Academy
-              </>
-            ) : (
-              <>
-                Discover <span className="text-red-600">Wrestling</span> and{" "}
-                <span className="text-red-600">Grappling</span> in Nice with the
-                experts at Ground Elite Academy
-              </>
-            )}
+            {translations[language].home.banner.title[0]}{" "}
+            <span className="text-[#b0181c]">
+              {translations[language].home.banner.title[1]}
+            </span>{" "}
+            {translations[language].home.banner.title[2]}{" "}
+            <span className="text-[#b0181c]">
+              {translations[language].home.banner.title[3]}
+            </span>{" "}
+            {translations[language].home.banner.title[4]}
           </h1>
 
           <Link className="mt-10 rounded-full" to="/contact-us">
@@ -79,8 +75,8 @@ const Banner = () => {
               className="w-[78px] rounded-md border border-white px-4 py-2 text-white"
             >
               {isVideoPlaying
-                ? translations[language].home.aboutUs.buttonVideo.pause
-                : translations[language].home.aboutUs.buttonVideo.play}
+                ? translations[language].home.banner.buttonVideo.pause
+                : translations[language].home.banner.buttonVideo.play}
             </button>
           </div>
         </div> */}

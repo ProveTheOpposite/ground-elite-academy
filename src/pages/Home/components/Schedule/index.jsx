@@ -40,15 +40,10 @@ const Schedule = () => {
     >
       <div className="z-10 md:mx-auto md:w-[90%] lg:w-[95%] xl:w-[1230px]">
         <h2 className="mb-5 text-3xl font-bold uppercase lg:text-4xl">
-          {language === "fr" ? (
-            <>
-              Notre <span className="text-[#b0181c]">planning</span>
-            </>
-          ) : (
-            <>
-              Our <span className="text-[#b0181c]">schedule</span>
-            </>
-          )}
+        {translations[language].home.schedule.title[0]}{" "}
+          <span className="text-[#b0181c]">
+            {translations[language].home.schedule.title[1]}
+          </span>
         </h2>
 
         <div className="mb-7 lg:flex lg:items-start lg:justify-between">

@@ -135,27 +135,15 @@ const ContactUs = () => {
         <h1 className="text-3xl font-bold xl:mb-3 xl:text-4xl">
           {translations[language].contactUs.title}
         </h1>
-        {language === "fr" ? (
-          <p className="text-sm text-slate-900 md:text-base">
-            Ou contactez-nous simplement à{" "}
-            <a
-              className="decoration-[#b0181c] hover:underline"
-              href="mailto:geanice934@gmail.com"
-            >
-              <strong className="text-[#b0181c]">geanice934@gmail.com</strong>
-            </a>
-          </p>
-        ) : (
-          <p className="text-sm text-slate-900 md:text-base">
-            Or just reach out to us at{" "}
-            <a
-              className="decoration-[#b0181c] hover:underline"
-              href="mailto:geanice934@gmail.com"
-            >
-              <strong className="text-[#b0181c]">geanice934@gmail.com</strong>
-            </a>
-          </p>
-        )}
+        <p className="text-sm text-slate-900 md:text-base">
+          {translations[language].contactUs.subTitle}{" "}
+          <a
+            className="decoration-[#b0181c] hover:underline"
+            href="mailto:geanice934@gmail.com"
+          >
+            <strong className="text-[#b0181c]">geanice934@gmail.com</strong>
+          </a>
+        </p>
 
         <form
           onSubmit={handleSubmit(onSubmit)}

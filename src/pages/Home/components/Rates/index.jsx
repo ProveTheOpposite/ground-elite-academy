@@ -20,15 +20,10 @@ const Rates = () => {
       className="relative flex min-h-screen flex-col justify-center bg-[#fbfcfd] px-5 py-20"
     >
       <h2 className="z-20 mb-5 text-center text-3xl font-bold uppercase lg:text-4xl">
-        {language === "fr" ? (
-          <>
-            Nos <span className="text-[#b0181c]">tarifs</span>
-          </>
-        ) : (
-          <>
-            Our <span className="text-[#b0181c]">prices</span>
-          </>
-        )}
+        {translations[language].home.rates.title[0]}{" "}
+        <span className="text-[#b0181c]">
+          {translations[language].home.rates.title[1]}
+        </span>
       </h2>
 
       <div className="z-20">
