@@ -124,7 +124,7 @@
 
     "schedule": {
       "title": ["Our", "hours"],
-      "subTitle": "The training sessions take place on Monday, Wednesday and Thursday. Wrestling and grappling classes alternate each week. Regularly check our schedule to stay informed about upcoming changes.",
+      "subTitle": "The training sessions take place on Monday, Wednesday and Thursday. Wrestling and grappling classes alternate each week for adults. Regularly check our schedule to stay informed about upcoming changes.",
       "warning": "On Wednesdays, classes are held at 63 Bd Gorbella, 06100 Nice, instead of 10 Boulevard Comte de Falicon, 06100 Nice.",
       "daysOfWeek": {
         "monday": "Monday",
