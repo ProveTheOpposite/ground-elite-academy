@@ -124,7 +124,8 @@
 
     "schedule": {
       "title": ["Nos", "horaires"],
-      "subTitle": "Les entraînement ont lieu le lundi et jeudi. Les cours de lutte et de grappling s'alternent chaque semaine. Consultez régulièrement notre planning pour être au courant des futurs changements.",
+      "subTitle": "Les entraînement ont lieu le lundi, mercredi et jeudi. Les cours de lutte et de grappling s'alternent chaque semaine. Consultez régulièrement notre planning pour être au courant des futurs changements.",
+      "warning": "Le mercredi, les cours se déroulent au 63 Bd Gorbella, 06100 Nice, à la place de 10 boulevard Comte de Falicon, 06100 Nice.",
       "daysOfWeek": {
         "monday": "Lundi",
         "tuesday": "Mardi",

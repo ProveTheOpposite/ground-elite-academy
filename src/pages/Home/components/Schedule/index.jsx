@@ -40,7 +40,7 @@ const Schedule = () => {
     >
       <div className="z-10 md:mx-auto md:w-[90%] lg:w-[95%] xl:w-[1230px]">
         <h2 className="mb-5 text-3xl font-bold uppercase lg:text-4xl">
-        {translations[language].home.schedule.title[0]}{" "}
+          {translations[language].home.schedule.title[0]}{" "}
           <span className="text-[#b0181c]">
             {translations[language].home.schedule.title[1]}
           </span>
@@ -49,6 +49,10 @@ const Schedule = () => {
         <div className="mb-7 lg:flex lg:items-start lg:justify-between">
           <h2 className="mb-7 text-lg text-gray-600 md:mb-5 lg:mb-0 lg:flex-[0.75] lg:pr-10">
             {translations[language].home.schedule.subTitle}
+            <p className="mt-4 text-red-600">
+              <i className="fa-solid fa-triangle-exclamation mr-1"></i>{" "}
+              {translations[language].home.schedule.warning}
+            </p>
           </h2>
 
           <div className="relative lg:flex-[0.25]">
