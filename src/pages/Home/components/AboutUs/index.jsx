@@ -137,7 +137,7 @@ const AboutUs = () => {
 
         <div className="hidden md:block xl:flex-1">
           <iframe
-            className="h-[230px] w-full rounded-ee-xl rounded-es-xl border border-slate-400 md:h-[350px] lg:h-[450px] xl:h-[100%] xl:rounded-es-none xl:rounded-se-xl"
+            className="h-[230px] w-full rounded-xl border border-slate-400 md:h-[350px] lg:h-[450px] xl:h-[100%]"
             src="https://www.google.com/maps/embed?pb=!1m18!1m12!1m3!1d720.7949860491581!2d7.255945928606331!3d43.72758859818614!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x12cdcff1863bfd43%3A0xeb78956f41959d12!2s10%20Bd%20Comte%20de%20Falicon%2C%2006100%20Nice!5e0!3m2!1sfr!2sfr!4v1722622448878!5m2!1sfr!2sfr"
             loading="lazy"
             title={
