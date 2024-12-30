@@ -29,7 +29,7 @@ const Banner = () => {
   return (
     <section
       id="welcome"
-      className="relative flex h-screen items-center justify-center px-5 md:px-10 lg:px-16 2xl:px-28"
+      className="bg-banner-url relative flex h-screen items-center justify-center px-5 md:px-10 lg:px-16 2xl:px-28"
     >
       {/* Video Background */}
       {/* <video
