@@ -8,6 +8,16 @@
     font-family: "Roboto", sans-serif;
   }
 
+  img {
+    max-width: 100%;
+  }
+
+  video {
+    width: 100%;
+    display: block;
+    min-height: 100%;
+  }
+
   .specially {
     font-family: "Times New Roman", serif;
   }
@@ -30,9 +40,21 @@
   }
 
   /* Pour le background du banner */
-  .bg-banner-url {
-    background: url("../images/home/bg-banner.jpg") no-repeat center
+
+  .bg-banner-desktop-url {
+    background: url("../images/home/bg-banner-desktop.jpg") no-repeat center
       center/cover;
+  }
+
+  .bg-banner-mobile-url {
+    background: url("../images/home/bg-banner-mobile.jpg") no-repeat center
+      center/cover;
+  }
+
+  /* Background pour les articles de presse */
+  .first-article-bg-url {
+    background: url("../images/press/article1/gaetan-victoire.jpg") no-repeat
+      center center/cover;
   }
 
   /* Pour le titre du composant Error Element */

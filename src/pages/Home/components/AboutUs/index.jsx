@@ -7,6 +7,7 @@ import { languageState } from "src/recoil";
 // components
 import Button from "src/components/Button";
 // assets
+import DecorativeSvg from "src/components/DecorativeSvg";
 import translations from "src/language/translations";
 
 const AboutUs = () => {
@@ -74,7 +75,7 @@ const AboutUs = () => {
   return (
     <section
       id="aboutUs"
-      className="flex min-h-screen flex-col justify-center bg-white px-5 py-16 md:bg-[url('src/assets/images/home/bgAboutUs.svg')] md:bg-[top_650px_left_300px] lg:bg-[top_550px_left_350px] lg:px-12 xl:bg-[top_300px_left_700px] 2xl:bg-[left_1350px_top_300px]"
+      className="relative flex min-h-screen flex-col justify-center bg-white px-5 py-16 lg:px-12"
       style={{
         backgroundSize: "contain",
         backgroundRepeat: "no-repeat",
@@ -149,6 +150,8 @@ const AboutUs = () => {
           ></iframe>
         </div>
       </div>
+
+      <DecorativeSvg fillColor="#fff" />
     </section>
   );
 };

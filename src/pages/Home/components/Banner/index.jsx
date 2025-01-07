@@ -26,10 +26,13 @@ const Banner = () => {
   //     }
   //   };
 
+  const isMobile = window.innerWidth <= 1080;
+  const isDesktop = window.innerWidth > 1080;
+
   return (
     <section
       id="welcome"
-      className="bg-banner-url relative flex h-screen items-center justify-center px-5 md:px-10 lg:px-16 2xl:px-28"
+      className={`${isMobile ? "bg-banner-mobile-url" : isDesktop ? "bg-banner-desktop-url" : ""} relative flex h-screen items-center justify-center px-5 sm:px-8 md:px-10 lg:px-16 2xl:px-28`}
     >
       {/* Video Background */}
       {/* <video
@@ -43,13 +46,13 @@ const Banner = () => {
       </video> */}
 
       {/* Overlay */}
-      <div className="absolute h-full w-full bg-black bg-opacity-25"></div>
+      {/* <div className="absolute h-full w-full bg-black bg-opacity-50"></div> */}
 
       {/* Content */}
-      <div className="z-10 flex flex-col items-center lg:flex-row">
+      <div className="3xl:bottom-28 3xl:left-28 z-10 flex flex-col items-center md:w-[550px] lg:flex-row xl:absolute xl:bottom-20 xl:left-20 2xl:w-[750px]">
         {/* <div className="text-center lg:flex-[0.55] lg:text-left 2xl:flex-[0.4]"> */}
-        <div className="text-center lg:flex-[0.42] lg:text-left">
-          <h1 className="mb-10 text-4xl font-bold leading-tight text-white lg:leading-snug xl:leading-tight 2xl:text-5xl 2xl:leading-tight">
+        <div className="mt-14 text-center sm:mt-0 xl:text-left">
+          <h1 className="mb-8 text-3xl font-bold text-white md:text-4xl lg:leading-tight 2xl:text-5xl 2xl:leading-tight">
             {translations[language].home.banner.title[0]}{" "}
             <span className="text-[#b0181c]">
               {translations[language].home.banner.title[1]}
@@ -61,8 +64,8 @@ const Banner = () => {
             {translations[language].home.banner.title[4]}
           </h1>
 
-          <Link className="mt-10 rounded-full" to="/contact-us">
-            <Button className="bg-[#b0181c] text-white hover:bg-[#7d2a2d]">
+          <Link className="rounded-full" to="/contact-us">
+            <Button className="bg-[#b0181c] text-white hover:bg-[#7d2a2d] 2xl:!px-8 2xl:!py-4 2xl:!text-xl">
               {translations[language].home.btnContactUs}
             </Button>
           </Link>

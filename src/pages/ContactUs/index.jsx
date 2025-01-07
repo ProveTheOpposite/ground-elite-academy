@@ -109,7 +109,7 @@ const ContactUs = () => {
   };
 
   return (
-    <div className="mt-[68px] flex-1 px-3 py-6 md:px-6 xl:py-10">
+    <div className="mt-[68px] flex-1 px-3 py-6 md:px-6 xl:mt-[78px] xl:pb-10">
       <div className="lg:mx-auto lg:w-[800px] 2xl:w-[950px]">
         <Toaster
           position={window.innerWidth >= 1024 ? "bottom-right" : "top-right"}

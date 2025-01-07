@@ -18,7 +18,7 @@ const Team = () => {
       id="team"
       className="relative flex min-h-screen flex-col bg-[#fbfcfd] px-5 py-20 xl:gap-y-10 xl:pt-24"
     >
-      <div className="xl:basis-[88px]">
+      <div className="z-10 xl:basis-[88px]">
         <h2 className="mb-5 text-center text-3xl font-bold uppercase lg:text-4xl">
           {translations[language].home.team.title[0]}{" "}
           <span className="text-[#b0181c]">
@@ -31,7 +31,7 @@ const Team = () => {
         </p>
       </div>
 
-      <div className="mt-8 flex flex-col gap-y-16 md:mt-14 md:px-8 min-[1920px]:flex-1 min-[1920px]:flex-row min-[1920px]:justify-between min-[1920px]:gap-x-[200px] min-[1920px]:gap-y-0">
+      <div className="3xl:flex-1 3xl:flex-row 3xl:justify-between 3xl:gap-x-[200px] 3xl:gap-y-0 mt-8 flex flex-col gap-y-16 md:mt-14 md:px-8">
         {/* Nazim */}
         <TeamMember
           name="Nazim Djamalov"
