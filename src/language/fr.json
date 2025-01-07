@@ -6,7 +6,8 @@
       "team": "Équipe",
       "schedule": "Planning",
       "rates": "Tarifs",
-      "faq": "FAQs"
+      "faq": "FAQs",
+      "press": "Presse"
     },
     "btnTranslation": {
       "fr": "Français",
@@ -238,6 +239,15 @@
     "requestForInformations": {
       "title": ["Contactez-nous pour plus", "d'informations"],
       "content": "Pour toute demande d'information ou autre, contactez-nous dès maintenant !"
+    }
+  },
+
+  "press": {
+    "title": ["L'Actualité du Club : Lutte et Grappling en", "Pleine Action"],
+    "errorLoading": "La ressource ne s'est pas chargée",
+    "articleOne": {
+      "title": "Depuis Nice jusqu'au sommet : un exploit à Marseille !",
+      "text": "Notre entraîneur a parfaitement représenté notre club GEA Nice (Ground Elite Academy) lors de la compétition de grappling à Marseille le 22 décembre dernier. Son talent et sa persévérance lui ont permis de s'imposer face à des adversaires de haut niveau, remportant une victoire inoubliable. Il a non seulement fait preuve d'excellence, mais il a également remporté le championnat de France et la Coupe de France, confirmant ainsi son statut d'athlète exceptionnel."
     }
   },
 

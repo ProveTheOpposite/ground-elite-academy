@@ -10,7 +10,7 @@ const SubscriptionCard = ({ title, description, price }) => {
   const language = useRecoilValue(languageState);
 
   return (
-    <div className="rounded-xl border border-violet-200 px-5 py-7 last:mt-7 min-[375px]:p-8 min-[425px]:w-[350px] lg:last:mt-0">
+    <div className="rounded-xl border border-gray-300 px-5 py-7 last:mt-7 min-[375px]:p-8 min-[425px]:w-[350px] lg:last:mt-0">
       <h3 className="mb-2 text-2xl font-bold">{title}</h3>
       <p className="mb-4 text-lg">{description}</p>
       <div className="leading-loose">
@@ -32,10 +32,10 @@ const SubscriptionCard = ({ title, description, price }) => {
       </div>
 
       {/* <ul className="mt-3 flex flex-col gap-y-5 pl-5 text-lg">
-      <li className="before:mr-2 before:content-['✅']">Accès à l'eau</li>
-      <li className="before:mr-2 before:content-['✅']">Accès à l'eau</li>
-      <li className="before:mr-2 before:content-['✅']">Accès à l'eau</li>
-    </ul> */}
+        <li className="before:mr-2 before:content-['✅']">Accès à l'eau</li>
+        <li className="before:mr-2 before:content-['✅']">Accès à l'eau</li>
+        <li className="before:mr-2 before:content-['✅']">Accès à l'eau</li>
+      </ul> */}
     </div>
   );
 };

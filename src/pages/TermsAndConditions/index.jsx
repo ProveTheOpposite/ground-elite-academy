@@ -187,7 +187,7 @@ const TermsAndConditions = () => {
   ];
 
   return (
-    <div className="mt-[64px] px-2 py-5 md:px-8 md:py-10 lg:flex lg:flex-col lg:items-center">
+    <div className="mt-[68px] px-2 py-5 md:px-8 md:pb-10 md:pt-7 lg:flex lg:flex-col lg:items-center xl:mt-[78px]">
       <h1 className="mb-7 text-center text-3xl font-bold lg:mb-10 xl:text-4xl">
         {translations[language].termsAndConditions.title}
       </h1>

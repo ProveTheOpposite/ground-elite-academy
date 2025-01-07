@@ -32,12 +32,15 @@ const HeaderMobile = ({ setShowMenu, showMenu }) => {
     { key: "schedule", icon: "fa-calendar-days" },
     { key: "rates", icon: "fa-hand-holding-dollar" },
     { key: "faq", icon: "fa-circle-question" },
+    { key: "press", icon: "fa-newspaper" },
   ];
   const handleLanguageChange = (lang) => {
     setLanguage(lang);
     localStorage.setItem("language", lang);
     setIsLanguageMenuVisible(false);
   };
+
+  const isHomePage = location.pathname === "/";
 
   return (
     <nav
@@ -53,7 +56,7 @@ const HeaderMobile = ({ setShowMenu, showMenu }) => {
           >
             <i className={`fa-solid ${icon} mr-4 w-[30px]`}></i>
             <Link
-              to={location.pathname !== "/" ? "/" : ""}
+              to={key === "press" ? "/press" : isHomePage ? "" : "/"}
               className="cursor-pointer"
               onClick={() => {
                 scrollToElement(key);

@@ -29,7 +29,6 @@ const Header = ({ openChangeLanguageModal }) => {
 
   const location = useLocation();
 
-
   // Change header style on scroll
   useEffect(() => {
     const handleScroll = () => {
@@ -58,7 +57,7 @@ const Header = ({ openChangeLanguageModal }) => {
 
   return (
     <header
-      className={`${headerBackgroundClass} fixed left-0 top-0 z-40 flex h-[68px] w-full items-center justify-between px-5 lg:pl-10 xl:h-[78px] xl:justify-between xl:px-24 2xl:px-44`}
+      className={`${headerBackgroundClass} 3xl:px-44 fixed left-0 top-0 z-40 flex h-[68px] w-full items-center justify-between px-5 lg:pl-10 xl:h-[78px] xl:justify-between xl:px-14 2xl:px-32`}
     >
       <h2>
         <Link to="/">
@@ -80,7 +79,7 @@ const Header = ({ openChangeLanguageModal }) => {
               className={`tracking-wide transition-colors hover:text-red-600 ${textColorClass}`}
             >
               <Link
-                to={key === "login" ? "/admin/login" : isHomePage ? "" : "/"}
+                to={key === "press" ? "/press" : isHomePage ? "" : "/"}
                 className="cursor-pointer"
                 onClick={() => scrollToElement(key)}
               >
