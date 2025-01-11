@@ -17,6 +17,7 @@ import emailjs from "@emailjs/browser";
 import toast, { ToastBar, Toaster } from "react-hot-toast";
 
 // Components
+import { Helmet } from "react-helmet-async";
 import Button from "src/components/Button";
 import FormField from "../../components/FormField";
 
@@ -109,150 +110,160 @@ const ContactUs = () => {
   };
 
   return (
-    <div className="mt-[68px] flex-1 px-3 py-6 md:px-6 xl:mt-[78px] xl:pb-10">
-      <div className="lg:mx-auto lg:w-[800px] 2xl:w-[950px]">
-        <Toaster
-          position={window.innerWidth >= 1024 ? "bottom-right" : "top-right"}
-          reverseOrder={false}
-        >
-          {(t) => (
-            <ToastBar toast={t}>
-              {({ icon, message }) => (
-                <>
-                  {icon}
-                  {message}
-                  {t.type !== "loading" && (
-                    <button onClick={() => toast.dismiss(t.id)}>
-                      <i className="fa-solid fa-xmark mt-0.5 text-xl"></i>
-                    </button>
-                  )}
-                </>
-              )}
-            </ToastBar>
-          )}
-        </Toaster>
+    <>
+      <Helmet>
+        <title>Contactez-nous - Ground Elite Academy</title>
+        <meta
+          name="description"
+          content="Vous avez des questions sur nos cours de lutte et grappling à Nice ? Contactez Ground Elite Academy, nous sommes là pour répondre à toutes vos demandes."
+        />
+      </Helmet>
 
-        <h1 className="text-3xl font-bold xl:mb-3 xl:text-4xl">
-          {translations[language].contactUs.title}
-        </h1>
-        <p className="text-sm text-slate-900 md:text-base">
-          {translations[language].contactUs.subTitle}{" "}
-          <a
-            className="decoration-[#b0181c] hover:underline"
-            href="mailto:geanice934@gmail.com"
+      <div className="mt-[68px] flex-1 px-3 py-6 md:px-6 xl:mt-[78px] xl:pb-10">
+        <div className="lg:mx-auto lg:w-[800px] 2xl:w-[950px]">
+          <Toaster
+            position={window.innerWidth >= 1024 ? "bottom-right" : "top-right"}
+            reverseOrder={false}
           >
-            <strong className="text-[#b0181c]">geanice934@gmail.com</strong>
-          </a>
-        </p>
+            {(t) => (
+              <ToastBar toast={t}>
+                {({ icon, message }) => (
+                  <>
+                    {icon}
+                    {message}
+                    {t.type !== "loading" && (
+                      <button onClick={() => toast.dismiss(t.id)}>
+                        <i className="fa-solid fa-xmark mt-0.5 text-xl"></i>
+                      </button>
+                    )}
+                  </>
+                )}
+              </ToastBar>
+            )}
+          </Toaster>
 
-        <form
-          onSubmit={handleSubmit(onSubmit)}
-          className="mt-5 text-sm md:text-base xl:mt-7"
-        >
-          <div className="flex flex-col gap-y-8 md:gap-y-11">
-            <div className="flex flex-col gap-y-8 md:flex-row md:gap-x-5">
+          <h1 className="text-3xl font-bold xl:mb-3 xl:text-4xl">
+            {translations[language].contactUs.title}
+          </h1>
+          <p className="text-sm text-slate-900 md:text-base">
+            {translations[language].contactUs.subTitle}{" "}
+            <a
+              className="decoration-[#b0181c] hover:underline"
+              href="mailto:geanice934@gmail.com"
+            >
+              <strong className="text-[#b0181c]">geanice934@gmail.com</strong>
+            </a>
+          </p>
+
+          <form
+            onSubmit={handleSubmit(onSubmit)}
+            className="mt-5 text-sm md:text-base xl:mt-7"
+          >
+            <div className="flex flex-col gap-y-8 md:gap-y-11">
+              <div className="flex flex-col gap-y-8 md:flex-row md:gap-x-5">
+                <FormField
+                  className="flex-1"
+                  id="firstName"
+                  label={translations[language].contactUs.form.label.firstName}
+                  register={register}
+                  type="text"
+                  placeholder={
+                    translations[language].contactUs.form.placeholder.firstName
+                  }
+                  icon="user"
+                  errors={errors.firstName}
+                />
+                <FormField
+                  className="flex-1"
+                  id="name"
+                  label={translations[language].contactUs.form.label.name}
+                  register={register}
+                  type="text"
+                  placeholder={
+                    translations[language].contactUs.form.placeholder.name
+                  }
+                  icon="user"
+                  errors={errors.name}
+                />
+              </div>
+
               <FormField
-                className="flex-1"
-                id="firstName"
-                label={translations[language].contactUs.form.label.firstName}
+                id="email"
+                label={translations[language].contactUs.form.label.email}
+                register={register}
+                type="email"
+                placeholder={
+                  translations[language].contactUs.form.placeholder.email
+                }
+                icon="envelope"
+                errors={errors.email}
+              />
+
+              <FormField
+                id="phoneNumber"
+                label={translations[language].contactUs.form.label.phoneNumber}
                 register={register}
                 type="text"
                 placeholder={
-                  translations[language].contactUs.form.placeholder.firstName
+                  translations[language].contactUs.form.placeholder.phoneNumber
                 }
-                icon="user"
-                errors={errors.firstName}
+                icon="phone"
+                errors={errors.phoneNumber}
               />
+
               <FormField
-                className="flex-1"
-                id="name"
-                label={translations[language].contactUs.form.label.name}
+                id="topic"
+                label={translations[language].contactUs.form.label.topic}
                 register={register}
                 type="text"
                 placeholder={
-                  translations[language].contactUs.form.placeholder.name
+                  translations[language].contactUs.form.placeholder.topic
                 }
-                icon="user"
-                errors={errors.name}
+                icon="magnifying-glass"
+                errors={errors.topic}
               />
+
+              <div className="relative flex flex-col">
+                <label className="mb-1 ml-1 font-bold" htmlFor="content">
+                  {translations[language].contactUs.form.label.content}
+                </label>
+
+                <textarea
+                  {...register("content")}
+                  className="h-32 resize rounded-2xl border border-slate-500 bg-transparent p-3 pb-6 placeholder:pl-1 focus:outline-[#b0181c] lg:h-40"
+                  id="content"
+                  name="content"
+                  placeholder={
+                    translations[language].contactUs.form.placeholder.content
+                  }
+                  maxLength="600"
+                />
+                <span className="absolute bottom-1.5 left-3.5">
+                  {contentValue.length}/600
+                </span>
+                {errors.content && (
+                  <p className="absolute -bottom-6 left-1 text-sm text-red-600 md:-bottom-7 md:text-base">
+                    <i className="fa-solid fa-triangle-exclamation mr-1"></i>
+                    {errors.content.message}
+                  </p>
+                )}
+              </div>
+
+              <Button className="mt-2 bg-[#b0181c] font-bold text-white hover:bg-[#7d2a2d] lg:!py-4">
+                {isLoading ? (
+                  <i className="fa-solid fa-spinner animate-spin lg:text-2xl"></i>
+                ) : (
+                  <>
+                    {translations[language].contactUs.form.btnSubmit}
+                    <i className="fa-solid fa-arrow-right-long ml-3"></i>
+                  </>
+                )}
+              </Button>
             </div>
-
-            <FormField
-              id="email"
-              label={translations[language].contactUs.form.label.email}
-              register={register}
-              type="email"
-              placeholder={
-                translations[language].contactUs.form.placeholder.email
-              }
-              icon="envelope"
-              errors={errors.email}
-            />
-
-            <FormField
-              id="phoneNumber"
-              label={translations[language].contactUs.form.label.phoneNumber}
-              register={register}
-              type="text"
-              placeholder={
-                translations[language].contactUs.form.placeholder.phoneNumber
-              }
-              icon="phone"
-              errors={errors.phoneNumber}
-            />
-
-            <FormField
-              id="topic"
-              label={translations[language].contactUs.form.label.topic}
-              register={register}
-              type="text"
-              placeholder={
-                translations[language].contactUs.form.placeholder.topic
-              }
-              icon="magnifying-glass"
-              errors={errors.topic}
-            />
-
-            <div className="relative flex flex-col">
-              <label className="mb-1 ml-1 font-bold" htmlFor="content">
-                {translations[language].contactUs.form.label.content}
-              </label>
-
-              <textarea
-                {...register("content")}
-                className="h-32 resize rounded-2xl border border-slate-500 bg-transparent p-3 pb-6 placeholder:pl-1 focus:outline-[#b0181c] lg:h-40"
-                id="content"
-                name="content"
-                placeholder={
-                  translations[language].contactUs.form.placeholder.content
-                }
-                maxLength="600"
-              />
-              <span className="absolute bottom-1.5 left-3.5">
-                {contentValue.length}/600
-              </span>
-              {errors.content && (
-                <p className="absolute -bottom-6 left-1 text-sm text-red-600 md:-bottom-7 md:text-base">
-                  <i className="fa-solid fa-triangle-exclamation mr-1"></i>
-                  {errors.content.message}
-                </p>
-              )}
-            </div>
-
-            <Button className="mt-2 bg-[#b0181c] font-bold text-white hover:bg-[#7d2a2d] lg:!py-4">
-              {isLoading ? (
-                <i className="fa-solid fa-spinner animate-spin lg:text-2xl"></i>
-              ) : (
-                <>
-                  {translations[language].contactUs.form.btnSubmit}
-                  <i className="fa-solid fa-arrow-right-long ml-3"></i>
-                </>
-              )}
-            </Button>
-          </div>
-        </form>
+          </form>
+        </div>
       </div>
-    </div>
+    </>
   );
 };
 

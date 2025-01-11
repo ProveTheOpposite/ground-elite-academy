@@ -1,3 +1,5 @@
+// react helmet
+import { Helmet } from "react-helmet-async";
 // components
 import AboutUs from "./components/AboutUs";
 import Banner from "./components/Banner";
@@ -10,6 +12,17 @@ import Team from "./components/Team";
 const Home = () => {
   return (
     <>
+      <Helmet>
+        <title>
+          Ground Elite Academy - Club de lutte et grappling à Nice |
+          Rejoignez-nous !
+        </title>
+        <meta
+          name="description"
+          content="Ground Elite Academy, nouveau club de lutte et grappling à Nice, ouvert récemment avec Nazim et Gaetan comme entraineurs. Rejoignez-nous !"
+        />
+      </Helmet>
+
       <Banner />
       <AboutUs />
       <Team />

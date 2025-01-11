@@ -320,7 +320,7 @@
 
   "errorElement": {
     "title": "Erreur 404",
-    "content": "La page que vous essayez de trouver n'a pas été trouvé.",
+    "content": "La page que vous essayez de chercher n'a pas été trouvé.",
     "btnWelcome": "Revenir à l'accueil"
   }
 }
