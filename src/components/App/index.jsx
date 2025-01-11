@@ -8,6 +8,7 @@ import { languageState } from "src/recoil";
 // javascript
 import { initEmailJs } from "src/assets/javascript/emailJs/emailJs";
 // components
+import { HelmetProvider } from "react-helmet-async";
 import ContactUs from "src/pages/ContactUs";
 import Home from "src/pages/Home";
 import Press from "src/pages/Press";
@@ -52,30 +53,32 @@ const App = () => {
   }, [setLanguage]);
 
   return (
-    <div className="flex min-h-screen flex-col">
-      <Header openChangeLanguageModal={() => toggleModal("changeLanguage")} />
+    <HelmetProvider>
+      <div className="flex min-h-screen flex-col">
+        <Header openChangeLanguageModal={() => toggleModal("changeLanguage")} />
 
-      {openModal === "changeLanguage" && (
-        <Modal
-          onClick={() => toggleModal(null)}
-          className="bg-modal-change-language"
-        >
-          <ChangeLanguage closeModal={() => toggleModal(null)} />
-        </Modal>
-      )}
+        {openModal === "changeLanguage" && (
+          <Modal
+            onClick={() => toggleModal(null)}
+            className="bg-modal-change-language"
+          >
+            <ChangeLanguage closeModal={() => toggleModal(null)} />
+          </Modal>
+        )}
 
-      <ScrollToTop />
+        <ScrollToTop />
 
-      <main className="flex flex-1 flex-col overflow-y-auto">
-        <Routes>
-          {ROUTES.map(({ path, element }, index) => (
-            <Route key={index} path={path} element={element} />
-          ))}
-        </Routes>
-      </main>
+        <main className="flex flex-1 flex-col overflow-y-auto">
+          <Routes>
+            {ROUTES.map(({ path, element }, index) => (
+              <Route key={index} path={path} element={element} />
+            ))}
+          </Routes>
+        </main>
 
-      <Footer />
-    </div>
+        <Footer />
+      </div>
+    </HelmetProvider>
   );
 };
 

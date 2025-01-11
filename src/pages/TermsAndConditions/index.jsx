@@ -4,6 +4,8 @@ import { useRecoilValue } from "recoil";
 import { Link } from "react-router-dom";
 // atom
 import { languageState } from "src/recoil";
+// react helmet
+import { Helmet } from "react-helmet-async";
 // assets
 import translations from "src/language/translations";
 
@@ -187,23 +189,29 @@ const TermsAndConditions = () => {
   ];
 
   return (
-    <div className="mt-[68px] px-2 py-5 md:px-8 md:pb-10 md:pt-7 lg:flex lg:flex-col lg:items-center xl:mt-[78px]">
-      <h1 className="mb-7 text-center text-3xl font-bold lg:mb-10 xl:text-4xl">
-        {translations[language].termsAndConditions.title}
-      </h1>
+    <>
+      <Helmet>
+        <title>Conditions Générales - Ground Elite Academy</title>
+      </Helmet>
 
-      <main className="rounded-xl bg-white px-6 py-4 shadow-md lg:w-[800px] xl:w-[950px]">
-        {sections.map((section, index) => (
-          <div key={index} className="mb-5 md:mb-8">
-            <h2 className="mb-3 text-xl font-bold lg:mb-5 lg:text-2xl">
-              {section.title}
-            </h2>
+      <div className="mt-[68px] px-2 py-5 md:px-8 md:pb-10 md:pt-7 lg:flex lg:flex-col lg:items-center xl:mt-[78px]">
+        <h1 className="mb-7 text-center text-3xl font-bold lg:mb-10 xl:text-4xl">
+          {translations[language].termsAndConditions.title}
+        </h1>
 
-            <p className="text-justify lg:text-lg">{section.content}</p>
-          </div>
-        ))}
-      </main>
-    </div>
+        <main className="rounded-xl bg-white px-6 py-4 shadow-md lg:w-[800px] xl:w-[950px]">
+          {sections.map((section, index) => (
+            <div key={index} className="mb-5 md:mb-8">
+              <h2 className="mb-3 text-xl font-bold lg:mb-5 lg:text-2xl">
+                {section.title}
+              </h2>
+
+              <p className="text-justify lg:text-lg">{section.content}</p>
+            </div>
+          ))}
+        </main>
+      </div>
+    </>
   );
 };
 

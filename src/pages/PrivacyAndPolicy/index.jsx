@@ -2,6 +2,8 @@
 import { useRecoilValue } from "recoil";
 // atom
 import { languageState } from "src/recoil";
+// react helmet
+import { Helmet } from "react-helmet-async";
 // assets
 import translations from "src/language/translations";
 
@@ -230,60 +232,68 @@ const PrivacyAndPolicy = () => {
   ];
 
   return (
-    <div className="mt-[68px] px-2 py-5 md:px-8 md:pb-10 md:pt-7 lg:flex lg:flex-col lg:items-center xl:mt-[78px]">
-      <h1 className="mb-7 text-center text-3xl font-bold lg:mb-10 xl:text-4xl">
-        {translations[language].privacyAndPolicy.title}
-      </h1>
+    <>
+      <Helmet>
+        <title>Politique de Confidentialité - Ground Elite Academy</title>
+      </Helmet>
 
-      <main className="rounded-xl bg-white px-6 py-4 shadow-md lg:w-[800px] xl:w-[950px]">
-        <p className="mb-4 text-justify lg:text-lg">
-          {language === "fr" ? (
-            <>
-              Dernière mise à jour : <strong>{lastUpdatedDate}</strong>
-            </>
-          ) : (
-            <>
-              Last Updated : <strong>{lastUpdatedDate}</strong>
-            </>
-          )}
-        </p>
+      <div className="mt-[68px] px-2 py-5 md:px-8 md:pb-10 md:pt-7 lg:flex lg:flex-col lg:items-center xl:mt-[78px]">
+        <h1 className="mb-7 text-center text-3xl font-bold lg:mb-10 xl:text-4xl">
+          {translations[language].privacyAndPolicy.title}
+        </h1>
 
-        <p className="mb-4 text-justify lg:text-lg">
-          {language === "fr" ? (
-            <>
-              Chez{" "}
-              <strong className="text-[#b0181c]">
-                Ground Elite Academy - GEA
-              </strong>
-              , nous prenons la confidentialité de vos informations personnelles
-              très au sérieux. Cette politique de confidentialité décrit comment
-              nous collectons, utilisons, stockons et protégeons les
-              informations que vous nous fournissez via notre site web.
-            </>
-          ) : (
-            <>
-              At{" "}
-              <strong className="text-[#b0181c]">
-                Ground Elite Academy - GEA
-              </strong>
-              , we take the privacy of your personal information very seriously.
-              This privacy policy outlines how we collect, use, store, and
-              protect the information you provide to us through our website.
-            </>
-          )}
-        </p>
+        <main className="rounded-xl bg-white px-6 py-4 shadow-md lg:w-[800px] xl:w-[950px]">
+          <p className="mb-4 text-justify lg:text-lg">
+            {language === "fr" ? (
+              <>
+                Dernière mise à jour : <strong>{lastUpdatedDate}</strong>
+              </>
+            ) : (
+              <>
+                Last Updated : <strong>{lastUpdatedDate}</strong>
+              </>
+            )}
+          </p>
 
-        {sections.map((section, index) => (
-          <div key={index} className="mb-5 md:mb-8">
-            <h2 className="mb-3 text-xl font-bold lg:mb-5 lg:text-2xl">
-              {section.title}
-            </h2>
+          <p className="mb-4 text-justify lg:text-lg">
+            {language === "fr" ? (
+              <>
+                Chez{" "}
+                <strong className="text-[#b0181c]">
+                  Ground Elite Academy - GEA
+                </strong>
+                , nous prenons la confidentialité de vos informations
+                personnelles très au sérieux. Cette politique de confidentialité
+                décrit comment nous collectons, utilisons, stockons et
+                protégeons les informations que vous nous fournissez via notre
+                site web.
+              </>
+            ) : (
+              <>
+                At{" "}
+                <strong className="text-[#b0181c]">
+                  Ground Elite Academy - GEA
+                </strong>
+                , we take the privacy of your personal information very
+                seriously. This privacy policy outlines how we collect, use,
+                store, and protect the information you provide to us through our
+                website.
+              </>
+            )}
+          </p>
 
-            <div className="text-justify lg:text-lg">{section.content}</div>
-          </div>
-        ))}
-      </main>
-    </div>
+          {sections.map((section, index) => (
+            <div key={index} className="mb-5 md:mb-8">
+              <h2 className="mb-3 text-xl font-bold lg:mb-5 lg:text-2xl">
+                {section.title}
+              </h2>
+
+              <div className="text-justify lg:text-lg">{section.content}</div>
+            </div>
+          ))}
+        </main>
+      </div>
+    </>
   );
 };
 

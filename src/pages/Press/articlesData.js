@@ -16,6 +16,8 @@ export const getArticlesData = (language) => [
       imageUrl.press.articleOne.gaetanVictory,
     ],
     articlePath: "/victoire-de-gaetan-au-cfjjb",
-    date: "05 Jan. 2024",
+    date: "05 Jan. 2025",
+    titlePage:
+      "Gaëtan Remporte le Championnat et la Coupe de France CFJJB - Victoire Historique à Marseille",
   },
 ];
