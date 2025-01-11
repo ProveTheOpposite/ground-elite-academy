@@ -28,9 +28,20 @@ const Schedule = () => {
 
   // function to allow to go on a date
   const handleDateChange = (date) => {
-    setSelectedDate(date[0]);
+    const selectedDate = new Date(date[0]);
+    setSelectedDate(selectedDate);
+
     const calendarApi = calendarRef.current.getApi();
-    calendarApi.gotoDate(date[0]);
+
+    const utcDate = new Date(
+      Date.UTC(
+        selectedDate.getFullYear(),
+        selectedDate.getMonth(),
+        selectedDate.getDate(),
+      ),
+    );
+    console.log(utcDate);
+    calendarApi.gotoDate(utcDate);
   };
 
   return (
@@ -55,10 +66,10 @@ const Schedule = () => {
             </p>
           </h2>
 
-          <div className="relative lg:flex-[0.25]">
+          <div className="relative pr-5 lg:flex-[0.25] lg:pr-0">
             <div className="pl-3.5">
               <svg
-                className="absolute top-[32%] h-4 w-4 text-gray-500 xl:top-[32%] dark:text-gray-400"
+                className="absolute top-[28%] h-4 w-4 text-gray-500 xl:top-[28%] dark:text-gray-400"
                 aria-hidden="true"
                 xmlns="http://www.w3.org/2000/svg"
                 fill="currentColor"
@@ -75,7 +86,7 @@ const Schedule = () => {
               placeholder={
                 language === "fr" ? "Sélectionner une date" : "Select date"
               }
-              className="w-full min-w-full rounded-xl border border-gray-300 p-2.5 pl-10 shadow-md"
+              className="h-10 min-w-full rounded-xl border border-gray-300 pl-10 shadow-md"
             />
           </div>
         </div>

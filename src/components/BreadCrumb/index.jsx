@@ -21,15 +21,20 @@ const BreadCrumb = () => {
 
   return (
     <nav className="flex items-center gap-x-2">
-      <Link className="text-[#666] hover:underline" to="/">
+      <Link className="text-sm text-[#666] hover:underline sm:text-base" to="/">
         {translations[language].header.headerList.welcome}
       </Link>{" "}
       <i className="fa-solid fa-chevron-right text-xs"></i>
-      <Link className="text-[#666] hover:underline" to="/press">
+      <Link
+        className="text-sm text-[#666] hover:underline sm:text-base"
+        to="/press"
+      >
         {translations[language].header.headerList.press}
       </Link>{" "}
       <i className="fa-solid fa-chevron-right text-xs"></i>
-      <span className="font-semibold text-[#b0181c]">{formattedLink}</span>
+      <span className="text-sm font-semibold text-[#b0181c] sm:text-base">
+        {formattedLink}
+      </span>
     </nav>
   );
 };

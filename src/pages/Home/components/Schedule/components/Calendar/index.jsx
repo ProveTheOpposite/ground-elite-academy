@@ -54,7 +54,7 @@ const Calendar = ({ calendarRef }) => {
           views={{
             customTwoDay: {
               type: "timeGrid",
-              duration: { days: 2 }, // display 2 days
+              duration: { days: 2 },
             },
           }}
           initialView={
@@ -64,7 +64,7 @@ const Calendar = ({ calendarRef }) => {
                 ? "customTwoDay"
                 : "timeGridWeek"
           }
-          height={"800px"}
+          height={"650px"}
           fixedWeekCount={false}
           showNonCurrentDates={false}
           headerToolbar={{
@@ -74,8 +74,8 @@ const Calendar = ({ calendarRef }) => {
           }}
           events={eventsSchedule}
           eventColor="#b0181c"
-          slotMinTime="10:00:00"
-          slotMaxTime="22:30:00"
+          slotMinTime="12:00:00"
+          slotMaxTime="21:30:00"
           locale={language === "fr" ? frLocale : enLocale}
           timeZone="UTC"
         />

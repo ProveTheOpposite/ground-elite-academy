@@ -48,7 +48,7 @@ const HeaderMobile = ({ setShowMenu, showMenu }) => {
         showMenu ? "translate-x-0" : "-translate-x-full"
       } fixed left-0 top-0 flex min-h-full w-full flex-col justify-evenly bg-white px-8 transition-transform duration-300 ease-out md:px-16 xl:hidden`}
     >
-      <ul className="flex flex-col justify-center gap-y-7 text-2xl font-medium">
+      <ul className="xs:text-2xl xs:gap-y-7 flex flex-col justify-center gap-y-5 text-xl font-medium">
         {menuItems.map(({ key, icon }) => (
           <li
             key={key}

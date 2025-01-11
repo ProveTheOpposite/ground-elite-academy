@@ -89,7 +89,7 @@ const ArticleDetails = () => {
         <BreadCrumb />
       </div>
 
-      <h1 className="mt-3 text-center text-3xl font-bold md:mt-5">
+      <h1 className="mt-5 text-center text-3xl font-bold md:mt-5">
         {article.title}
       </h1>
 
@@ -112,8 +112,8 @@ const ArticleDetails = () => {
 
           <Swiper
             ref={swiperRef}
-            className="mySwiper h-[510px] w-[360px] sm:h-[670px] sm:w-[480px] md:h-[760px] md:w-[550px] lg:h-[740px] 3xl:h-[810px] 3xl:w-[600px]"
-            spaceBetween={50}
+            className="mySwiper h-[500px] min-w-[330px] sm:h-[670px] sm:w-[480px] md:h-[760px] md:w-[550px] lg:h-[740px] 3xl:h-[810px] 3xl:w-[600px]"
+            spaceBetween={30}
             pagination={{
               dynamicBullets: true,
             }}
@@ -159,7 +159,7 @@ const ArticleDetails = () => {
         </div>
       </div>
 
-      <p className="text-center text-lg xl:mx-auto xl:w-[900px]">
+      <p className="text-center lg:text-lg lg:leading-relaxed xl:mx-auto xl:w-[900px]">
         {article.textEntire}
       </p>
     </div>
