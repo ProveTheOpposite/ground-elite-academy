@@ -18,7 +18,7 @@ const Accordion = ({ question, answer, isOpen, onToggle }) => {
 
   return (
     <div
-      className={`flex flex-col overflow-hidden rounded-xl border border-violet-200 bg-white px-4 py-5 transition-all lg:px-6 2xl:px-8 2xl:py-6`}
+      className={`flex flex-col overflow-hidden rounded-xl border border-gray-300 bg-white px-4 py-5 transition-all lg:px-6 2xl:px-8 2xl:py-6`}
     >
       <button
         onClick={onToggle}
