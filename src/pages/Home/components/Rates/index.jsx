@@ -42,7 +42,7 @@ const Rates = () => {
             <SubscriptionCard
               title={translations[language].home.rates.card.kids.title}
               description={translations[language].home.rates.card.kids.who}
-              price="25,00"
+              price="75,00"
             />
 
             <SubscriptionCard
