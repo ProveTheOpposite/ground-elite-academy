@@ -150,7 +150,7 @@
 
     "rates": {
       "title": ["Our", "prices"],
-      "subTitle": "Monthly subscription",
+      "subTitle": "Subscriptions",
       "content": "Payments are made in cash directly at the club along with the registration forms. Moreover, the subscription covers both disciplines (wrestling and grappling). And the amount must be paid between the 1st and the 9th day of the current month.",
       "secondContent": "A free trial class is available for both disciplines.",
       "card": {
@@ -162,6 +162,7 @@
           "title": "Adult",
           "who": "The adult subscription is for individuals aged 14 and above."
         },
+        "perTrimestrial": "€/quarter",
         "perMonth": "€/month"
       }
     },
