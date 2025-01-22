@@ -16,7 +16,7 @@ const SubscriptionCard = ({ title, description, price }) => {
       <div className="leading-loose">
         <span className="mr-2 text-3xl font-bold">{price}</span>
         <span className="mr-2 text-lg text-gray-700">
-          {translations[language].home.rates.card.perMonth}
+          {price === "75,00" ? {translations[language].home.rates.card.perTrimestrial} : {translations[language].home.rates.card.perMonth}}
         </span>
         <span className="text-lg">
           {language === "fr" ? (
