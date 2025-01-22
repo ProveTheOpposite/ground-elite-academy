@@ -27,7 +27,7 @@ const Footer = () => {
             />
           </Link>
 
-          <span className="">&copy; 2024 Ground Elite Academy - GEA Nice</span>
+          <span className="">&copy; 2025 Ground Elite Academy - GEA Nice</span>
 
           <Link className="rounded-full" to="/contact-us">
             <Button className="bg-[#b0181c] text-white">
