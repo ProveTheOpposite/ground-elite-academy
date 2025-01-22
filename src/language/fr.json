@@ -150,7 +150,7 @@
 
     "rates": {
       "title": ["Nos", "tarifs"],
-      "subTitle": "Abonnement mensuel",
+      "subTitle": "Abonnements",
       "content": "Les paiements se font en espèces directement au club avec les fiches d'inscription. De plus, l'abonnement prend en compte les deux disciplines (lutte et grappling). Et le montant doit être payant entre le 1er et le 9ème jour du mois courant.",
       "secondContent": "Un cours d'essai gratuit est disponible pour les deux disciplines.",
       "card": {
@@ -162,6 +162,7 @@
           "title": "Adulte",
           "who": "L'abonnement adulte concerne les personnes d'au moins 14 ans."
         },
+        "perTrimestrial": "€/trimestre",
         "perMonth": "€/mois"
       }
     },
