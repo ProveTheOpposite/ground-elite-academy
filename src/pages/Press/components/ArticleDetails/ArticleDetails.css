@@ -1,0 +1,63 @@
+/* titles */
+.content-wrapper h1 {
+  font-weight: bold;
+  font-size: 30px;
+}
+
+.content-wrapper h2 {
+  font-weight: bold;
+  font-size: 26px;
+}
+
+.content-wrapper h3 {
+  font-weight: bold;
+  font-size: 22px;
+}
+
+.content-wrapper h4 {
+  font-weight: bold;
+  font-size: 18px;
+}
+
+.content-wrapper h5 {
+  font-weight: bold;
+  font-size: 14px;
+}
+
+.content-wrapper h6 {
+  font-weight: bold;
+  font-size: 10px;
+}
+
+/* para */
+.content-wrapper p {
+  margin-bottom: 15px;
+}
+
+/* link */
+.content-wrapper a {
+  color: #b0181c;
+  font-weight: bold;
+  text-decoration: underline;
+}
+
+.content-wrapper a:hover {
+  text-decoration: none;
+}
+
+/* lists */
+.content-wrapper ul {
+  margin: 15px 0;
+  padding-left: 40px;
+  list-style: disc;
+}
+
+.content-wrapper ol {
+  margin: 15px 0;
+  padding-left: 40px;
+  list-style: decimal;
+}
+
+.content-wrapper blockquote {
+  margin: 15px 40px;
+}
