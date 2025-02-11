@@ -207,7 +207,7 @@
           },
           "questionThree": {
             "title": "Do you offer classes for beginners?",
-            "answer": "Yes, beginners are welcome at Ground Elite Academy. Our classes are designed to help everyone progress, regardless of their starting level. However, it’s important to note that we gradually advance in techniques, and the training sessions become more intensive over time. This allows you to develop your skills at your own pace while taking on challenges that match your growth. We’re here to support you in your learning journey and progression, whether you’re just starting out or already have prior experience."
+            "answer": "Yes, beginners are welcome at Ground Elite Academy. Our classes are designed to help everyone progress, regardless of their starting level. However, it’s important to note that we gradually advance in techniques, and the training sessions become more intensive over time. This allows you to develop your skills at your own pace while taking on challenges that match your growth. We're here to support you in your learning journey and progression, whether you're just starting out or already have prior experience."
           },
           "questionFour": {
             "title": "What are the benefits of joining a wrestling and grappling club?",
@@ -244,11 +244,7 @@
 
   "press": {
     "title": ["The Club News: Wrestling and Grappling in", "Full Action"],
-    "errorLoading": "The resource did not load",
-    "articleOne": {
-      "title": "From Nice to the Top: A Triumph in Marseille!",
-      "text": "Our coach brilliantly represented our GEA Nice club (Ground Elite Academy) during the grappling competition in Marseille on December 22nd. His talent and perseverance allowed him to prevail against high-level opponents, earning an unforgettable victory. Not only did he demonstrate excellence, but he also claimed the French Championship and the Coupe de France titles, solidifying his status as an exceptional athlete."
-    }
+    "errorLoading": "The resource did not load"
   },
 
   "contactUs": {

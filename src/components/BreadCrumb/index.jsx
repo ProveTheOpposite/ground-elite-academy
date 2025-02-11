@@ -20,15 +20,12 @@ const BreadCrumb = () => {
     .join(" ");
 
   return (
-    <nav className="flex items-center gap-x-2">
-      <Link className="text-sm text-[#666] hover:underline sm:text-base" to="/">
+    <nav className="flex items-center gap-x-3">
+      <Link className="text-sm text-[#888] sm:text-base" to="/">
         {translations[language].header.headerList.welcome}
       </Link>{" "}
       <i className="fa-solid fa-chevron-right text-xs"></i>
-      <Link
-        className="text-sm text-[#666] hover:underline sm:text-base"
-        to="/press"
-      >
+      <Link className="text-sm text-[#888] sm:text-base" to="/press">
         {translations[language].header.headerList.press}
       </Link>{" "}
       <i className="fa-solid fa-chevron-right text-xs"></i>

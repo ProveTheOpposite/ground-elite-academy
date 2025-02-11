@@ -52,9 +52,14 @@
   }
 
   /* Background pour les articles de presse */
-  .first-article-bg-url {
+  .bg-first-article {
     background: url("../images/press/article1/gaetan-victoire.jpg") no-repeat
       center center/cover;
+  }
+
+  .bg-second-article {
+    background: url("../images/press/article2/image5.jpg") no-repeat center
+      center/cover;
   }
 
   /* Pour le titre du composant Error Element */

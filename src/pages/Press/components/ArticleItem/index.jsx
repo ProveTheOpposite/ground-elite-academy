@@ -21,7 +21,7 @@ const ArticleItem = ({ bgArticleItem, title, articlePath }) => {
       <div
         onMouseEnter={handleMouseEnter}
         onMouseLeave={handleMouseLeave}
-        className={`${bgArticleItem}-article-bg-url relative flex h-80 w-[315px] items-end rounded-xl border border-black p-3 lg:h-96`}
+        className={`bg-${bgArticleItem}-article relative flex h-[340px] w-full min-w-[350px] max-w-[350px] items-end rounded-xl border border-black p-3 lg:h-96`}
         style={{
           backgroundSize: isArticleHover ? "380px" : "350px",
           transition: "background-size 300ms",

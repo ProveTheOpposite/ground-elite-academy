@@ -2,52 +2,58 @@
 import { useEffect, useRef, useState } from "react";
 import { useParams } from "react-router-dom";
 import { useRecoilValue } from "recoil";
+// firebase
+import { collection, getDocs } from "firebase/firestore";
+import { db } from "src/server/firebase";
 // atom
 import { languageState } from "src/recoil";
 // swiper
-import { Navigation, Pagination } from "swiper/modules";
+import { Navigation } from "swiper/modules";
 import { Swiper, SwiperSlide } from "swiper/react";
 // swiper style
 import "swiper/css";
 import "swiper/css/navigation";
 import "swiper/css/pagination";
+// marked
+import DOMPurify from "dompurify";
+import { marked } from "marked";
 // components
 import { Helmet } from "react-helmet-async";
 import BreadCrumb from "src/components/BreadCrumb";
 // data
 import translations from "src/language/translations";
-import { getArticlesData } from "../../articlesData";
+import { fewDatasArticles } from "../../fewDatasArticles";
+// css
+import "./ArticleDetails.css";
 
 const ArticleDetails = () => {
   const language = useRecoilValue(languageState);
+  const [articlesData, setArticlesData] = useState([]);
 
   const swiperRef = useRef(null);
 
   const { articleId } = useParams();
 
-  const [swiperModules, setSwiperModules] = useState([]);
-
   useEffect(() => {
-    const updateModules = () => {
-      if (window.innerWidth <= 1024) {
-        setSwiperModules([Pagination]);
-      } else {
-        setSwiperModules([Navigation]);
-      }
+    const fetchArticlesFromFirestore = async () => {
+      const articlesCollection = collection(db, "articles");
+      const articlesSnapshot = await getDocs(articlesCollection);
+      const articlesData = articlesSnapshot.docs.map((doc) => doc.data());
+
+      setArticlesData(articlesData);
     };
 
-    updateModules();
-
-    window.addEventListener("resize", updateModules);
-
-    return () => window.removeEventListener("resize", updateModules);
+    fetchArticlesFromFirestore();
   }, []);
 
-  const articlesData = getArticlesData(language);
+  // Trouve l'article pour exploiter la date correspondant au slug
+  const article = articlesData.find(
+    (article) => article.pathArticle === "/" + articleId,
+  );
 
   // Trouve l'article correspondant au slug
-  const article = articlesData.find(
-    (article) => article.articlePath === "/" + articleId,
+  const fewDatasArticle = fewDatasArticles.find(
+    (article) => article.path === "/" + articleId,
   );
 
   if (!article) {
@@ -84,10 +90,27 @@ const ArticleDetails = () => {
     });
   };
 
+  // convert mardown to html
+  const getHtmlFromMarkdown = (markdownText) => {
+    const rawHtml = marked.parse(markdownText);
+    return DOMPurify.sanitize(rawHtml);
+  };
+
+  // convert timestamp to a date
+  const timestampInMs =
+    article.dateOfPublication.seconds * 1000 +
+    article.dateOfPublication.nanoseconds / 1e6;
+
+  const date = new Date(timestampInMs);
+
+  const options = { day: "2-digit", month: "short", year: "numeric" };
+  const formattedDate = date.toLocaleDateString("fr-FR", options);
+
   return (
     <>
       <Helmet>
-        <title>{article.titlePage}</title>
+        <title>{fewDatasArticle.titlePage}</title>
+        <meta name="description" content={fewDatasArticle.metaDescription} />
       </Helmet>
 
       <div className="mt-[68px] px-5 pb-8 pt-5 md:px-8 md:pb-10 md:pt-7 xl:mt-[78px]">
@@ -96,7 +119,7 @@ const ArticleDetails = () => {
         </div>
 
         <h1 className="mt-5 text-center text-3xl font-bold md:mt-5">
-          {article.title}
+          {article.titleArticle}
         </h1>
 
         <div className="my-5 lg:mx-auto lg:my-10 lg:w-[980px] lg:px-32 xl:w-[1020px] 3xl:w-[1100px]">
@@ -104,7 +127,7 @@ const ArticleDetails = () => {
             <strong>
               {language === "fr" ? "Date de publication" : "Publication date"} :
             </strong>{" "}
-            {article.date}
+            {formattedDate}
           </span>
 
           <div className="mt-4 lg:flex lg:items-center">
@@ -118,15 +141,15 @@ const ArticleDetails = () => {
 
             <Swiper
               ref={swiperRef}
-              className="mySwiper h-[500px] min-w-[330px] sm:h-[670px] sm:w-[480px] md:h-[760px] md:w-[550px] lg:h-[740px] 3xl:h-[810px] 3xl:w-[600px]"
+              className="mySwiper h-[500px] w-[330px] xs:w-[350px] sm:h-[670px] sm:w-[480px] md:h-[760px] md:w-[550px] lg:h-[740px] 3xl:h-[810px] 3xl:w-[600px]"
               spaceBetween={30}
               pagination={{
                 dynamicBullets: true,
               }}
-              modules={swiperModules}
+              modules={[Navigation]}
               onSlideChange={handleSlideChange}
             >
-              {article.imagesSlide.map((elem) => (
+              {fewDatasArticle.imagesSlide.map((elem) => (
                 <SwiperSlide
                   className="flex flex-col justify-center"
                   key={elem}
@@ -135,7 +158,7 @@ const ArticleDetails = () => {
                     <img
                       className="rounded-xl md:w-full"
                       src={elem}
-                      alt="Element du swiper"
+                      alt={`Image de l'article '${article.titleArticle}'`}
                       loading="lazy"
                     />
                   ) : getFileType(elem) === "video" ? (
@@ -168,9 +191,12 @@ const ArticleDetails = () => {
           </div>
         </div>
 
-        <p className="text-center lg:text-lg lg:leading-relaxed xl:mx-auto xl:w-[900px]">
-          {article.textEntire}
-        </p>
+        <div
+          className="content-wrapper lg:text-lg lg:leading-relaxed xl:mx-auto xl:w-[1100px] 3xl:w-[1300px]"
+          dangerouslySetInnerHTML={{
+            __html: getHtmlFromMarkdown(article.contentArticle),
+          }}
+        ></div>
       </div>
     </>
   );
