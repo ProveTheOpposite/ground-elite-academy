@@ -2,7 +2,7 @@ import { imageUrl } from "src/assets/images/imageList";
 
 export const fewDatasArticles = [
   {
-    path: "/test",
+    path: "/victoire-de-gaetan-au-cfjjb",
     id: 0,
     bgArticleItem: "first", // first-article-bg-url => second-article-bg-url => ...
     imagesSlide: [
@@ -19,7 +19,7 @@ export const fewDatasArticles = [
       "🏆 De Nice à Marseille, notre entraîneur de la GEA Nice a marqué l'histoire du grappling ! Découvrez son exploit, sa victoire au championnat de France et son incroyable détermination.🔥",
   },
   {
-    path: "/test-deux",
+    path: "/entrainement-type-lutte",
     id: 1,
     bgArticleItem: "second",
     imagesSlide: [
