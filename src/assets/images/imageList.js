@@ -2,8 +2,10 @@ import logoFooter from "./footer/logo-white.png";
 import englandFlag from "./header/england-flag.png";
 import logoHeaderBlack from "./header/logo-black.png";
 import logoHeaderWhite from "./header/logo-white.png";
-import gaetan from "./home/gaetanHouara.png";
-import nazim from "./home/nazimDjamalov.png";
+import gaetanDesktop from "./home/gaetanHouara.png";
+import nazimDesktop from "./home/nazimDjamalov.png";
+import nazimMobile from "./home/nazim.png";
+import gaetanMobile from "./home/gaetan.png";
 // article 1
 import gaetanCombatFinalisation from "./press/article1/combat-finalisation.mp4";
 import gaetanCombat1 from "./press/article1/combat-image-1.jpg";
@@ -32,8 +34,10 @@ export const imageUrl = {
   },
 
   home: {
-    nazim,
-    gaetan,
+    nazimMobile,
+    gaetanMobile,
+    nazimDesktop,
+    gaetanDesktop,
   },
 
   press: {
