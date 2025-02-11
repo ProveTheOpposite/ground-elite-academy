@@ -31,11 +31,12 @@ const Team = () => {
         </p>
       </div>
 
-      <div className="3xl:flex-1 3xl:flex-row 3xl:justify-between 3xl:gap-x-[200px] 3xl:gap-y-0 mt-8 flex flex-col gap-y-16 md:mt-14 md:px-8">
+      <div className="mt-8 flex flex-col gap-y-16 md:px-8 3xl:flex-1 3xl:flex-row 3xl:justify-between 3xl:gap-x-[200px] 3xl:gap-y-0">
         {/* Nazim */}
         <TeamMember
           name="Nazim Djamalov"
-          imageUrl={imageUrl.home.nazim}
+          imageMobile={imageUrl.home.nazimMobile}
+          imageUrl={imageUrl.home.nazimDesktop}
           altText="Photo de Nazim Djamalov"
           textNazim={[
             <>
@@ -68,7 +69,8 @@ const Team = () => {
         {/* Gaetan */}
         <TeamMember
           name="Gaetan Houara"
-          imageUrl={imageUrl.home.gaetan}
+          imageMobile={imageUrl.home.gaetanMobile}
+          imageUrl={imageUrl.home.gaetanDesktop}
           altText="Photo de Gaetan Houara"
           textGaetan={[
             <>
