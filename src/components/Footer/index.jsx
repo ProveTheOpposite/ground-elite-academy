@@ -17,7 +17,7 @@ const Footer = () => {
 
   return (
     <footer className="flex bg-gray-800 px-5 py-8 text-slate-300 sm:px-7 lg:justify-center lg:py-16">
-      <div className="flex w-full flex-col sm:grid sm:grid-cols-2 sm:grid-rows-[1fr_auto] sm:gap-x-4 sm:gap-y-5 md:gap-10 lg:w-[95%] lg:grid-cols-3 lg:grid-rows-1 2xl:w-[1200px]">
+      <div className="flex w-full flex-col sm:grid sm:grid-cols-2 sm:grid-rows-[1fr_auto] sm:gap-x-4 sm:gap-y-8 md:gap-10 lg:w-[95%] lg:grid-cols-3 lg:grid-rows-1 2xl:w-[1200px]">
         <div className="mb-8 flex flex-col gap-y-6 sm:mb-0 sm:items-start sm:pl-2 lg:pl-0 xl:flex-wrap xl:content-start">
           <Link to="/">
             <img
@@ -37,7 +37,7 @@ const Footer = () => {
         </div>
 
         {/* About Us */}
-        <div className="mb-10 flex flex-col gap-y-5 sm:mb-0 sm:flex-wrap sm:content-center sm:justify-end lg:justify-center">
+        <div className="mb-10 flex flex-col gap-y-5 sm:mb-0 sm:flex-wrap sm:content-center sm:justify-end lg:justify-start">
           <h3 className="mb-1 text-xl font-bold uppercase">
             {translations[language].footer.aboutUs}
           </h3>
@@ -61,7 +61,7 @@ const Footer = () => {
         <div className="flex flex-col gap-y-4 sm:col-span-2 lg:col-auto lg:justify-center">
           <h3 className="mb-1 text-xl font-bold uppercase">Contact</h3>
 
-          <div className="flex flex-col gap-y-5 sm:grid sm:grid-cols-2 sm:grid-rows-2 lg:flex">
+          <div className="flex flex-col gap-y-5 sm:grid sm:grid-cols-2 sm:grid-rows-3 lg:flex">
             <ContactItem
               icon="fa-brands fa-instagram"
               link="https://www.instagram.com/geanice06/"
@@ -81,10 +81,16 @@ const Footer = () => {
               06 21 78 62 74
             </ContactItem>
 
-            <ContactItem
-              className="justify-self-center"
-              icon="fa-solid fa-location-dot"
+            <a
+              className="justify-self-center hover:underline"
+              target="_blank"
+              href="/src/assets/pdfs/fiche_d_inscription_gea.pdf"
             >
+              <i className="fa-solid fa-file-arrow-down mr-4"></i>
+              Fiche d&apos;inscription (PDF)
+            </a>
+
+            <ContactItem icon="fa-solid fa-location-dot">
               10 Bd Comte de Falicon, 06100 Nice
             </ContactItem>
           </div>
