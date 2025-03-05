@@ -84,7 +84,7 @@ const Footer = () => {
             <a
               className="justify-self-center hover:underline"
               target="_blank"
-              href="/src/assets/pdfs/fiche_d_inscription_gea.pdf"
+              href="/fiche_d_inscription_gea.pdf"
               download
             >
               <i className="fa-solid fa-file-arrow-down mr-4"></i>
