@@ -1,5 +1,14 @@
 import { imageUrl } from "src/assets/images/imageList";
 
+// {
+//  path: str `doit être le meme que celui renseigné dans le panel`
+//  id: int `nombre arbitraire`
+//  bgArticleItem: str `doit suivre la logique des nombres ordinaux pour correspondre aux noms de classes dans styles.css`
+//  imagesSlide: arr `array contenant des images`
+//  titlePage: str `titre au haut de la page web`
+//  metaDescription: str `balise meta description`
+// }
+
 export const fewDatasArticles = [
   {
     path: "/victoire-de-gaetan-au-cfjjb",
