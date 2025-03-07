@@ -8,7 +8,7 @@ import { db } from "src/server/firebase";
 // atom
 import { languageState } from "src/recoil";
 // swiper
-import { Navigation } from "swiper/modules";
+import { Navigation, Pagination } from "swiper/modules";
 import { Swiper, SwiperSlide } from "swiper/react";
 // swiper style
 import "swiper/css";
@@ -27,8 +27,9 @@ import { fewDatasArticles } from "../../fewDatasArticles";
 import "./ArticleDetails.css";
 
 const ArticleDetails = () => {
-  const language = useRecoilValue(languageState);
   const [articlesData, setArticlesData] = useState([]);
+
+  const language = useRecoilValue(languageState);
 
   const swiperRef = useRef(null);
 
@@ -146,7 +147,7 @@ const ArticleDetails = () => {
               pagination={{
                 dynamicBullets: true,
               }}
-              modules={[Navigation]}
+              modules={[window.innerWidth >= 1024 ? Navigation : Pagination]}
               onSlideChange={handleSlideChange}
             >
               {fewDatasArticle.imagesSlide.map((elem) => (
