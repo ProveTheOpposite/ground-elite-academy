@@ -9,4 +9,4 @@ English
 
 This site is built with React, using Vite as the local development server. It showcases a sports club focused on wrestling and grappling in Nice.
 
-[Lien du site](https://ground-elite-academy.vercel.app/)
+[Lien du site](https://groundeliteacademy.fr/)
