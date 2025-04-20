@@ -62,6 +62,11 @@
       center/cover;
   }
 
+  /* forcer animation skeleton */
+  .react-loading-skeleton {
+    --pseudo-element-display: block !important;
+  }
+
   /* Pour le titre du composant Error Element */
   .error-elem-text-fill {
     background: linear-gradient(

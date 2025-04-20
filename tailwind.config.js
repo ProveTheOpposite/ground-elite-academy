@@ -3,13 +3,7 @@
 export default {
   mode: "jit",
   content: ["./index.html", "./src/**/*.{html,js,jsx}"],
-  safelist: [
-    "bg-first-article",
-    "bg-second-article",
-    "bg-third-article",
-    "bg-fourth-article",
-    "bg-fifth-article",
-  ],
+  safelist: ["bg-first-article", "bg-second-article"],
   theme: {
     extend: {
       screens: {

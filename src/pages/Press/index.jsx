@@ -13,26 +13,53 @@ import { languageState } from "src/recoil";
 // data
 import translations from "src/language/translations";
 import { fewDatasArticles } from "./fewDatasArticles";
+// skeleton
+import Skeleton from "react-loading-skeleton";
+import "react-loading-skeleton/dist/skeleton.css";
 
 const Press = () => {
   const language = useRecoilValue(languageState);
   // const articlesData = getArticlesData(language);
   const [articlesData, setArticlesData] = useState([]);
+  const [isLoading, setIsLoading] = useState(true);
 
   useEffect(() => {
     const fetchArticlesFromFirestore = async () => {
-      const articlesCollection = collection(db, "articles");
-      const q = query(articlesCollection, orderBy("dateOfPublication", "asc")); // Tri croissant
+      try {
+        const articlesCollection = collection(db, "articles");
+        const q = query(
+          articlesCollection,
+          orderBy("dateOfPublication", "asc"),
+        ); // Tri croissant
 
-      const articlesSnapshot = await getDocs(q);
-      const articlesData = articlesSnapshot.docs.map((doc) => doc.data());
-      // console.log(articlesData);
+        const articlesSnapshot = await getDocs(q);
+        const articlesData = articlesSnapshot.docs.map((doc) => doc.data());
+        // console.log(articlesData);
 
-      setArticlesData(articlesData);
+        setArticlesData(articlesData);
+      } catch (e) {
+        console.error("Erreur lors de la récupération des articles:", e);
+      } finally {
+        setIsLoading(false);
+      }
     };
 
     fetchArticlesFromFirestore();
   }, []);
+
+  const renderSkeletons = () => {
+    return Array.from({ length: 4 }).map((_, i) => (
+      <div key={i}>
+        <Skeleton
+          width={350}
+          height={297} // 340 - 43 = 297
+          baseColor="#bbb"
+          className="mb-3"
+        />
+        <Skeleton count={1.5} width={350} baseColor="#bbb" />
+      </div>
+    ));
+  };
 
   return (
     <>
@@ -52,10 +79,12 @@ const Press = () => {
         </h1>
 
         <div
-          className={`${articlesData.length > 0 ? "mt-8" : ""} flex min-h-[340px] flex-col items-center justify-center gap-y-10 md:w-auto md:flex-row md:flex-wrap md:gap-10 2xl:mt-12 2xl:gap-12 3xl:mx-auto 3xl:w-[1545px]`}
+          className={`${articlesData.length > 0 || isLoading ? "mt-8" : ""} flex min-h-[340px] flex-col items-center justify-center gap-y-10 md:w-auto md:flex-row md:flex-wrap md:gap-10 2xl:mt-12 2xl:gap-12 3xl:mx-auto 3xl:w-[1545px]`}
         >
           {/* Articles */}
-          {articlesData.length > 0 ? (
+          {isLoading ? (
+            renderSkeletons()
+          ) : articlesData.length > 0 ? (
             articlesData.map((article, index) => {
               const bgArticleItem =
                 fewDatasArticles.find((articleF) => articleF.id === index)
