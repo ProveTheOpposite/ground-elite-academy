@@ -199,18 +199,22 @@
 
         "new": {
           "questionOne": {
+            "title": "Comment puis-je m'inscrire au club ?",
+            "answer": "Pour s'inscrire, il suffit de suivre les étapes suivantes : téléchargez et imprimez la fiche d'inscription disponible en bas de cette page, puis remplissez-la soigneusement. Enfin, présentez-vous au club pour régler l'abonnement correspondant à votre formule (adulte ou enfant). N'hésitez pas à nous contacter si vous avez des questions."
+          },
+          "questionTwo": {
             "title": "Dois-je avoir une expérience préalable pour rejoindre le club ?",
             "answer": "Non, si vous débutez les sports de combat ou même dans le sport en général, vous êtes tout de même la bienvenu chez nous. Il n'est jamais trop tard pour apprendre un sport de combat comme la lutte et le grappling."
           },
-          "questionTwo": {
+          "questionThree": {
             "title": "Quels équipements sont nécessaires pour commencer ?",
             "answer": "Des chaussures de lutte sont conseillés, mis à part cela, rien n'est nécessaire excepté votre détermination 😉."
           },
-          "questionThree": {
+          "questionFour": {
             "title": "Proposez-vous des cours pour les débutants ?",
             "answer": "Oui, les débutants sont les bienvenus à la Ground Elite Academy. Nos cours sont conçus pour permettre à chacun de progresser, quel que soit son niveau initial. Cependant, il est important de noter que nous avançons progressivement dans les techniques, et les entraînements deviennent de plus en plus intensifs avec le temps. Cela vous permettra de développer vos compétences à votre rythme tout en relevant des défis adaptés à votre évolution. Nous sommes là pour vous accompagner dans votre apprentissage et votre progression, que vous débutiez ou que vous ayez déjà une expérience préalable."
           },
-          "questionFour": {
+          "questionFive": {
             "title": "Quels sont les avantages de rejoindre un club de lutte et grappling ?",
             "answer": "La pratique de la lutte et du grappling est bénéfique pour tout le monde, peu importe l'âge ou le sexe, en raison des nombreux avantages physiques, mentaux et sociaux qu'ils apportent. Ces sports permettent un développement physique complet, en améliorant la force, l'endurance, la flexibilité et la coordination. Que vous soyez enfant ou adulte, la lutte et le grappling renforcent l'ensemble du corps tout en offrant une excellente condition cardiovasculaire."
           }

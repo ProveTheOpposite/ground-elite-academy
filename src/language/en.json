@@ -199,18 +199,22 @@
 
         "new": {
           "questionOne": {
+            "title": "How can I join the club?",
+            "answer": "To sign up, simply follow these steps: download and print the registration form available at the bottom of this page, then fill it out carefully. Finally, come to the club to pay for the membership that matches your category (adult or child). Feel free to contact us if you have any questions."
+          },
+          "questionTwo": {
             "title": "Do I need prior experience to join the club?",
             "answer": "No, if you are new to combat sports or even to sports in general, you are still welcome with us. It’s never too late to learn a combat sport like wrestling and grappling."
           },
-          "questionTwo": {
+          "questionThree": {
             "title": "What equipment is needed to get started?",
             "answer": "Wrestling shoes are recommended, but apart from that, nothing else is necessary except your determination 😉."
           },
-          "questionThree": {
+          "questionFour": {
             "title": "Do you offer classes for beginners?",
             "answer": "Yes, beginners are welcome at Ground Elite Academy. Our classes are designed to help everyone progress, regardless of their starting level. However, it’s important to note that we gradually advance in techniques, and the training sessions become more intensive over time. This allows you to develop your skills at your own pace while taking on challenges that match your growth. We're here to support you in your learning journey and progression, whether you're just starting out or already have prior experience."
           },
-          "questionFour": {
+          "questionFive": {
             "title": "What are the benefits of joining a wrestling and grappling club?",
             "answer": "The practice of wrestling and grappling is beneficial for everyone, regardless of age or gender, due to the numerous physical, mental, and social benefits they provide. These sports promote full physical development by improving strength, endurance, flexibility, and coordination. Whether you are a child or an adult, wrestling and grappling strengthen the entire body while offering excellent cardiovascular conditioning."
           }
