@@ -230,7 +230,7 @@ const ContactUs = () => {
 
                 <textarea
                   {...register("content")}
-                  className="h-32 resize rounded-2xl border border-slate-500 bg-transparent p-3 pb-6 placeholder:pl-1 focus:outline-[#b0181c] lg:h-40"
+                  className="h-32 resize-y rounded-2xl border border-slate-500 bg-transparent p-3 pb-6 placeholder:pl-1 focus:outline-[#b0181c] lg:h-40"
                   id="content"
                   name="content"
                   placeholder={
