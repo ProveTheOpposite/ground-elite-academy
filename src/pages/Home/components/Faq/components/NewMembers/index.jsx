@@ -34,6 +34,12 @@ const NewMembers = () => {
       answer: translations[language].home.faq.questions.new.questionFour.answer,
       indexQuestion: 3,
     },
+    {
+      question:
+        translations[language].home.faq.questions.new.questionFive.title,
+      answer: translations[language].home.faq.questions.new.questionFive.answer,
+      indexQuestion: 4,
+    },
   ];
 
   return (
