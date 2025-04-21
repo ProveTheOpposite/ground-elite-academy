@@ -1,6 +1,9 @@
-@tailwind base;
-@tailwind components;
-@tailwind utilities;
+@import "tailwindcss";
+
+@theme {
+  --breakpoint-xs: 24.375rem;
+  --breakpoint-3xl: 120rem;
+}
 
 @layer base {
   body {
@@ -16,6 +19,10 @@
     width: 100%;
     display: block;
     min-height: 100%;
+  }
+
+  button {
+    cursor: pointer;
   }
 
   .specially {

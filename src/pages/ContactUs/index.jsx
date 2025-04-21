@@ -249,7 +249,7 @@ const ContactUs = () => {
                 )}
               </div>
 
-              <Button className="mt-2 bg-[#b0181c] font-bold text-white hover:bg-[#7d2a2d] lg:!py-4">
+              <Button className="mt-2 bg-[#b0181c] font-bold text-white hover:bg-[#7d2a2d] lg:py-4!">
                 {isLoading ? (
                   <i className="fa-solid fa-spinner animate-spin lg:text-2xl"></i>
                 ) : (

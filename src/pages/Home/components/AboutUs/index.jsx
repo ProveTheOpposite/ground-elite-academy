@@ -106,7 +106,7 @@ const AboutUs = () => {
                 return (
                   <div key={index} className="flex flex-col">
                     <div
-                      className="flex items-center justify-center rounded-[10px] bg-red-600 bg-opacity-10"
+                      className="flex items-center justify-center rounded-[10px] bg-red-600/10"
                       style={{ width: "40px", height: "40px" }}
                     >
                       <span className="text-sm md:text-base">

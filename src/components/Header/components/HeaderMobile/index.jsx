@@ -48,7 +48,7 @@ const HeaderMobile = ({ setShowMenu, showMenu }) => {
         showMenu ? "translate-x-0" : "-translate-x-full"
       } fixed left-0 top-0 flex min-h-full w-full flex-col justify-evenly bg-white px-8 transition-transform duration-300 ease-out md:px-16 xl:hidden`}
     >
-      <ul className="xs:text-2xl xs:gap-y-7 flex flex-col justify-center gap-y-5 text-xl font-medium">
+      <ul className="flex flex-col justify-center gap-y-5 text-xl font-medium xs:gap-y-7 xs:text-2xl">
         {menuItems.map(({ key, icon }) => (
           <li
             key={key}
@@ -103,7 +103,7 @@ const HeaderMobile = ({ setShowMenu, showMenu }) => {
               >
                 {lang === "fr" ? (
                   <svg
-                    className="mr-2 h-4 w-6 rounded-sm"
+                    className="rounded-xs mr-2 h-4 w-6"
                     xmlns="http://www.w3.org/2000/svg"
                     aria-label="French flag"
                   >
@@ -131,7 +131,7 @@ const HeaderMobile = ({ setShowMenu, showMenu }) => {
           onClick={() => setShowMenu(false)}
           to="/contact-us"
         >
-          <Button className="bg-[#b0181c] !text-lg text-white">
+          <Button className="text-lg! bg-[#b0181c] text-white">
             {translations[language].header.btnContactUs}
           </Button>
         </Link>
@@ -139,7 +139,7 @@ const HeaderMobile = ({ setShowMenu, showMenu }) => {
 
       <i
         onClick={() => setShowMenu(false)}
-        className="fa-solid fa-xmark absolute right-3 top-3 flex w-[48px] cursor-pointer items-center justify-center rounded-full py-1 text-3xl transition-colors hover:bg-slate-100"
+        className="fa-solid fa-xmark inline-flex! absolute right-3 top-3 h-10 w-10 cursor-pointer items-center justify-center rounded-full py-1 text-3xl transition-colors hover:bg-slate-100"
       ></i>
     </nav>
   );
