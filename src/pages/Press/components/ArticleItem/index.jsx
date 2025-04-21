@@ -32,7 +32,7 @@ const ArticleItem = ({ bgArticleItem, title, articlePath }) => {
         >
           {title}
         </p>
-        <div className="absolute left-0 top-0 h-full w-full rounded-xl transition-colors duration-300 hover:bg-black hover:bg-opacity-40 peer-hover:bg-black peer-hover:bg-opacity-40" />
+        <div className="absolute left-0 top-0 h-full w-full rounded-xl transition-colors duration-300 hover:bg-black/40 peer-hover:bg-black/40" />
       </div>
     </Link>
   );
