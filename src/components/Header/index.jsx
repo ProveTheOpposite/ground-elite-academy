@@ -57,7 +57,7 @@ const Header = ({ openChangeLanguageModal }) => {
 
   return (
     <header
-      className={`${headerBackgroundClass} 3xl:px-44 fixed left-0 top-0 z-40 flex h-[68px] w-full items-center justify-between px-5 lg:pl-10 xl:h-[78px] xl:justify-between xl:px-14 2xl:px-32`}
+      className={`${headerBackgroundClass} fixed left-0 top-0 z-40 flex h-[68px] w-full items-center justify-between px-5 lg:pl-10 xl:h-[78px] xl:justify-between xl:px-14 2xl:px-32 3xl:px-44`}
     >
       <h2>
         <Link to="/">
@@ -116,7 +116,7 @@ const Header = ({ openChangeLanguageModal }) => {
 
             {language === "fr" ? (
               <svg
-                className="absolute bottom-1 left-5 h-4 w-6 rounded-sm"
+                className="rounded-xs absolute bottom-1 left-5 h-4 w-6"
                 xmlns="http://www.w3.org/2000/svg"
               >
                 <rect className="h-4 w-6" fill="#ED2939" />
@@ -125,7 +125,7 @@ const Header = ({ openChangeLanguageModal }) => {
               </svg>
             ) : (
               <img
-                className="absolute bottom-1 left-5 h-4 w-6 rounded-sm"
+                className="rounded-xs absolute bottom-1 left-5 h-4 w-6"
                 src={imageUrl.header.englandFlag}
                 alt="Drapeau de l'angleterre"
               />
@@ -142,7 +142,7 @@ const Header = ({ openChangeLanguageModal }) => {
 
       <i
         onClick={toggleMenu}
-        className={`fa-solid fa-bars ${textColorClass} cursor-pointer text-2xl xl:hidden`}
+        className={`fa-solid fa-bars ${textColorClass} xl:hidden! cursor-pointer text-2xl`}
       ></i>
 
       <HeaderMobile showMenu={isMenuVisible} setShowMenu={setIsMenuVisible} />

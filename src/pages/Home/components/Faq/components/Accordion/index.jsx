@@ -1,6 +1,7 @@
+// hooks
+import { useEffect, useRef, useState } from "react";
 // Props validation
 import PropTypes from "prop-types";
-import { useEffect, useRef, useState } from "react";
 
 const Accordion = ({ question, answer, isOpen, onToggle }) => {
   const [maxHeight, setMaxHeight] = useState(0);
@@ -22,7 +23,7 @@ const Accordion = ({ question, answer, isOpen, onToggle }) => {
     >
       <button
         onClick={onToggle}
-        className="group flex items-center justify-between gap-x-3 outline-none"
+        className="outline-hidden group flex items-center justify-between gap-x-3"
       >
         <h3 className="text-left text-xl font-bold text-[#333030] hover:underline lg:text-2xl">
           {question}
@@ -30,11 +31,11 @@ const Accordion = ({ question, answer, isOpen, onToggle }) => {
 
         {isOpen ? (
           <i
-            className={`fa-solid fa-minus flex h-[15px] w-[15px] items-center justify-center rounded-full border-[1.5px] border-[#333030] p-2.5 transition-colors duration-300 [duration:500ms] [transition-property:transform] group-hover:bg-[#333030] group-hover:text-white ${isOpen ? "rotate-180" : ""}`}
+            className={`fa-solid fa-minus inline-flex! h-4 w-4 items-center justify-center rounded-full border-[1.5px] border-[#333030] p-2.5 transition-all group-hover:bg-[#333030] group-hover:text-white ${isOpen ? "rotate-180" : ""}`}
           ></i>
         ) : (
           <i
-            className={`fa-solid fa-plus flex h-[15px] w-[15px] items-center justify-center rounded-full border-[1.5px] border-[#333030] p-2.5 transition-colors duration-300 [duration:500ms] [transition-property:transform] group-hover:bg-[#333030] group-hover:text-white ${isOpen ? "rotate-180" : ""}`}
+            className={`fa-solid fa-plus inline-flex! h-4 w-4 items-center justify-center rounded-full border-[1.5px] border-[#333030] p-2.5 transition-all group-hover:bg-[#333030] group-hover:text-white ${isOpen ? "rotate-180" : ""}`}
           ></i>
         )}
       </button>

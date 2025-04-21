@@ -69,7 +69,7 @@ const ChangeLanguage = ({ closeModal }) => {
           >
             {lang === "fr" ? (
               <svg
-                className="mr-2 h-4 w-6 rounded-sm"
+                className="mr-2 h-4 w-6 rounded-xs"
                 xmlns="http://www.w3.org/2000/svg"
                 aria-label="French flag"
               >
