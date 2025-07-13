@@ -6,8 +6,11 @@ import { Link, useParams } from "react-router-dom";
 import { languageState } from "src/recoil";
 // langue
 import translations from "src/language/translations";
+// prop types
+import PropTypes from "prop-types";
+import Skeleton from "react-loading-skeleton";
 
-const BreadCrumb = () => {
+const BreadCrumb = ({ isLoading }) => {
   const { articleId } = useParams();
 
   const language = useRecoilValue(languageState);
@@ -22,18 +25,34 @@ const BreadCrumb = () => {
   return (
     <nav className="flex items-center gap-x-3">
       <Link className="text-sm text-[#888] sm:text-base" to="/">
-        {translations[language].header.headerList.welcome}
+        {isLoading ? (
+          <Skeleton baseColor="#ccc" width={50} duration={3} direction="ltr" />
+        ) : (
+          translations[language].header.headerList.welcome
+        )}
       </Link>{" "}
       <i className="fa-solid fa-chevron-right text-xs"></i>
       <Link className="text-sm text-[#888] sm:text-base" to="/press">
-        {translations[language].header.headerList.press}
+        {isLoading ? (
+          <Skeleton baseColor="#ccc" width={50} duration={3} direction="ltr" />
+        ) : (
+          translations[language].header.headerList.press
+        )}
       </Link>{" "}
       <i className="fa-solid fa-chevron-right text-xs"></i>
       <span className="text-sm font-semibold text-[#b0181c] sm:text-base">
-        {formattedLink}
+        {isLoading ? (
+          <Skeleton baseColor="#ccc" width={150} duration={3} direction="ltr" />
+        ) : (
+          formattedLink
+        )}
       </span>
     </nav>
   );
 };
 
 export default BreadCrumb;
+
+BreadCrumb.propTypes = {
+  isLoading: PropTypes.bool,
+};
