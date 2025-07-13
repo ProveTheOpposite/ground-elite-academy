@@ -62,13 +62,16 @@ const Footer = () => {
           <h3 className="mb-1 text-xl font-bold uppercase">Contact</h3>
 
           <div className="flex flex-col gap-y-5 sm:grid sm:grid-cols-2 sm:grid-rows-3 lg:flex">
-            <ContactItem
-              icon="fa-brands fa-instagram"
-              link="https://www.instagram.com/geanice06/"
-            >
-              Instagram
+            <ContactItem icon="fa-solid fa-city">
+              Ground Elite Academy
             </ContactItem>
 
+            <ContactItem icon="fa-solid fa-location-dot">
+              10 Bd Comte de Falicon, 06100 Nice
+            </ContactItem>
+            <ContactItem icon="fa-solid fa-phone" link="tel:0621786274">
+              06 21 78 62 74
+            </ContactItem>
             <ContactItem
               className="justify-self-center"
               icon="fa-solid fa-envelope"
@@ -76,24 +79,22 @@ const Footer = () => {
             >
               geanice934@gmail.com
             </ContactItem>
-
-            <ContactItem icon="fa-solid fa-phone" link="tel:0621786274">
-              06 21 78 62 74
+            <ContactItem
+              icon="fa-brands fa-instagram"
+              link="https://www.instagram.com/geanice06/"
+            >
+              Instagram
             </ContactItem>
 
             <a
-              className="justify-self-center hover:underline"
-              target="_blank"
               href="/fiche_d_inscription_gea.pdf"
               download
+              className="justify-self-center hover:underline"
+              target="_blank"
             >
               <i className="fa-solid fa-file-arrow-down mr-4"></i>
               Fiche d&apos;inscription (PDF)
             </a>
-
-            <ContactItem icon="fa-solid fa-location-dot">
-              10 Bd Comte de Falicon, 06100 Nice
-            </ContactItem>
           </div>
         </div>
       </div>
