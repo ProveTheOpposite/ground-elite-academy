@@ -12,14 +12,13 @@ import ArticleItem from "./components/ArticleItem";
 import { languageState } from "src/recoil";
 // data
 import translations from "src/language/translations";
-import { fewDatasArticles } from "./fewDatasArticles";
 // skeleton
 import Skeleton from "react-loading-skeleton";
 import "react-loading-skeleton/dist/skeleton.css";
 
 const Press = () => {
   const language = useRecoilValue(languageState);
-  // const articlesData = getArticlesData(language);
+
   const [articlesData, setArticlesData] = useState([]);
   const [isLoading, setIsLoading] = useState(true);
 
@@ -34,7 +33,6 @@ const Press = () => {
 
         const articlesSnapshot = await getDocs(q);
         const articlesData = articlesSnapshot.docs.map((doc) => doc.data());
-        // console.log(articlesData);
 
         setArticlesData(articlesData);
       } catch (e) {
@@ -69,7 +67,7 @@ const Press = () => {
         </title>
       </Helmet>
 
-      <div className="mt-[68px] px-5 pb-8 pt-5 md:px-8 md:pb-10 md:pt-7 xl:mt-[78px] xl:pb-14 xl:pt-10">
+      <div className="mt-[68px] px-5 pt-5 pb-8 md:px-8 md:pt-7 md:pb-10 xl:mt-[78px] xl:pt-10 xl:pb-14">
         <h1 className="text-center text-3xl font-bold">
           {translations[language].press.title[0]}
           <span className="text-[#b0181c]">
@@ -79,26 +77,21 @@ const Press = () => {
         </h1>
 
         <div
-          className={`${articlesData.length > 0 || isLoading ? "mt-8" : ""} flex min-h-[340px] flex-col items-center justify-center gap-y-10 md:w-auto md:flex-row md:flex-wrap md:gap-10 2xl:mt-12 2xl:gap-12 3xl:mx-auto 3xl:w-[1545px]`}
+          className={`${articlesData.length > 0 || isLoading ? "mt-8" : ""} 3xl:mx-auto 3xl:w-[1545px] flex min-h-[340px] flex-col items-center justify-center gap-y-10 md:w-auto md:flex-row md:flex-wrap md:gap-10 2xl:mt-12 2xl:gap-12`}
         >
           {/* Articles */}
           {isLoading ? (
             renderSkeletons()
           ) : articlesData.length > 0 ? (
-            articlesData.map((article, index) => {
-              const bgArticleItem =
-                fewDatasArticles.find((articleF) => articleF.id === index)
-                  ?.bgArticleItem || null;
-
-              return (
+            articlesData
+              .filter((article) => article.status === "Publié")
+              .map((article) => (
                 <ArticleItem
                   key={article.titleArticle}
-                  bgArticleItem={bgArticleItem}
                   title={article.titleArticle}
                   articlePath={article.pathArticle}
                 />
-              );
-            })
+              ))
           ) : (
             <p className="text-center text-xl font-bold 2xl:mt-20">
               Aucun article n&apos;a été crée pour le moment

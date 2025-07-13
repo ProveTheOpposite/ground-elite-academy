@@ -58,17 +58,6 @@
       center/cover;
   }
 
-  /* Background pour les articles de presse */
-  .bg-first-article {
-    background: url("../images/press/article1/gaetan-victoire.jpg") no-repeat
-      center center/cover;
-  }
-
-  .bg-second-article {
-    background: url("../images/press/article2/image5.jpg") no-repeat center
-      center/cover;
-  }
-
   /* forcer animation skeleton */
   .react-loading-skeleton {
     --pseudo-element-display: block !important;
