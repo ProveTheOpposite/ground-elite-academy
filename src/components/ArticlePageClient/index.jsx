@@ -264,7 +264,7 @@ const ArticlePageClient = ({ articleSlug }) => {
       {/* Article Content */}
       <section className="mb-12 rounded-lg bg-white p-8 shadow-md">
         <div
-          className="prose prose-lg max-w-none leading-relaxed text-gray-800"
+          className="prose prose-lg content-wrapper max-w-none leading-relaxed text-gray-800"
           dangerouslySetInnerHTML={{ __html: article.contentArticle }}
         />
       </section>
