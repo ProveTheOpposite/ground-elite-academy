@@ -36,6 +36,8 @@ import { useScreenSize } from "@/hooks/useScreenSize";
 
 import { formatDate } from "@/utils/formatDate";
 
+import "./ArticlePageClient.css";
+
 const ArticlePageClient = ({ articleSlug }) => {
   const [articles, setArticles] = useState([]);
   const [files, setFiles] = useState([]);
