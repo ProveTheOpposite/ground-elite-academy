@@ -14,9 +14,9 @@ import { Swiper, SwiperSlide } from "swiper/react";
 import { Badge } from "../ui/badge";
 import { Button } from "../ui/button";
 
-import ArticleDetailPageSkeleton from "../ArticlePageSkeleton";
-import ArticleShareButtons from "../ArticleShareButtons";
-import OtherArticles from "./OtherArticles";
+import ArticleDetailPageSkeleton from "./components/ArticlePageSkeleton";
+import ArticleShareButtons from "./components/ArticleShareButtons";
+import OtherArticles from "./components/OtherArticles";
 
 import {
   Calendar,

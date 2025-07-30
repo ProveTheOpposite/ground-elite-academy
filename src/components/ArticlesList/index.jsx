@@ -5,8 +5,8 @@ import { useEffect, useMemo, useState } from "react";
 
 import Link from "next/link";
 
-import ArticlesListSkeleton from "../ArticlesListSkeleton";
-import ArticleCard from "./ArticleCard";
+import ArticlesListSkeleton from "./components/ArticlesListSkeleton";
+import ArticleCard from "./components/ArticleCard";
 
 import useArticleCover from "@/hooks/useArticleCover";
 

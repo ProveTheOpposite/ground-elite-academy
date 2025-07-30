@@ -1,6 +1,6 @@
 import Link from "next/link";
 
-import { Button } from "../ui/button";
+import { Button } from "../../../ui/button";
 
 import { Facebook, Twitter } from "lucide-react";
 
