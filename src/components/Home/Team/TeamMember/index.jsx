@@ -117,14 +117,14 @@ const TeamMember = () => {
                 <CardContent className="p-8">
                   <div className="mb-4 flex items-center justify-between">
                     <div>
-                      <h3 className="mb-1 flex items-center gap-2 text-2xl font-bold text-slate-900">
+                      <h3 className="mb-1 flex items-center gap-3 text-2xl font-bold text-slate-900">
                         {trainer.name}
                         <Link
                           href={trainer.link}
                           target="_blank"
                           className="text-blue-600"
                         >
-                          <LinkIcon width={15} height={15} />
+                          <LinkIcon width={18} height={18} />
                         </Link>
                       </h3>
                       <p className="font-semibold text-red-600">
@@ -212,8 +212,15 @@ const TeamMember = () => {
               <CardContent className="p-6">
                 <div className="mb-4 flex items-center justify-between">
                   <div>
-                    <h3 className="mb-1 text-2xl font-bold text-slate-900">
+                    <h3 className="mb-1 flex items-center gap-3 text-2xl font-bold text-slate-900">
                       {trainers[selectedTrainer].name}
+                      <Link
+                        href={trainers[selectedTrainer].link}
+                        target="_blank"
+                        className="text-blue-600"
+                      >
+                        <LinkIcon width={18} height={18} />
+                      </Link>
                     </h3>
                     <p className="font-semibold text-red-600">
                       {trainers[selectedTrainer].title}
