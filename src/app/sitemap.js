@@ -1,3 +1,6 @@
+import { db } from "@/server/firebase";
+import { collection, getDocs, orderBy, query } from "firebase/firestore";
+
 export default async function sitemap() {
   const baseUrl =
     process.env.NEXT_PUBLIC_BASE_URL || "https://groundeliteacademy.fr";
@@ -5,12 +8,10 @@ export default async function sitemap() {
   let articles = [];
 
   try {
-    const res = await fetch(`${baseUrl}/api/articles`, {
-      next: { revalidate: 172800 },
-    });
-    if (res.ok) {
-      articles = await res.json();
-    }
+    const articlesCollection = collection(db, "articles");
+    const q = query(articlesCollection, orderBy("dateOfPublication", "asc")); // Tri croissant
+    const articlesSnapshot = await getDocs(q);
+    articles = articlesSnapshot.docs.map((doc) => doc.data());
   } catch (err) {
     console.error("Erreur récupération articles pour sitemap", err);
   }
@@ -39,7 +40,7 @@ export default async function sitemap() {
   ];
 
   const articlePages = articles.map((a) => ({
-    url: `${baseUrl}${a.pathArticle}`,
+    url: `${baseUrl}/blog${a.pathArticle}`,
     lastModified: new Date(a.dateOfPublication.seconds * 1000 || now),
     changeFrequency: "monthly",
     priority: 0.8,
