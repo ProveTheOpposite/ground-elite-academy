@@ -1,3 +1,4 @@
+import HolidayPopup from "@/components/HolidayPopup";
 import AboutUs from "@/components/Home/AboutUs";
 import Banner from "@/components/Home/Banner";
 import Faq from "@/components/Home/Faq";
@@ -9,6 +10,7 @@ import Team from "@/components/Home/Team";
 export default function HomePage() {
   return (
     <>
+      <HolidayPopup />
       <Banner />
       <AboutUs />
       <Team />
