@@ -91,6 +91,7 @@ const Header = () => {
                   id={item}
                   label={headerList[item]}
                   textColorClass={textColorClass}
+                  className="hover:text-red-600"
                 />
               ),
             )}
