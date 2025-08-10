@@ -8,6 +8,24 @@ export const metadata = {
     title: "Politique de confidentialité - Ground Elite Academy",
     description:
       "Découvrez notre politique de confidentialité pour protéger vos données personnelles.",
+    siteName: "Ground Elite Academy",
+    domain: "groundeliteacademy.fr",
+    type: "website",
+    images: [
+      {
+        url: "/seo-image.jpg",
+        width: 1200,
+        height: 630,
+      },
+    ],
+  },
+  twitter: {
+    card: "summary_large_image",
+    title: "Politique de confidentialité - Ground Elite Academy",
+    description:
+      "Découvrez notre politique de confidentialité pour protéger vos données personnelles.",
+    images: ["/seo-image.jpg"],
+    domain: "groundeliteacademy.fr",
   },
 };
 
