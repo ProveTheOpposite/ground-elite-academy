@@ -11,16 +11,33 @@ import { Calendar, Clock, Mail, MessageCircle } from "lucide-react";
 
 import ContactForm from "@/components/ContactForm";
 import ScrollLink from "@/components/Header/ScrollLink";
-import Link from "next/link";
 
 export const metadata = {
-  title: "Contactez-nous | Ground Elite Academy",
+  title: "Contactez-nous - Ground Elite Academy",
   description:
     "Notre équipe est là pour vous aider. Contactez-nous et nous vous répondrons dans les plus brefs délais.",
   openGraph: {
-    title: "Contactez-nous | Ground Elite Academy",
+    title: "Contactez-nous - Ground Elite Academy",
     description:
       "Notre équipe est là pour vous aider. Contactez-nous et nous vous répondrons dans les plus brefs délais.",
+    siteName: "Ground Elite Academy",
+    domain: "groundeliteacademy.fr",
+    type: "website",
+    images: [
+      {
+        url: "/seo-image.jpg",
+        width: 1200,
+        height: 630,
+      },
+    ],
+  },
+  twitter: {
+    card: "summary_large_image",
+    title: "Contactez-nous - Ground Elite Academy",
+    description:
+      "Notre équipe est là pour vous aider. Contactez-nous et nous vous répondrons dans les plus brefs délais.",
+    images: ["/seo-image.jpg"],
+    domain: "groundeliteacademy.fr",
   },
 };
 

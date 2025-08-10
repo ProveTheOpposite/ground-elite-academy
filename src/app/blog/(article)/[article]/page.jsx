@@ -32,6 +32,26 @@ export const generateMetadata = async ({ params }) => {
           description:
             currentArticle.descriptionArticle ||
             `Découvrez notre article sur ${currentArticle.titleArticle}, au club de lutte et grappling Ground Elite Academy (Nice).`,
+          siteName: "Ground Elite Academy",
+          domain: "groundeliteacademy.fr",
+          type: "website",
+          images: [
+            {
+              url: currentArticle.urlCover,
+              width: 1200,
+              height: 630,
+              alt: currentArticle.titleArticle,
+            },
+          ],
+        },
+        twitter: {
+          card: "summary_large_image",
+          title: `${currentArticle.titleArticle}`,
+          description:
+            currentArticle.descriptionArticle ||
+            `Découvrez notre article sur ${currentArticle.titleArticle}, au club de lutte et grappling Ground Elite Academy (Nice).`,
+          images: [currentArticle.urlCover],
+          domain: "groundeliteacademy.fr",
         },
       };
     }

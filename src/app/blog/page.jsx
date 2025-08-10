@@ -4,6 +4,29 @@ export const metadata = {
   title: "Découvrez nos dernières actualités - Ground Elite Academy",
   description:
     "Découvrez nos dernières actualités : sport, compétition, etc... sur le club de lutte et grappling Ground Elite Academy.",
+  openGraph: {
+    title: "Découvrez nos dernières actualités - Ground Elite Academy",
+    description:
+      "Découvrez nos dernières actualités : sport, compétition, etc... sur le club de lutte et grappling Ground Elite Academy.",
+    siteName: "Ground Elite Academy",
+    domain: "groundeliteacademy.fr",
+    type: "website",
+    images: [
+      {
+        url: "/seo-image.jpg",
+        width: 1200,
+        height: 630,
+      },
+    ],
+  },
+  twitter: {
+    card: "summary_large_image",
+    title: "Découvrez nos dernières actualités - Ground Elite Academy",
+    description:
+      "Découvrez nos dernières actualités : sport, compétition, etc... sur le club de lutte et grappling Ground Elite Academy.",
+    images: ["/seo-image.jpg"],
+    domain: "groundeliteacademy.fr",
+  },
 };
 
 const BlogPage = () => {

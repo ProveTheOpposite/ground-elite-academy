@@ -8,6 +8,23 @@ export const metadata = {
   openGraph: {
     title: "Termes et Conditions - Ground Elite Academy",
     description: "Découvrez les termes et conditions de notre site web.",
+    siteName: "Ground Elite Academy",
+    domain: "groundeliteacademy.fr",
+    type: "website",
+    images: [
+      {
+        url: "/seo-image.jpg",
+        width: 1200,
+        height: 630,
+      },
+    ],
+  },
+  twitter: {
+    card: "summary_large_image",
+    title: "Termes et Conditions - Ground Elite Academy",
+    description: "Découvrez les termes et conditions de notre site web.",
+    images: ["/seo-image.jpg"],
+    domain: "groundeliteacademy.fr",
   },
 };
 

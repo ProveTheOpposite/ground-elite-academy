@@ -12,7 +12,7 @@ import JotaiProvider from "@/components/JotaiProvider";
 // Metadata
 export const metadata = {
   metadataBase: new URL("https://www.groundeliteacademy.fr"),
-  title: "Club de lutte et grappling à Nice | GEA",
+  title: "Club de lutte et grappling à Nice - GEA",
   description:
     "Ground Elite Academy à Nice, club de lutte et grappling ouvert à tous : enfant, ado et adulte, débutant ou confirmé. Ambiance conviviale, entraînement de qualité.",
   keywords: [
@@ -36,7 +36,7 @@ export const metadata = {
   publisher: "Ground Elite Academy",
   siteName: "Ground Elite Academy",
   openGraph: {
-    title: "Club de lutte et grappling à Nice | GEA",
+    title: "Club de lutte et grappling à Nice - GEA",
     description:
       "Ground Elite Academy à Nice, club de lutte et grappling ouvert à tous : enfant, ado et adulte, débutant ou confirmé. Ambiance conviviale, entraînement de qualité.",
     siteName: "Ground Elite Academy",
@@ -49,6 +49,14 @@ export const metadata = {
         height: 630,
       },
     ],
+  },
+  twitter: {
+    card: "summary_large_image",
+    title: "Club de lutte et grappling à Nice - GEA",
+    description:
+      "Ground Elite Academy à Nice, club de lutte et grappling ouvert à tous : enfant, ado et adulte, débutant ou confirmé. Ambiance conviviale, entraînement de qualité.",
+    images: ["/seo-image.jpg"],
+    domain: "groundeliteacademy.fr",
   },
   type: "website",
   domain: "groundeliteacademy.fr",
