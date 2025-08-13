@@ -44,7 +44,7 @@ const Schedule = () => {
       id="schedule"
       className="relative flex min-h-screen flex-col justify-center bg-white px-5 py-20 lg:py-24"
     >
-      <div className="z-10 flex flex-col gap-10 md:mx-auto md:w-[90%] lg:w-[95%] xl:w-[1430px]">
+      <div className="z-10 flex flex-col gap-10 md:mx-auto md:w-[90%] lg:w-[95%] 2xl:w-[1430px]">
         <Card className="bg-[#fbfcfd]/80 shadow-lg">
           <CardHeader className="pb-4">
             <h2 className="mb-5 text-4xl font-bold uppercase lg:text-5xl">
