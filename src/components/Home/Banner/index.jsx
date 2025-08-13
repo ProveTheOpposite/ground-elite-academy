@@ -4,7 +4,7 @@ import { useRouter } from "next/navigation";
 import { useEffect, useState } from "react";
 
 import { Button } from "@/components/ui/button";
-import { Phone } from "lucide-react";
+import { FileUp, Phone } from "lucide-react";
 
 const Banner = () => {
   const [isMobile, setIsMobile] = useState(false);
@@ -35,14 +35,30 @@ const Banner = () => {
             experts de Ground Elite Academy
           </h1>
 
-          <Button
-            onClick={() => router.push("/contact-us")}
-            size="xl"
-            className="bg-[#b0181c] font-semibold text-white hover:bg-gray-50 hover:text-[#b0181c] lg:text-base"
-          >
-            <Phone className="mr-2 h-5 w-5 lg:h-8 lg:w-8" />
-            Contactez-nous
-          </Button>
+          <div className="flex flex-col items-center gap-4 sm:flex-row sm:justify-center xl:justify-start">
+            <Button
+              onClick={() => router.push("/contact-us")}
+              size="xl"
+              className="w-[220px] bg-[#b0181c] font-semibold text-white hover:bg-[#7d2a2d] sm:mr-4 md:py-7 lg:text-base 2xl:text-lg"
+            >
+              <Phone className="mr-2 h-5 w-5 lg:h-8 lg:w-8" />
+              Contactez-nous
+            </Button>
+
+            <Button
+              size="xl"
+              className="w-[220px] border border-white/30 bg-transparent text-white transition-all duration-300 hover:border-white/60 hover:bg-red-600/20 md:py-7 lg:text-base 2xl:text-lg"
+            >
+              <a
+                className="flex items-center"
+                href="/fiche_d_inscription_gea.pdf"
+                download
+              >
+                <FileUp className="mr-2 h-5 w-5" />
+                Fiche d'inscription
+              </a>
+            </Button>
+          </div>
         </div>
       </div>
 

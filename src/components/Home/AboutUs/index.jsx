@@ -174,15 +174,19 @@ const AboutUs = () => {
                       <Phone className="mr-2 h-5 w-5" />
                       Contactez-nous
                     </Button>
-                    <a href="/fiche_d_inscription_gea.pdf" download>
-                      <Button
-                        size="xl"
-                        className="border-whit border bg-transparent text-white hover:bg-white hover:text-red-700 lg:text-base"
+                    <Button
+                      size="xl"
+                      className="border border-white bg-transparent text-white hover:bg-white hover:text-red-700 lg:text-base"
+                    >
+                      <a
+                        className="flex items-center"
+                        href="/fiche_d_inscription_gea.pdf"
+                        download
                       >
                         <FileUp className="mr-2 h-5 w-5" />
                         Fiche d'inscription
-                      </Button>
-                    </a>
+                      </a>
+                    </Button>
                   </div>
                 </div>
               </CardContent>
