@@ -71,8 +71,22 @@ const questions = [
   [
     {
       question: "Comment puis-je m'inscrire ?",
-      answer:
-        "Pour s'inscrire, il suffit de suivre les étapes suivantes : téléchargez et imprimez la fiche d'inscription disponible en bas de cette page, puis remplissez-la soigneusement. Enfin, présentez-vous au club pour régler l'abonnement correspondant à votre formule (adulte ou enfant). N'hésitez pas à nous contacter si vous avez des questions.",
+      answer: (
+        <>
+          Pour vous inscrire, il suffit de suivre les étapes suivantes :{" "}
+          <a
+            className="text-blue-500 hover:underline"
+            href="/fiche_d_inscription_gea.pdf"
+            download
+          >
+            téléchargez la fiche d'inscription
+          </a>{" "}
+          disponible en bas de cette page, puis imprimez et remplissez-la
+          soigneusement. Enfin, présentez-vous au club pour régler l'abonnement
+          correspondant à votre formule (adulte ou enfant). N'hésitez pas à nous
+          contacter si vous avez des questions.
+        </>
+      ),
       indexQuestion: 0,
     },
     {
