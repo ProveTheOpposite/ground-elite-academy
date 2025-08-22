@@ -38,7 +38,7 @@ export default function HolidayPopup() {
             Nous sommes actuellement fermés pendant les vacances.
           </p>
           <p className="text-muted-foreground mt-2">
-            Nous reprendrons nos cours en septembre. Merci de votre
+            Nous reprendrons nos cours le 8 septembre. Merci de votre
             compréhension!
           </p>
         </div>
