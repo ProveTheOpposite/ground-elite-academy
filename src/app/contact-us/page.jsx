@@ -116,7 +116,7 @@ const ContactUsPage = () => {
           <CardTitle className="text-3xl font-bold text-gray-900">
             Restons en contact
           </CardTitle>
-          <CardDescription className="text-lg text-gray-600">
+          <CardDescription className="text-base text-gray-600">
             Ou contactez-nous simplement à{" "}
             <a
               href="mailto:geanice934@gmail.com"
@@ -125,7 +125,7 @@ const ContactUsPage = () => {
               geanice934@gmail.com
             </a>
           </CardDescription>
-          <CardDescription className="text-lg text-gray-600">
+          <CardDescription className="text-base text-gray-600">
             Avant de nous contacter, vous pouvez consulter notre{" "}
             <ScrollLink
               id="faq"

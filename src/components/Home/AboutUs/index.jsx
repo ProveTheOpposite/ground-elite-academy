@@ -1,18 +1,20 @@
 "use client";
 
 import { useRouter } from "next/navigation";
+import { useState } from "react";
 
 import { Button } from "@/components/ui/button";
 import { Card, CardContent } from "@/components/ui/card";
 
+import RegistrationPopup from "@/components/RegistrationPopup";
 import {
   Clock,
   FileUp,
-  FileUpIcon,
   Heart,
   MapPin,
   Phone,
   Target,
+  UserRoundPlus,
   Users,
 } from "lucide-react";
 
@@ -69,6 +71,8 @@ const sections = [
 ];
 
 const AboutUs = () => {
+  const [showPopup, setShowPopup] = useState(false);
+
   const router = useRouter();
 
   return (
@@ -165,15 +169,18 @@ const AboutUs = () => {
                     Rejoignez notre communauté et découvrez l'excellence du
                     grappling à Nice.
                   </p>
-                  <div className="flex flex-col justify-center gap-4 sm:flex-row">
+                  <div className="flex flex-col items-center justify-center gap-4 sm:flex-row sm:items-center">
                     <Button
-                      onClick={() => router.push("/contact-us")}
+                      onClick={() => {
+                        setShowPopup(true);
+                      }}
                       size="xl"
                       className="bg-white font-semibold text-red-700 hover:bg-red-50 lg:text-base"
                     >
-                      <Phone className="mr-2 h-5 w-5" />
-                      Contactez-nous
+                      <UserRoundPlus className="mr-2 h-5 w-5 lg:h-8 lg:w-8" />
+                      Rejoignez-nous
                     </Button>
+                    ou
                     <Button
                       size="xl"
                       className="border border-white bg-transparent text-white hover:bg-white hover:text-red-700 lg:text-base"
@@ -192,6 +199,10 @@ const AboutUs = () => {
               </CardContent>
             </Card>
           </div>
+
+          {showPopup && (
+            <RegistrationPopup open={showPopup} onOpenChange={setShowPopup} />
+          )}
 
           {/* Map and Info Sidebar */}
           <div className="space-y-6">

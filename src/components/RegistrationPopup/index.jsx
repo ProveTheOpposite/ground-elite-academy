@@ -1,10 +1,8 @@
 "use client";
 
-import { useScreenSize } from "@/hooks/useScreenSize";
 import { useRouter } from "next/navigation";
 import { useState } from "react";
 
-import { Button } from "@/components/ui/button";
 import {
   Card,
   CardContent,
@@ -18,28 +16,20 @@ import {
   DialogDescription,
   DialogHeader,
   DialogTitle,
-  DialogTrigger,
 } from "@/components/ui/dialog";
+
 import { User, Users } from "lucide-react";
 
-export default function RegistrationPopup({ setMobileMenuOpen }) {
-  const [isOpen, setIsOpen] = useState(false);
-
+export default function RegistrationPopup({ open, onOpenChange }) {
   const router = useRouter();
-
-  const screenSize = useScreenSize();
 
   const handleNavigate = (typePerson) => {
     router.push(`/registration/${typePerson}`);
-    setIsOpen(false);
-    setMobileMenuOpen?.(false);
+    onOpenChange(false);
   };
 
   return (
-    <Dialog open={isOpen} onOpenChange={setIsOpen}>
-      <DialogTrigger asChild>
-        <span>Inscription</span>
-      </DialogTrigger>
+    <Dialog open={open} onOpenChange={onOpenChange}>
       <DialogContent className="sm:max-w-md">
         <DialogHeader>
           <DialogTitle>Choisissez le type d'inscription</DialogTitle>

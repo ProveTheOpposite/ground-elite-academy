@@ -5,6 +5,7 @@ import "./globals.css";
 
 import "@/lib/fontawesome";
 
+import AuthProvider from "@/components/AuthProvider";
 import Footer from "@/components/Footer";
 import Header from "@/components/Header";
 import JotaiProvider from "@/components/JotaiProvider";
@@ -67,11 +68,13 @@ export default function RootLayout({ children }) {
   return (
     <html lang="fr">
       <body className={roboto.variable}>
-        <JotaiProvider>
-          <Header />
-          <div className="flex min-h-screen flex-col">{children}</div>
-          <Footer />
-        </JotaiProvider>
+        <AuthProvider>
+          <JotaiProvider>
+            <Header />
+            <div className="flex min-h-screen flex-col">{children}</div>
+            <Footer />
+          </JotaiProvider>
+        </AuthProvider>
       </body>
     </html>
   );

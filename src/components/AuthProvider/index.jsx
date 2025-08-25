@@ -1,12 +1,11 @@
 "use client";
 
 import useAuthState from "@/hooks/useAuthState";
-import { isLoginAtom } from "@/state/atoms/isLogin";
-import { useSetAtom } from "jotai";
 
 const AuthProvider = ({ children }) => {
-  const setIsLogin = useSetAtom(isLoginAtom);
-  useAuthState(setIsLogin);
+  const { isLogin } = useAuthState();
+
+  console.log(isLogin ? "Connecté" : "Pas connecté");
 
   return <>{children}</>;
 };

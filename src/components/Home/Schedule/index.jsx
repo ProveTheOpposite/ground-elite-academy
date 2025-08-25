@@ -2,29 +2,33 @@
 
 import { lazy, Suspense, useRef, useState } from "react";
 
-import "flatpickr/dist/flatpickr.min.css";
-import { French } from "flatpickr/dist/l10n/fr";
-import Flatpickr from "react-flatpickr";
+import { Alert, AlertDescription } from "@/components/ui/alert";
+import { Button } from "@/components/ui/button";
+import { Calendar as CalendarUI } from "@/components/ui/calendar";
+import { Card, CardHeader } from "@/components/ui/card";
+import {
+  Popover,
+  PopoverContent,
+  PopoverTrigger,
+} from "@/components/ui/popover";
 
 import DecorativeSvg from "@/components/DecorativeSvg";
 import LoadingSuspense from "../../LoadingSuspense";
 
-import { Alert, AlertDescription } from "@/components/ui/alert";
-import { Card, CardContent, CardHeader } from "@/components/ui/card";
-
-import { AlertTriangle, Clock } from "lucide-react";
+import { AlertTriangle, ChevronDownIcon, Clock } from "lucide-react";
 
 // lazy loading
 const Calendar = lazy(() => import("./components/Calendar"));
 
 const Schedule = () => {
   const [selectedDate, setSelectedDate] = useState(new Date());
+  const [open, setOpen] = useState(false);
 
   const calendarRef = useRef(null);
 
   // function to allow to go on a date
   const handleDateChange = (date) => {
-    const selectedDate = new Date(date[0]);
+    const selectedDate = new Date(date);
     setSelectedDate(selectedDate);
 
     const calendarApi = calendarRef.current.getApi();
@@ -75,25 +79,34 @@ const Schedule = () => {
               </div>
 
               <div className="relative lg:flex-[0.25] lg:pr-0">
-                <div className="pl-3.5">
-                  <svg
-                    className="absolute top-[28%] h-4 w-4 text-gray-500 xl:top-[28%] dark:text-gray-400"
-                    aria-hidden="true"
-                    xmlns="http://www.w3.org/2000/svg"
-                    fill="currentColor"
-                    viewBox="0 0 20 20"
+                <Popover open={open} onOpenChange={setOpen}>
+                  <PopoverTrigger asChild>
+                    <Button
+                      variant="outline"
+                      id="dateOfBirthAdherent"
+                      className="text-muted-foreground mb-0 w-full justify-between font-normal"
+                    >
+                      {selectedDate
+                        ? selectedDate.toLocaleDateString()
+                        : "Sélectionnez une date"}
+                      <ChevronDownIcon />
+                    </Button>
+                  </PopoverTrigger>
+                  <PopoverContent
+                    className="w-auto overflow-hidden p-0"
+                    align="start"
                   >
-                    <path d="M20 4a2 2 0 0 0-2-2h-2V1a1 1 0 0 0-2 0v1h-3V1a1 1 0 0 0-2 0v1H6V1a1 1 0 0 0-2 0v1H2a2 2 0 0 0-2 2v2h20V4ZM0 18a2 2 0 0 0 2 2h16a2 2 0 0 0 2-2V8H0v10Zm5-8h10a1 1 0 0 1 0 2H5a1 1 0 0 1 0-2Z" />
-                  </svg>
-                </div>
-
-                <Flatpickr
-                  value={selectedDate}
-                  onChange={handleDateChange}
-                  options={{ dateFormat: "Y-m-d", locale: French }}
-                  placeholder="Sélectionner une date"
-                  className="h-10 w-full rounded-xl border border-gray-300 pr-3.5 pl-10 shadow-md"
-                />
+                    <CalendarUI
+                      mode="single"
+                      selected={selectedDate}
+                      captionLayout="dropdown"
+                      onSelect={(date) => {
+                        handleDateChange(date);
+                        setOpen(false);
+                      }}
+                    />
+                  </PopoverContent>
+                </Popover>
               </div>
             </div>
           </CardHeader>

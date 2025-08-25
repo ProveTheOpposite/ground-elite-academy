@@ -3,11 +3,13 @@
 import { useRouter } from "next/navigation";
 import { useEffect, useState } from "react";
 
+import RegistrationPopup from "@/components/RegistrationPopup";
 import { Button } from "@/components/ui/button";
-import { FileUp, Phone } from "lucide-react";
+import { FileUp, UserRoundPlus } from "lucide-react";
 
 const Banner = () => {
   const [isMobile, setIsMobile] = useState(false);
+  const [showPopup, setShowPopup] = useState(false);
 
   const router = useRouter();
 
@@ -37,12 +39,14 @@ const Banner = () => {
 
           <div className="flex flex-col items-center gap-4 sm:flex-row sm:justify-center xl:justify-start">
             <Button
-              onClick={() => router.push("/contact-us")}
+              onClick={() => {
+                setShowPopup(true);
+              }}
               size="xl"
               className="w-[220px] bg-[#b0181c] font-semibold text-white hover:bg-[#7d2a2d] sm:mr-4 md:py-7 lg:text-base 2xl:text-lg"
             >
-              <Phone className="mr-2 h-5 w-5 lg:h-8 lg:w-8" />
-              Contactez-nous
+              <UserRoundPlus className="mr-2 h-5 w-5 lg:h-8 lg:w-8" />
+              Rejoignez-nous
             </Button>
 
             <Button
@@ -59,6 +63,10 @@ const Banner = () => {
               </a>
             </Button>
           </div>
+
+          {showPopup && (
+            <RegistrationPopup open={showPopup} onOpenChange={setShowPopup} />
+          )}
         </div>
       </div>
 

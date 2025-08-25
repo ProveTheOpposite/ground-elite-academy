@@ -12,7 +12,7 @@ const FormEmailPassword = ({ typePerson, register, errors }) => {
 
   return (
     <div
-      className={`gap-4 space-y-5 ${typePerson === "parent" ? "md:grid md:grid-cols-2" : ""}`}
+      className={`flex flex-col gap-8 md:gap-x-4 md:gap-y-8 ${typePerson === "parent" ? "md:grid md:grid-cols-2" : ""}`}
     >
       {typePerson === "parent" && (
         <>
@@ -48,6 +48,24 @@ const FormEmailPassword = ({ typePerson, register, errors }) => {
             {errors.firstNameParent && (
               <p className="mt-2 pl-2 text-sm text-red-500">
                 {errors.firstNameParent.message}
+              </p>
+            )}
+          </div>
+
+          <div className="space-y-2 md:col-span-2">
+            <Label htmlFor="adressPostale">
+              Adresse postale<span className="text-red-500">*</span>
+            </Label>
+            <Input
+              {...register("adressPostale")}
+              id="adressPostale"
+              type="text"
+              placeholder="Entrez votre adresse postale"
+              className={errors.adressPostale ? "border-red-500" : ""}
+            />
+            {errors.adressPostale && (
+              <p className="mt-2 pl-2 text-sm text-red-500">
+                {errors.adressPostale.message}
               </p>
             )}
           </div>

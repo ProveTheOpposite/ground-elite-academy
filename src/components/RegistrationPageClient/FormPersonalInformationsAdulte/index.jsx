@@ -1,5 +1,10 @@
+import { useState } from "react";
+
+import { Controller } from "react-hook-form";
+
 import { Button } from "@/components/ui/button";
 import { Calendar } from "@/components/ui/calendar";
+import { Checkbox } from "@/components/ui/checkbox";
 import { Input } from "@/components/ui/input";
 import { Label } from "@/components/ui/label";
 import {
@@ -7,7 +12,6 @@ import {
   PopoverContent,
   PopoverTrigger,
 } from "@/components/ui/popover";
-import { RadioGroup, RadioGroupItem } from "@/components/ui/radio-group";
 import {
   Select,
   SelectContent,
@@ -17,21 +21,63 @@ import {
   SelectTrigger,
   SelectValue,
 } from "@/components/ui/select";
-import { ArrowLeft, ArrowRight, ChevronDownIcon } from "lucide-react";
-import { useState } from "react";
-import { Controller } from "react-hook-form";
 
-const FormPersonalInformationsAdulte = ({ register, errors, control }) => {
+import { ArrowLeft, ArrowRight, ChevronDownIcon, Info } from "lucide-react";
+
+const FormPersonalInformationsAdulte = ({
+  register,
+  errors,
+  trigger,
+  control,
+}) => {
   const [open, setOpen] = useState(false);
-  const [step, setStep] = useState(false);
+  const [subStep, setSubStep] = useState(0);
+  const [showLicenceInfo, setShowLicenceInfo] = useState(false);
+
+  console.log("subStep", subStep);
+
+  // Champs associés à chaque sous-step
+  const fieldsPerSubStep = [
+    [
+      "lastNameAdherent",
+      "firstNameAdherent",
+      "phoneNumber",
+      "categoryAdherent",
+      "dateOfBirthAdherent",
+      "adressPostale",
+    ],
+    [
+      "nationalityAdherent",
+      "contactEmergency",
+      "phoneNumberContactEmergency",
+      "sexeAdherent",
+      "licence.fflda",
+      "licence.cfjjb",
+      "profileImage",
+    ],
+  ];
+
+  const handleNext = async () => {
+    // Valider seulement les champs du sous-step courant
+    const isValid = await trigger(fieldsPerSubStep[subStep], {
+      shouldFocus: true,
+    });
+    if (isValid) {
+      setSubStep((prev) => prev + 1);
+    }
+  };
+
+  const handlePrev = () => {
+    setSubStep((prev) => prev - 1);
+  };
 
   return (
     <div className="relative w-full overflow-hidden">
       <div
-        className={`flex w-full gap-x-1 transition-transform duration-600 ease-in-out`}
-        style={{ transform: `translateX(-${(step ? 1 : 0) * 100}%)` }}
+        className={`flex w-full transition-transform duration-600 ease-in-out`}
+        style={{ transform: `translateX(-${subStep * 100}%)` }}
       >
-        <div className="w-full shrink-0 gap-4 space-y-5 md:grid md:grid-cols-2">
+        <div className="w-full shrink-0 space-y-6 md:grid md:grid-cols-2 md:gap-x-4">
           <div className="space-y-2">
             <Label htmlFor="lastNameAdherent">
               Nom<span className="text-red-500">*</span>
@@ -164,25 +210,25 @@ const FormPersonalInformationsAdulte = ({ register, errors, control }) => {
           </div>
 
           <div className="space-y-2">
-            <Label htmlFor="adressPostaleAdherent">
+            <Label htmlFor="adressPostale">
               Adresse Postale<span className="text-red-500">*</span>
             </Label>
             <Input
-              {...register("adressPostaleAdherent")}
-              id="adressPostaleAdherent"
+              {...register("adressPostale")}
+              id="adressPostale"
               type="text"
               placeholder="Entrez votre adresse postale"
-              className={errors.adressPostaleAdherent ? "border-red-500" : ""}
+              className={errors.adressPostale ? "border-red-500" : ""}
             />
-            {errors.adressPostaleAdherent && (
+            {errors.adressPostale && (
               <p className="mt-2 pl-2 text-sm text-red-500">
-                {errors.adressPostaleAdherent.message}
+                {errors.adressPostale.message}
               </p>
             )}
           </div>
         </div>
 
-        <div className="w-full shrink-0 gap-4 space-y-5 md:grid md:grid-cols-2">
+        <div className="w-full shrink-0 space-y-6 md:grid md:grid-cols-2 md:gap-x-4">
           <div className="space-y-2">
             <Label htmlFor="nationalityAdherent">
               Nationalité<span className="text-red-500">*</span>
@@ -242,7 +288,104 @@ const FormPersonalInformationsAdulte = ({ register, errors, control }) => {
           </div>
 
           <div className="space-y-2">
-            <Label>Image de profil</Label>
+            <Label>
+              Sexe<span className="text-red-500">*</span>
+            </Label>
+            <Controller
+              name="sexeAdherent"
+              control={control}
+              render={({ field }) => (
+                <Select
+                  value={field.value}
+                  onValueChange={(value) => field.onChange(value)}
+                >
+                  <SelectTrigger
+                    className={`w-full ${errors.sexeAdherent ? "border-red-500" : ""}`}
+                  >
+                    <SelectValue placeholder="Sélectionner" />
+                  </SelectTrigger>
+                  <SelectContent>
+                    <SelectItem value="Masculin">Masculin</SelectItem>
+                    <SelectItem value="Féminin">Féminin</SelectItem>
+                  </SelectContent>
+                </Select>
+              )}
+            />
+            {errors.sexeAdherent && (
+              <p className="mt-2 text-sm text-red-500">
+                {errors.sexeAdherent.message}
+              </p>
+            )}
+          </div>
+
+          <div className="space-y-2">
+            <Label className="mb-3">
+              Licence
+              <span
+                onMouseEnter={() => setShowLicenceInfo(true)}
+                onMouseLeave={() => setShowLicenceInfo(false)}
+                className="relative cursor-pointer"
+              >
+                {showLicenceInfo && (
+                  <div className="absolute -top-16 left-4 z-50 w-64 rounded-md bg-white p-4 shadow-lg">
+                    <p className="text-sm">
+                      La licence est l'adhésion officielle à une fédération
+                      sportive. Elle est obligatoire pour participer aux
+                      entraînements, compétitions et bénéficier de l'assurance
+                      en cas de blessure.
+                    </p>
+                  </div>
+                )}
+                <Info className="h-3.5 w-3.5" />
+              </span>
+              <span className="text-red-500">*</span>
+            </Label>
+
+            <div className="mb-2 flex items-center">
+              <Controller
+                name="licence.fflutte"
+                control={control}
+                render={({ field }) => (
+                  <Checkbox
+                    id="fflutte"
+                    checked={field.value || false}
+                    onCheckedChange={field.onChange}
+                    className={errors.licence ? "border-red-500" : ""}
+                  />
+                )}
+              />
+              <Label htmlFor="fflutte" className="ml-2 font-normal">
+                Fédération Française de Lutte & Disciplines Associées (fflutte)
+              </Label>
+            </div>
+
+            <div className="flex items-center">
+              <Controller
+                name="licence.cfjjb"
+                control={control}
+                render={({ field }) => (
+                  <Checkbox
+                    id="cfjjb"
+                    checked={field.value || false}
+                    onCheckedChange={field.onChange}
+                    className={errors.licence ? "border-red-500" : ""}
+                  />
+                )}
+              />
+              <Label htmlFor="cfjjb" className="ml-2 font-normal">
+                Confédération Française de Jiu-Jitsu Brésilien (CFJJB)
+              </Label>
+            </div>
+
+            {errors.licence && (
+              <p className="mt-2 text-sm text-red-500">
+                {errors.licence.message}
+              </p>
+            )}
+          </div>
+
+          <div className="space-y-2">
+            <Label>Photo de vous</Label>
             <Input
               {...register("profileImage")}
               id="profileImage"
@@ -256,49 +399,24 @@ const FormPersonalInformationsAdulte = ({ register, errors, control }) => {
               </p>
             )}
           </div>
-
-          <div className="space-y-2">
-            <Label>
-              Sexe<span className="text-red-500">*</span>
-            </Label>
-            <Controller
-              name="sexeAdherent"
-              control={control}
-              render={({ field }) => (
-                <RadioGroup value={field.value} onValueChange={field.onChange}>
-                  <div className="flex items-center gap-2">
-                    <RadioGroupItem
-                      value="Masculin"
-                      id="masc"
-                      className={errors.sexeAdherent ? "border-red-500" : ""}
-                    />
-                    <Label htmlFor="masc">Masculin</Label>
-                  </div>
-                  <div className="flex items-center gap-2">
-                    <RadioGroupItem
-                      value="Feminin"
-                      id="fem"
-                      className={errors.sexeAdherent ? "border-red-500" : ""}
-                    />
-                    <Label htmlFor="fem">Feminin</Label>
-                  </div>
-                </RadioGroup>
-              )}
-            />
-            {errors.sexeAdherent && (
-              <p className="mt-2 text-sm text-red-500">
-                {errors.sexeAdherent.message}
-              </p>
-            )}
-          </div>
         </div>
       </div>
 
       <div className="relative col-span-2 mt-10 h-6 w-full md:mt-4">
-        <button
+        {/* <button
           type="button"
-          className={`group absolute -top-2 flex items-center gap-2 rounded-md bg-amber-600 px-2 py-1.5 text-sm text-white transition-all duration-500 hover:bg-amber-700 ${step ? "left-2" : "sm:left-[74%] md:left-[78%] lg:left-[80%]"}`}
-          onClick={() => setStep((prev) => !prev)}
+          className={`group absolute -top-2 flex items-center gap-2 rounded-md bg-amber-600 px-2 py-1.5 text-sm text-white transition-all duration-500 hover:bg-amber-700 ${step ? "left-0" : "sm:left-[74%] md:left-[78%] lg:left-[80%]"}`}
+          onClick={() =>
+            trigger([
+              "lastNameAdherent",
+              "firstNameAdherent",
+              "phoneNumber",
+              "categoryAdherent",
+              "dateOfBirthAdherent",
+              "adressPostale",
+              "nationalityAdherent",
+            ])
+          }
         >
           <ArrowLeft
             className={`h-4 w-4 transition-all group-hover:-translate-x-1 ${step ? "" : "hidden"}`}
@@ -307,7 +425,29 @@ const FormPersonalInformationsAdulte = ({ register, errors, control }) => {
           <ArrowRight
             className={`h-4 w-4 transition-all group-hover:translate-x-1 ${step ? "hidden" : ""}`}
           />
-        </button>
+        </button> */}
+        {subStep > 0 && (
+          <Button
+            type="button"
+            onClick={handlePrev}
+            variant="outline"
+            className="flex items-center gap-2"
+          >
+            <ArrowLeft className="h-4 w-4" />
+            Retour
+          </Button>
+        )}
+
+        {subStep < fieldsPerSubStep.length - 1 ? (
+          <Button
+            type="button"
+            onClick={handleNext}
+            className="flex items-center gap-2 bg-amber-600 hover:bg-amber-700"
+          >
+            Suite du formulaire
+            <ArrowRight className="h-4 w-4" />
+          </Button>
+        ) : null}
       </div>
     </div>
   );

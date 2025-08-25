@@ -22,11 +22,13 @@ import {
   SelectValue,
 } from "@/components/ui/select";
 
-import { ChevronDownIcon, Plus, Trash2 } from "lucide-react";
+import { Checkbox } from "@/components/ui/checkbox";
+import { ChevronDownIcon, Info, Plus, Trash2 } from "lucide-react";
 
 const FormPersonalInformationKid = ({ register, errors, control }) => {
   // for calendars
   const [openIndex, setOpenIndex] = useState(null);
+  const [showLicenceInfo, setShowLicenceInfo] = useState(false);
 
   const { fields, append, remove } = useFieldArray({
     control,
@@ -56,7 +58,9 @@ const FormPersonalInformationKid = ({ register, errors, control }) => {
           <CardContent className="grid grid-cols-1 gap-4 md:grid-cols-3">
             {/* Prénom */}
             <div className="space-y-2">
-              <Label htmlFor={`children.${index}.firstNameChild`}>Prénom</Label>
+              <Label htmlFor={`children.${index}.firstNameChild`}>
+                Prénom<span className="text-red-500">*</span>
+              </Label>
               <Input
                 {...register(`children.${index}.firstNameChild`)}
                 id={`children.${index}.firstNameChild`}
@@ -76,7 +80,9 @@ const FormPersonalInformationKid = ({ register, errors, control }) => {
 
             {/* Nom */}
             <div className="space-y-2">
-              <Label htmlFor={`children.${index}.lastNameChild`}>Nom</Label>
+              <Label htmlFor={`children.${index}.lastNameChild`}>
+                Nom<span className="text-red-500">*</span>
+              </Label>
               <Input
                 {...register(`children.${index}.lastNameChild`)}
                 id={`children.${index}.lastNameChild`}
@@ -96,7 +102,9 @@ const FormPersonalInformationKid = ({ register, errors, control }) => {
 
             {/* Date de naissance */}
             <div className="space-y-2">
-              <Label>Date de naissance</Label>
+              <Label>
+                Date de naissance<span className="text-red-500">*</span>
+              </Label>
               <Controller
                 name={`children.${index}.dateOfBirthChild`}
                 control={control}
@@ -147,7 +155,7 @@ const FormPersonalInformationKid = ({ register, errors, control }) => {
             {/* Catégorie */}
             <div className="space-y-2">
               <Label htmlFor={`children.${index}.categoryChild`}>
-                Catégorie
+                Catégorie<span className="text-red-500">*</span>
               </Label>
               <Controller
                 name={`children.${index}.categoryChild`}
@@ -205,7 +213,9 @@ const FormPersonalInformationKid = ({ register, errors, control }) => {
 
             {/* Sexe */}
             <div className="space-y-2">
-              <Label>Sexe</Label>
+              <Label>
+                Sexe<span className="text-red-500">*</span>
+              </Label>
               <Controller
                 name={`children.${index}.sexeChild`}
                 control={control}
@@ -219,6 +229,11 @@ const FormPersonalInformationKid = ({ register, errors, control }) => {
                       <RadioGroupItem
                         value="Masculin"
                         id={`children.${index}.masc`}
+                        className={
+                          errors.children?.[index]?.sexeChild
+                            ? "border-red-500"
+                            : ""
+                        }
                       />
                       <Label htmlFor={`children.${index}.masc`}>Masculin</Label>
                     </div>
@@ -226,6 +241,11 @@ const FormPersonalInformationKid = ({ register, errors, control }) => {
                       <RadioGroupItem
                         value="Feminin"
                         id={`children.${index}.fem`}
+                        className={
+                          errors.children?.[index]?.sexeChild
+                            ? "border-red-500"
+                            : ""
+                        }
                       />
                       <Label htmlFor={`children.${index}.fem`}>Feminin</Label>
                     </div>
@@ -235,6 +255,75 @@ const FormPersonalInformationKid = ({ register, errors, control }) => {
               {errors.children?.[index]?.sexeChild && (
                 <p className="mt-4 text-sm text-red-500">
                   {errors.children[index].sexeChild.message}
+                </p>
+              )}
+            </div>
+
+            <div className="space-y-2 md:col-span-2">
+              <Label className="mb-3">
+                Licence
+                <span
+                  onMouseEnter={() => setShowLicenceInfo(true)}
+                  onMouseLeave={() => setShowLicenceInfo(false)}
+                  className="relative cursor-pointer"
+                >
+                  {showLicenceInfo && (
+                    <div className="absolute -right-32 bottom-[150%] z-10 w-64 rounded-md bg-white p-4 shadow-lg">
+                      <p className="text-sm">
+                        La licence est l'adhésion officielle à une fédération
+                        sportive. Elle est obligatoire pour participer aux
+                        entraînements, compétitions et bénéficier de l'assurance
+                        en cas de blessure.
+                      </p>
+                    </div>
+                  )}
+                  <Info className="h-3.5 w-3.5" />
+                </span>
+                <span className="text-red-500">*</span>
+              </Label>
+
+              <div className="flex gap-2">
+                <div className="mb-2 flex items-center">
+                  <Controller
+                    name="licence.fflutte"
+                    control={control}
+                    render={({ field }) => (
+                      <Checkbox
+                        id="fflutte"
+                        checked={field.value || false}
+                        onCheckedChange={field.onChange}
+                        className={errors.licence ? "border-red-500" : ""}
+                      />
+                    )}
+                  />
+                  <Label htmlFor="fflutte" className="ml-2 font-normal">
+                    Fédération Française de Lutte & Disciplines Associées
+                    (FFLutte)
+                  </Label>
+                </div>
+
+                <div className="flex items-center">
+                  <Controller
+                    name="licence.cfjjb"
+                    control={control}
+                    render={({ field }) => (
+                      <Checkbox
+                        id="cfjjb"
+                        checked={field.value || false}
+                        onCheckedChange={field.onChange}
+                        className={errors.licence ? "border-red-500" : ""}
+                      />
+                    )}
+                  />
+                  <Label htmlFor="cfjjb" className="ml-2 font-normal">
+                    Confédération Française de Jiu-Jitsu Brésilien (CFJJB)
+                  </Label>
+                </div>
+              </div>
+
+              {errors.licence && (
+                <p className="mt-2 text-sm text-red-500">
+                  {errors.licence.message}
                 </p>
               )}
             </div>

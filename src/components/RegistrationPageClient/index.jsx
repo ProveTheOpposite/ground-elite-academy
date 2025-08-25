@@ -2,12 +2,14 @@
 
 import { useScreenSize } from "@/hooks/useScreenSize";
 import { useAtom } from "jotai";
-import { useState } from "react";
+import { useEffect, useState } from "react";
 import { useForm } from "react-hook-form";
 
 import {
   ArrowLeft,
   ArrowRight,
+  CircleAlert,
+  CircleAlertIcon,
   CreditCard,
   Loader2,
   Mail,
@@ -32,7 +34,10 @@ import {
 } from "@/components/ui/card";
 
 import { auth, db, storage } from "@/server/firebase";
-import { createUserWithEmailAndPassword } from "firebase/auth";
+import {
+  createUserWithEmailAndPassword,
+  sendEmailVerification,
+} from "firebase/auth";
 import { doc, setDoc } from "firebase/firestore";
 import { getDownloadURL, ref, uploadBytes } from "firebase/storage";
 
@@ -45,8 +50,11 @@ let currentStepContent;
 
 const RegistrationPageClient = ({ typePerson }) => {
   const [currentStep, setCurrentStep] = useAtom(currentStepAtom);
+
   const [showCongratulations, setShowCongratulations] = useState(false);
   const [isLoading, setIsLoading] = useState(false);
+  const [errorMessage, setErrorMessage] = useState("");
+  const [userEmail, setUserEmail] = useState("");
 
   const screenSize = useScreenSize();
 
@@ -59,6 +67,9 @@ const RegistrationPageClient = ({ typePerson }) => {
         lastNameParent: isAdult
           ? yup.string().optional()
           : yup.string().required("Nom parent requis"),
+        adressPostale: isAdult
+          ? yup.string().optional()
+          : yup.string().required("Adresse postale requise"),
         phoneNumber: isAdult
           ? yup.string().optional()
           : yup.string().required("Numéro de téléphone requis"),
@@ -94,7 +105,7 @@ const RegistrationPageClient = ({ typePerson }) => {
               .nullable()
               .required("Date de naissance requise")
           : yup.date().nullable().optional(),
-        adressPostaleAdherent: isAdult
+        adressPostale: isAdult
           ? yup.string().required("Adresse postale requise")
           : yup.string().optional(),
         nationalityAdherent: isAdult
@@ -109,6 +120,18 @@ const RegistrationPageClient = ({ typePerson }) => {
         sexeAdherent: isAdult
           ? yup.string().required("Choisissez votre genre")
           : yup.string().optional(),
+        licence: yup
+          .object({
+            fflutte: yup.boolean(),
+            cfjjb: yup.boolean(),
+          })
+          .test(
+            "at-least-one",
+            "Vous devez sélectionner au moins une licence",
+            (value) => {
+              return value.fflutte || value.cfjjb;
+            },
+          ),
         children: isAdult
           ? yup
               .array()
@@ -163,9 +186,9 @@ const RegistrationPageClient = ({ typePerson }) => {
   const {
     register,
     handleSubmit,
+    trigger,
     control,
     formState: { errors },
-    getValues,
   } = useForm({
     resolver: yupResolver(stepSchemas[currentStep - 1]),
     defaultValues: {
@@ -181,10 +204,14 @@ const RegistrationPageClient = ({ typePerson }) => {
       lastNameAdherent: "",
       categoryAdherent: "",
       dateOfBirthAdherent: null,
-      adressPostaleAdherent: "",
+      adressPostale: "",
       nationalityAdherent: "",
       sexeAdherent: "",
       profileImageAdherent: null,
+      licence: {
+        fflutte: false,
+        cfjjb: false,
+      },
       nonRespectRulesRegulations: false,
       medical: false,
       sharePhotosHimself: false,
@@ -202,9 +229,9 @@ const RegistrationPageClient = ({ typePerson }) => {
     },
   });
 
-  // stepSchemas[currentStep - 1]
-  //   .validate(getValues(), { abortEarly: false })
-  //   .catch((err) => console.log("Yup errors:", err.inner));
+  useEffect(() => {
+    setErrorMessage("");
+  }, [currentStep]);
 
   const steps =
     typePerson === "adulte"
@@ -281,6 +308,7 @@ const RegistrationPageClient = ({ typePerson }) => {
           <FormPersonalInformationsAdulte
             register={register}
             errors={errors}
+            trigger={trigger}
             control={control}
           />
         ) : (
@@ -293,11 +321,7 @@ const RegistrationPageClient = ({ typePerson }) => {
       break;
     case 3:
       currentStepContent = (
-        <FormRulesRegulations
-          register={register}
-          control={control}
-          errors={errors}
-        />
+        <FormRulesRegulations control={control} errors={errors} />
       );
       break;
     default:
@@ -313,74 +337,60 @@ const RegistrationPageClient = ({ typePerson }) => {
       } else {
         setIsLoading(true);
 
+        // 1. create user
         const userCredential = await createUserWithEmailAndPassword(
           auth,
           data.email,
           data.password,
         );
         const user = userCredential.user;
+        setUserEmail(user.email);
 
-        let profileImageUrl = null;
+        // 2. send email verification
+        await sendEmailVerification(user);
 
-        if (data.profileImage?.[0]) {
-          const file = data.profileImage[0];
-          const storageRef = ref(
-            storage,
-            `profileImages/${user.uid}/${file.name}-${Date.now()}`,
-          );
-          await uploadBytes(storageRef, file);
-          profileImageUrl = await getDownloadURL(storageRef);
-        }
+        // 3. create user in firestore
+        await fetch(
+          `${process.env.NEXT_PUBLIC_BASE_URL}/api/user/${user.uid}`,
+          {
+            method: "POST",
+            headers: {
+              "Content-Type": "application/json",
+            },
+            body: JSON.stringify({
+              ...data,
+              typePerson,
+            }),
+          },
+        );
 
-        const adulteData = {
-          role: "adulte/ado",
-          email: data.email,
-          phoneNumber: data.phoneNumber,
-          phoneNumberContactEmergency: data.phoneNumberContactEmergency,
-          contactEmergency: data.contactEmergency,
-          firstName: data.firstNameAdherent,
-          lastName: data.lastNameAdherent,
-          category: data.categoryAdherent,
-          dateOfBirth: data.dateOfBirthAdherent,
-          sexe: data.sexeAdherent,
-          rulesRegulations: data.rulesRegulations,
-          nonRespectRulesRegulations: data.nonRespectRulesRegulations,
-          medical: data.medical,
-          sharePhotosHimself: data.sharePhotosHimself,
-          ...(profileImageUrl && { profileImage: profileImageUrl }),
-          createdAt: new Date(),
-        };
-        const parentData = {
-          role: "parent",
-          email: data.email,
-          children: data.children,
-          firstNameParent: data.firstNameParent,
-          lastNameParent: data.lastNameParent,
-          phoneNumber: data.phoneNumber,
-          contactEmergency: `${data.firstNameParent} ${data.lastNameParent}`,
-          children: data.children,
-          rulesRegulations: data.rulesRegulations,
-          nonRespectRulesRegulations: data.nonRespectRulesRegulations,
-          medical: data.medical,
-          sharePhotosHimself: data.sharePhotosHimself,
-          ...(profileImageUrl && { profileImage: profileImageUrl }),
-          createdAt: new Date(),
-        };
-        console.log(typePerson === "adulte" ? adulteData : parentData);
-
-        const userRef = doc(db, "users", user.uid);
-        const payload = typePerson === "adulte" ? adulteData : parentData;
-
-        await setDoc(userRef, payload);
 
         setShowCongratulations(true);
       }
     } catch (error) {
       console.log("Erreur lors de la création du user : ", error);
+      switch (error.code) {
+        case "auth/invalid-email":
+          setErrorMessage("L'adresse email est invalide.");
+          break;
+        case "auth/too-many-requests":
+          setErrorMessage("Trop de tentatives. Veuillez réessayer plus tard.");
+          break;
+        case "auth/user-disabled":
+          setErrorMessage("Ce compte a été désactivé.");
+          break;
+        case "auth/email-already-in-use":
+          setErrorMessage("L'email est déjà utilisé par un utilisateur");
+          break;
+        default:
+          setErrorMessage("Une erreur est survenue. Veuillez réessayer.");
+      }
     } finally {
       setIsLoading(false);
     }
   };
+
+  console.log("registration");
 
   return (
     <div className="mt-[68px] flex flex-1 justify-center px-5 py-8 lg:mt-[78px]">
@@ -388,6 +398,7 @@ const RegistrationPageClient = ({ typePerson }) => {
         typePerson={typePerson}
         showCongratulations={showCongratulations}
         setShowCongratulations={setShowCongratulations}
+        userEmail={userEmail}
       />
 
       <div className="w-full max-w-4xl">
@@ -426,6 +437,13 @@ const RegistrationPageClient = ({ typePerson }) => {
                 <span className="text-red-500">*</span>) sont obligatoires.
               </p>
               <div className="space-y-4">{currentStepContent}</div>
+
+              {errorMessage && (
+                <p className="mt-6 flex items-center gap-2 font-bold text-red-500">
+                  <CircleAlert className="h-5 w-5" />
+                  {errorMessage}
+                </p>
+              )}
             </CardContent>
           </Card>
 
@@ -450,7 +468,7 @@ const RegistrationPageClient = ({ typePerson }) => {
 
             <Button
               type="submit"
-              className="flex items-center gap-2 bg-[#b0181c] hover:bg-[#7d2a2d]"
+              className="flex min-w-[100px] items-center gap-2 bg-[#b0181c] hover:bg-[#7d2a2d]"
             >
               {isLoading ? (
                 <Loader2 className="!h-5 !w-5 animate-spin" />

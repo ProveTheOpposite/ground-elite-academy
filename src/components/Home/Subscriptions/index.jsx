@@ -20,7 +20,7 @@ const subscriptions = {
       period: "/mois",
       description: "Abonnement enfant non disponible en mensuel",
       benefits: [
-        "Accès aux deux disciplines (lutte et grappling)",
+        "Accès à une discipline (lutte)",
         "Encadrement par des professionnels qualifiés",
         "Accès aux compétitions",
       ],
@@ -58,7 +58,7 @@ const subscriptions = {
       period: "/sept-déc",
       description: "L'abonnement enfant : de 5 à 13 ans",
       benefits: [
-        "Accès aux deux disciplines (lutte et grappling)",
+        "Accès à une discipline (lutte)",
         "Encadrement par des professionnels qualifiés",
         "Accès aux compétitions",
       ],
@@ -96,7 +96,7 @@ const subscriptions = {
       period: "/3 mois",
       description: "L'abonnement enfant : de 5 à 13 ans",
       benefits: [
-        "Accès aux deux disciplines (lutte et grappling)",
+        "Accès à une discipline (lutte)",
         "Encadrement par des professionnels qualifiés",
         "Accès aux compétitions",
       ],
@@ -134,7 +134,7 @@ const subscriptions = {
       period: "/an",
       description: "L'abonnement enfant : de 5 à 13 ans",
       benefits: [
-        "Accès aux deux disciplines (lutte et grappling)",
+        "Accès à une discipline (lutte)",
         "Encadrement par des professionnels qualifiés",
         "Accès aux compétitions",
         "Tenue de sport GEA offerte",

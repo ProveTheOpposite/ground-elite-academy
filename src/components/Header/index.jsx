@@ -1,9 +1,8 @@
 "use client";
 
-import { usePathname } from "next/navigation";
-import { useEffect, useState } from "react";
-
-import { useScreenSize } from "@/hooks/useScreenSize";
+import useAuthState from "@/hooks/useAuthState";
+import { usePathname, useRouter } from "next/navigation";
+import { useEffect, useRef, useState } from "react";
 
 import Image from "next/image";
 import Link from "next/link";
@@ -12,18 +11,26 @@ import { Button } from "../ui/button";
 
 import { imageUrl } from "@/assets/images/imageList";
 
-import { ChevronDown, Menu, User, X } from "lucide-react";
+import { ChevronDown, ChevronUp, LogOut, Menu, User, X } from "lucide-react";
+
+import { Avatar, AvatarFallback } from "../ui/avatar";
 
 import RegistrationPopup from "../RegistrationPopup";
-import { Avatar, AvatarFallback } from "../ui/avatar";
-import {
-  DropdownMenu,
-  DropdownMenuContent,
-  DropdownMenuItem,
-  DropdownMenuSeparator,
-  DropdownMenuTrigger,
-} from "../ui/dropdown-menu";
 import ScrollLink from "./ScrollLink";
+
+import { auth } from "@/server/firebase";
+import { signOut } from "firebase/auth";
+import {
+  AlertDialog,
+  AlertDialogAction,
+  AlertDialogCancel,
+  AlertDialogContent,
+  AlertDialogDescription,
+  AlertDialogFooter,
+  AlertDialogHeader,
+  AlertDialogTitle,
+  AlertDialogTrigger,
+} from "../ui/alert-dialog";
 
 // header link items
 const headerList = {
@@ -38,11 +45,30 @@ const headerList = {
 
 const Header = () => {
   const [isScrolled, setIsScrolled] = useState(false);
+  const [isLogoutClicked, setIsLogoutClicked] = useState(false);
   const [mobileMenuOpen, setMobileMenuOpen] = useState(false);
+  const [showPopup, setShowPopup] = useState(false);
+  const [showDropdown, setShowDropdown] = useState(false);
+
+  const dropdownRef = useRef(null);
 
   const pathname = usePathname();
 
-  const screenSize = useScreenSize();
+  const router = useRouter();
+
+  const { loading, isLogin } = useAuthState();
+
+  const isHomePage = pathname === "/";
+
+  const headerBackgroundClass = isScrolled || !isHomePage ? "shadow-lg" : "";
+
+  const textColorClass =
+    isScrolled || !isHomePage ? "text-black" : "text-white";
+
+  const logoSrc =
+    isScrolled || !isHomePage
+      ? imageUrl.header.logoBlack
+      : imageUrl.header.logoWhite;
 
   // Change header style on scroll
   useEffect(() => {
@@ -56,17 +82,39 @@ const Header = () => {
     };
   }, []);
 
-  const isHomePage = pathname === "/";
+  useEffect(() => {
+    const handleClickOutside = (event) => {
+      if (dropdownRef.current && !dropdownRef.current.contains(event.target)) {
+        setShowDropdown(false);
+      }
+    };
 
-  const headerBackgroundClass = isScrolled || !isHomePage ? "shadow-lg" : "";
+    window.addEventListener("click", handleClickOutside);
+    return () => {
+      window.removeEventListener("click", handleClickOutside);
+    };
+  }, []);
 
-  const textColorClass =
-    isScrolled || !isHomePage ? "text-black" : "text-white";
+  const handleClickShowDropdown = () => {
+    setShowDropdown(!showDropdown);
+  };
 
-  const logoSrc =
-    isScrolled || !isHomePage
-      ? imageUrl.header.logoBlack
-      : imageUrl.header.logoWhite;
+  const logOut = async () => {
+    try {
+      await signOut(auth);
+      router.push("/login");
+      console.log("user logout");
+      setShowDropdown(false);
+    } catch (error) {
+      console.error("Error logging out:", error);
+      console.log(error.code);
+    }
+  };
+
+  const handleClickNavigateTo = (path) => {
+    router.push(path);
+    setShowDropdown(false);
+  };
 
   return (
     <header
@@ -120,34 +168,96 @@ const Header = () => {
               </Button>
             </Link>
 
-            <DropdownMenu>
-              <DropdownMenuTrigger asChild>
-                <Avatar className="h-10 w-10 cursor-pointer border-5 border-gray-200 transition-colors hover:border-red-200">
-                  <AvatarFallback className="bg-gray-100 text-gray-600 transition-colors hover:bg-red-50">
-                    <User className="h-5 w-5" />
+            <div ref={dropdownRef} className="relative">
+              <Button
+                variant="ghost"
+                className="flex items-center space-x-2 rounded-full p-2 transition-colors hover:bg-gray-50"
+                onClick={handleClickShowDropdown}
+              >
+                <Avatar className="h-8 w-8 border-2 border-gray-200 transition-colors hover:border-red-600">
+                  <AvatarFallback className="bg-gray-100 text-gray-600 transition-colors hover:bg-red-50 hover:text-red-600">
+                    <User className="h-4 w-4" />
                   </AvatarFallback>
                 </Avatar>
-              </DropdownMenuTrigger>
-              <DropdownMenuContent align="end" className="w-48">
-                {/* <DropdownMenuItem>
-                  <User className="mr-2 h-4 w-4" />
-                  Mon profil
-                </DropdownMenuItem>
-                <DropdownMenuItem>Paramètres</DropdownMenuItem>
-                <DropdownMenuSeparator />
-                <DropdownMenuItem>Se déconnecter</DropdownMenuItem> */}
-                <DropdownMenuItem className="cursor-pointer">
-                  <Link href="/login" className="w-full">
-                    Se connecter
-                  </Link>
-                </DropdownMenuItem>
-                <DropdownMenuSeparator />
-                <DropdownMenuItem className="cursor-pointer">
-                  {screenSize === "tablet" ||
-                    (screenSize === "desktop" && <RegistrationPopup />)}
-                </DropdownMenuItem>
-              </DropdownMenuContent>
-            </DropdownMenu>
+                {showDropdown ? (
+                  <ChevronUp className="h-4 w-4 text-gray-500" />
+                ) : (
+                  <ChevronDown className="h-4 w-4 text-gray-500" />
+                )}
+              </Button>
+
+              {!loading
+                ? showDropdown && (
+                    <div className="absolute top-[110%] right-0 z-50 flex w-40 flex-col gap-y-1.5 rounded-md bg-white p-1 shadow-lg">
+                      {isLogin ? (
+                        <>
+                          <button
+                            onClick={() => handleClickNavigateTo("/profile")}
+                            className="flex items-center gap-x-2 rounded-md p-2 text-sm transition-colors hover:bg-gray-100"
+                          >
+                            <User className="h-4 w-4" />
+                            Mon profil
+                          </button>
+                          <button
+                            onClick={() => setIsLogoutClicked(true)}
+                            className="flex items-center gap-x-2 rounded-md p-2 text-sm text-red-600 transition-colors hover:bg-[#fef2f2]"
+                          >
+                            <LogOut className="h-4 w-4" />
+                            Se déconnecter
+                          </button>
+                        </>
+                      ) : (
+                        <>
+                          <button
+                            onClick={() => handleClickNavigateTo("/login")}
+                            className="flex rounded-md p-2 text-sm transition-colors hover:bg-gray-100"
+                          >
+                            Se connecter
+                          </button>
+
+                          <button
+                            className="flex rounded-md p-2 text-sm transition-colors hover:bg-gray-100"
+                            onClick={() => {
+                              setShowPopup(true);
+                              setMobileMenuOpen(false);
+                            }}
+                          >
+                            Rejoignez-nous
+                          </button>
+                        </>
+                      )}
+                    </div>
+                  )
+                : null}
+            </div>
+
+            {showPopup && (
+              <RegistrationPopup open={showPopup} onOpenChange={setShowPopup} />
+            )}
+
+            {isLogoutClicked && (
+              <AlertDialog
+                open={isLogoutClicked}
+                onOpenChange={setIsLogoutClicked}
+              >
+                <AlertDialogContent>
+                  <AlertDialogHeader>
+                    <AlertDialogTitle>
+                      Êtes-vous sûr de vouloir vous déconnecter ?
+                    </AlertDialogTitle>
+                    <AlertDialogDescription>
+                      Voulez-vous vraiment vous déconnecter ?
+                    </AlertDialogDescription>
+                  </AlertDialogHeader>
+                  <AlertDialogFooter>
+                    <AlertDialogCancel>Annuler</AlertDialogCancel>
+                    <AlertDialogAction onClick={logOut}>
+                      Se déconnecter
+                    </AlertDialogAction>
+                  </AlertDialogFooter>
+                </AlertDialogContent>
+              </AlertDialog>
+            )}
 
             <button
               onClick={() => setMobileMenuOpen(!mobileMenuOpen)}
