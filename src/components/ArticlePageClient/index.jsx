@@ -119,6 +119,7 @@ const ArticlePageClient = ({ articleSlug }) => {
   }
 
   const categoryColors = {
+    Actualité: "bg-orange-100 text-orange-800 hover:bg-orange-200",
     Compétition: "bg-pink-100 text-pink-800 hover:bg-pink-200",
     Entraînement: "bg-yellow-100 text-yellow-800 hover:bg-yellow-200",
     Lutte: "bg-blue-100 text-blue-800 hover:bg-blue-200",
