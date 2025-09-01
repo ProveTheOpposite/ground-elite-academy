@@ -6,7 +6,7 @@ import { collection, getDocs, orderBy, query } from "firebase/firestore";
 export const GET = async () => {
   try {
     const articlesCollection = collection(db, "articles");
-    const q = query(articlesCollection, orderBy("dateOfPublication", "asc")); // Tri croissant
+    const q = query(articlesCollection, orderBy("dateOfPublication", "desc")); // Tri croissant
 
     const articlesSnapshot = await getDocs(q);
     const articlesData = articlesSnapshot.docs.map((doc) => doc.data());
