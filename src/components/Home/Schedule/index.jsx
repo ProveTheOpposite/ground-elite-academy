@@ -1,50 +1,14 @@
-"use client";
-
-import { lazy, Suspense, useRef, useState } from "react";
-
-import "flatpickr/dist/flatpickr.min.css";
-import { French } from "flatpickr/dist/l10n/fr";
-import Flatpickr from "react-flatpickr";
+import { Card, CardHeader } from "@/components/ui/card";
 
 import DecorativeSvg from "@/components/DecorativeSvg";
-import LoadingSuspense from "../../LoadingSuspense";
-
-import { Alert, AlertDescription } from "@/components/ui/alert";
-import { Card, CardContent, CardHeader } from "@/components/ui/card";
-
-import { AlertTriangle, Clock } from "lucide-react";
-
-// lazy loading
-const Calendar = lazy(() => import("./components/Calendar"));
 
 const Schedule = () => {
-  const [selectedDate, setSelectedDate] = useState(new Date());
-
-  const calendarRef = useRef(null);
-
-  // function to allow to go on a date
-  const handleDateChange = (date) => {
-    const selectedDate = new Date(date[0]);
-    setSelectedDate(selectedDate);
-
-    const calendarApi = calendarRef.current.getApi();
-
-    const utcDate = new Date(
-      Date.UTC(
-        selectedDate.getFullYear(),
-        selectedDate.getMonth(),
-        selectedDate.getDate(),
-      ),
-    );
-    calendarApi.gotoDate(utcDate);
-  };
-
   return (
     <section
       id="schedule"
-      className="relative flex min-h-screen flex-col justify-center bg-white px-5 py-20 lg:py-24"
+      className="relative flex min-h-screen flex-col justify-center bg-white px-5 py-20 lg:px-8 lg:py-24"
     >
-      <div className="z-10 flex flex-col gap-10 md:mx-auto md:w-[90%] lg:w-[95%] 2xl:w-[1430px]">
+      <div className="z-10 flex flex-col gap-10 2xl:mx-auto 2xl:w-[1430px]">
         <Card className="bg-[#fbfcfd]/80 shadow-lg">
           <CardHeader className="pb-4">
             <h2 className="mb-5 text-4xl font-bold uppercase lg:text-5xl">
@@ -52,84 +16,220 @@ const Schedule = () => {
             </h2>
 
             <div className="lg:flex lg:items-start lg:justify-between">
-              <div className="mb-7 flex flex-col gap-5 lg:mb-0 lg:flex-[0.75]">
+              <div className="mb-7 flex flex-col gap-5 lg:mb-0">
                 <p className="text-lg text-gray-600">
-                  Les entraînements ont lieu le lundi, mercredi et jeudi. Les
-                  cours de lutte et de grappling s'alternent chaque semaine pour
-                  les adultes. Consultez régulièrement notre planning pour être
-                  au courant des futurs changements.
+                  Les entraînements ont lieu le lundi, mercredi, jeudi et
+                  samedi. Consultez régulièrement notre planning pour être au
+                  courant des futurs changements sur notre page{" "}
+                  <a
+                    href="https://www.instagram.com/geanice06/"
+                    className="text-[#b0181c] hover:underline"
+                    target="_blank"
+                  >
+                    instagram
+                  </a>
+                  .
                 </p>
 
                 <ul className="space-y-2 text-[15px]">
                   <li className="flex items-center">
-                    <Clock className="mr-2 h-4 w-4" />
-                    <span className="font-medium">Lundi & Jeudi : </span> 18h30
+                    <span className="mr-3 h-2 w-2 rounded-full bg-gray-400"></span>
+                    <span className="font-medium">Lundi & Jeudi : </span> 17h30
                     - 20h30
                   </li>
                   <li className="flex items-center">
-                    <Clock className="mr-2 h-4 w-4" />
+                    <span className="mr-3 h-2 w-2 rounded-full bg-gray-400"></span>
                     <span className="font-medium">Mercredi : </span> 19h00 -
                     20h30
                   </li>
+                  <li className="flex items-center">
+                    <span className="mr-3 h-2 w-2 rounded-full bg-gray-400"></span>
+                    <span className="font-medium">Samedi : </span> 15h30 - 17h30
+                  </li>
                 </ul>
-              </div>
-
-              <div className="relative lg:flex-[0.25] lg:pr-0">
-                <div className="pl-3.5">
-                  <svg
-                    className="absolute top-[28%] h-4 w-4 text-gray-500 xl:top-[28%] dark:text-gray-400"
-                    aria-hidden="true"
-                    xmlns="http://www.w3.org/2000/svg"
-                    fill="currentColor"
-                    viewBox="0 0 20 20"
-                  >
-                    <path d="M20 4a2 2 0 0 0-2-2h-2V1a1 1 0 0 0-2 0v1h-3V1a1 1 0 0 0-2 0v1H6V1a1 1 0 0 0-2 0v1H2a2 2 0 0 0-2 2v2h20V4ZM0 18a2 2 0 0 0 2 2h16a2 2 0 0 0 2-2V8H0v10Zm5-8h10a1 1 0 0 1 0 2H5a1 1 0 0 1 0-2Z" />
-                  </svg>
-                </div>
-
-                <Flatpickr
-                  value={selectedDate}
-                  onChange={handleDateChange}
-                  options={{ dateFormat: "Y-m-d", locale: French }}
-                  placeholder="Sélectionner une date"
-                  className="h-10 w-full rounded-xl border border-gray-300 pr-3.5 pl-10 shadow-md"
-                />
               </div>
             </div>
           </CardHeader>
         </Card>
 
-        <Alert className="border-red-200 bg-red-50/80 backdrop-blur-sm">
-          <AlertTriangle className="h-4 w-4 text-red-600" />
-          <AlertDescription className="flex text-red-800">
-            <span className="font-medium">Important :</span> Le mercredi, les
-            cours se déroulent au 63 Bd Gorbella, 06100 Nice, à la place de 10
-            boulevard Comte de Falicon, 06100 Nice.
-          </AlertDescription>
-        </Alert>
+        <div>
+          <div>
+            <div className="grid grid-cols-1 gap-6 md:grid-cols-4">
+              {/* Lundi */}
+              <div className="space-y-4">
+                <div className="rounded-lg bg-red-700 p-4 text-center text-white">
+                  <h2 className="mb-1 text-xl font-bold">LUNDI</h2>
+                  <p className="text-sm opacity-90">
+                    10 Boulevard Comte de Falicon
+                  </p>
+                </div>
 
-        {/* <Card className="rounded-md border border-gray-200 bg-gray-50 text-gray-800">
-          <CardHeader>
-            <h3 className="text-lg font-semibold">
-              Horaires des entraînements :
-            </h3>
-          </CardHeader>
-          <CardContent>
-            <ul className="list-inside list-disc space-y-1">
-              <li>
-                <span className="font-medium">Lundi & Jeudi :</span> 18h30 -
-                20h30
-              </li>
-              <li>
-                <span className="font-medium">Mercredi :</span> 19h00 - 20h30
-              </li>
-            </ul>
-          </CardContent>
-        </Card> */}
+                <div className="rounded-lg border bg-white p-4 shadow-sm">
+                  <div className="mb-5 flex items-center justify-between">
+                    <span className="text-sm font-medium text-gray-700">
+                      Enfants
+                    </span>
+                    <span className="rounded bg-blue-500 px-2 py-1 text-xs font-medium text-white">
+                      Lutte
+                    </span>
+                  </div>
+                  <div className="text-xl font-bold text-gray-900 md:text-center">
+                    17h30 - 18h45
+                  </div>
+                </div>
 
-        <Suspense fallback={<LoadingSuspense height={"650px"} />}>
-          <Calendar calendarRef={calendarRef} />
-        </Suspense>
+                <div className="rounded-lg border bg-white p-4 shadow-sm">
+                  <div className="mb-5 flex items-center justify-between">
+                    <span className="text-sm font-medium text-gray-700">
+                      Adultes
+                    </span>
+                    <span className="rounded bg-red-600 px-2 py-1 text-xs font-medium text-white">
+                      Grappling
+                    </span>
+                  </div>
+                  <div className="text-center text-xl font-bold text-gray-900">
+                    18h45 - 20h30
+                  </div>
+                </div>
+              </div>
+
+              {/* Mercredi */}
+              <div className="space-y-4">
+                <div className="rounded-lg bg-red-700 p-4 text-center text-white">
+                  <h2 className="mb-1 text-xl font-bold">MERCREDI</h2>
+                  <p className="text-sm opacity-90">63 Boulevard Gorbella</p>
+                </div>
+
+                <div className="rounded-lg border bg-white p-4 shadow-sm">
+                  <div className="mb-5 flex items-center justify-between">
+                    <span className="text-sm font-medium text-gray-700">
+                      Adultes
+                    </span>
+                    <span className="rounded bg-red-600 px-2 py-1 text-xs font-medium text-white">
+                      Grappling
+                    </span>
+                  </div>
+                  <div className="text-center text-xl font-bold text-gray-900">
+                    19h00 - 20h30
+                  </div>
+                </div>
+              </div>
+
+              {/* Jeudi */}
+              <div className="space-y-4">
+                <div className="rounded-lg bg-red-700 p-4 text-center text-white">
+                  <h2 className="mb-1 text-xl font-bold">JEUDI</h2>
+                  <p className="text-sm opacity-90">
+                    10 Boulevard Comte de Falicon
+                  </p>
+                </div>
+
+                <div className="rounded-lg border bg-white p-4 shadow-sm">
+                  <div className="mb-5 flex items-center justify-between">
+                    <span className="text-sm font-medium text-gray-700">
+                      Enfants
+                    </span>
+                    <span className="rounded bg-blue-500 px-2 py-1 text-xs font-medium text-white">
+                      Lutte
+                    </span>
+                  </div>
+                  <div className="text-center text-xl font-bold text-gray-900">
+                    17h30 - 18h45
+                  </div>
+                </div>
+
+                <div className="rounded-lg border bg-white p-4 shadow-sm">
+                  <div className="mb-5 flex items-center justify-between">
+                    <span className="text-sm font-medium text-gray-700">
+                      Adultes
+                    </span>
+                    <span className="rounded bg-blue-500 px-2 py-1 text-xs font-medium text-white">
+                      Lutte
+                    </span>
+                  </div>
+                  <div className="text-center text-xl font-bold text-gray-900">
+                    18h45 - 20h30
+                  </div>
+                </div>
+              </div>
+
+              {/* Samedi */}
+              <div className="space-y-4">
+                <div className="rounded-lg bg-red-700 p-4 text-center text-white">
+                  <h2 className="mb-1 text-xl font-bold">SAMEDI</h2>
+                  <p className="text-sm opacity-90">63 Boulevard Gorbella</p>
+                </div>
+
+                <div className="rounded-lg border bg-white p-4 shadow-sm">
+                  <div className="mb-5 flex items-center justify-between">
+                    <span className="text-sm font-medium text-gray-700">
+                      Adultes
+                    </span>
+                    <span className="rounded bg-blue-500 px-2 py-1 text-xs font-medium text-white">
+                      Lutte
+                    </span>
+                  </div>
+                  <div className="text-center text-xl font-bold text-gray-900">
+                    15h30 - 17h30
+                  </div>
+                </div>
+              </div>
+            </div>
+
+            <div className="mt-8 rounded-lg border bg-white p-6 shadow-sm">
+              <h3 className="mb-6 text-center text-lg font-bold text-gray-900">
+                INFORMATIONS
+              </h3>
+
+              <div className="grid grid-cols-1 gap-8 md:grid-cols-2">
+                {/* Sports par jour */}
+                <div>
+                  <div className="mb-3 flex items-center">
+                    <span className="mr-2 text-lg">🥋</span>
+                    <h4 className="font-semibold text-gray-900">
+                      Sports par jour
+                    </h4>
+                  </div>
+                  <div className="space-y-1 text-sm text-gray-700">
+                    <p>Lundi & Mercredi : Grappling adultes</p>
+                    <p>Jeudi & Samedi : Lutte adultes</p>
+                  </div>
+                </div>
+
+                {/* Enfants */}
+                <div>
+                  <div className="mb-3 flex items-center">
+                    <span className="mr-2 text-lg">👶</span>
+                    <h4 className="font-semibold text-gray-900">Enfants</h4>
+                  </div>
+                  <div className="text-sm text-gray-700">
+                    <p>Toujours Lutte - Lundi & Jeudi 17h30-18h30</p>
+                  </div>
+                </div>
+              </div>
+
+              {/* Lieux d'entraînement */}
+              <div className="mt-6">
+                <div className="mb-3 flex items-center">
+                  <span className="mr-2 text-lg">📍</span>
+                  <h4 className="font-semibold text-gray-900">
+                    Lieux d'entraînement
+                  </h4>
+                </div>
+                <div className="space-y-1 text-sm text-gray-700">
+                  <p>
+                    Lundi & Jeudi : 10 Boulevard Comte de Falicon, 06100 Nice
+                    Centre Anima Nice Maioun dôu Rai
+                  </p>
+                  <p>
+                    Mercredi & Samedi : 63 Boulevard Gorbella, 06100 Nice -
+                    Centre Anima Nice
+                  </p>
+                </div>
+              </div>
+            </div>
+          </div>
+        </div>
       </div>
 
       <DecorativeSvg fillColor="#fff" />
