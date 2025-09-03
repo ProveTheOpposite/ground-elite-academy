@@ -73,7 +73,7 @@ const Schedule = () => {
                       Lutte
                     </span>
                   </div>
-                  <div className="text-xl font-bold text-gray-900 md:text-center">
+                  <div className="text-center text-xl font-bold text-gray-900 md:text-center">
                     17h30 - 18h45
                   </div>
                 </div>
