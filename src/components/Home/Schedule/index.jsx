@@ -203,7 +203,7 @@ const Schedule = () => {
                     <h4 className="font-semibold text-gray-900">Enfants</h4>
                   </div>
                   <div className="text-sm text-gray-700">
-                    <p>Toujours Lutte - Lundi & Jeudi 17h30-18h30</p>
+                    <p>Toujours Lutte - Lundi & Jeudi 17h30-18h45</p>
                   </div>
                 </div>
               </div>
