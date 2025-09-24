@@ -168,10 +168,10 @@ const Subscriptions = () => {
   const [period, setPeriod] = useState("month");
 
   const periodLabels = {
-    month: "Mensuelle",
+    month: "Mensuel",
     fourFirstMonths: "4 premiers mois",
     trimester: "3 mois",
-    year: "Annuelle",
+    year: "Annuel",
   };
 
   const btnsNav = Object.keys(subscriptions).map((key) => ({
