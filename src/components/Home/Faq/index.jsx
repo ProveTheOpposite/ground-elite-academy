@@ -236,7 +236,7 @@ const Faq = () => {
           </p>
           <div className="flex flex-col justify-center gap-4 sm:flex-row">
             <a
-              href="tel:+33612345678"
+              href="tel:+33621786274"
               className="flex items-center justify-center rounded-md bg-red-600 px-3 py-2 text-sm font-medium text-white hover:bg-red-700"
             >
               <Phone className="mr-2 h-4 w-4" />
