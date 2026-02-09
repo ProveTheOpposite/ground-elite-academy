@@ -9,3 +9,4 @@ A faire:
 -inscriptiion enfant étape 2, key licenceChild à diférencier de licence (pour les adultes) à créer
 -config middleware pour que le middleware vérifie si l'utilisateur est connecté et email vérifié, si oui, redirige vers le profil sinon login
 -dans inscirptoin adulte etape 2, ajotuer un 1/2 pour montrer qu'il y a 2 étapes
+
