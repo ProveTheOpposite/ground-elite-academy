@@ -14,7 +14,7 @@ export default function HomePage() {
       <Banner />
       <AboutUs />
       <Team />
-      <Schedule />
+      {/* <Schedule /> */}
       <Subscriptions />
       <Faq />
       <RequestForInformations />
