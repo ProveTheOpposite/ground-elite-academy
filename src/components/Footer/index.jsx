@@ -111,7 +111,7 @@ const Footer = () => {
         </div>
 
         <div className="mt-8 border-t border-slate-800 pt-8 text-center text-sm text-slate-400">
-          <p>&copy; 2025 Ground Elite Academy. Tous droits réservés.</p>
+          <p>&copy; 2026 Ground Elite Academy. Tous droits réservés.</p>
         </div>
       </div>
     </footer>
