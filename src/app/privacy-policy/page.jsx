@@ -9,7 +9,7 @@ export const metadata = {
     description:
       "Découvrez notre politique de confidentialité pour protéger vos données personnelles.",
     siteName: "Ground Elite Academy",
-    domain: "groundeliteacademy.fr",
+    domain: "geanice.fr",
     type: "website",
     images: [
       {
@@ -25,7 +25,7 @@ export const metadata = {
     description:
       "Découvrez notre politique de confidentialité pour protéger vos données personnelles.",
     images: ["/seo-image.jpg"],
-    domain: "groundeliteacademy.fr",
+    domain: "geanice.fr",
   },
 };
 

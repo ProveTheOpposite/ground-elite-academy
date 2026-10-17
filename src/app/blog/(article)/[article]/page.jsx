@@ -33,7 +33,7 @@ export const generateMetadata = async ({ params }) => {
             currentArticle.descriptionArticle ||
             `Découvrez notre article sur ${currentArticle.titleArticle}, au club de lutte et grappling Ground Elite Academy (Nice).`,
           siteName: "Ground Elite Academy",
-          domain: "groundeliteacademy.fr",
+          domain: "geanice.fr",
           type: "website",
           images: [
             {
@@ -51,7 +51,7 @@ export const generateMetadata = async ({ params }) => {
             currentArticle.descriptionArticle ||
             `Découvrez notre article sur ${currentArticle.titleArticle}, au club de lutte et grappling Ground Elite Academy (Nice).`,
           images: [currentArticle.urlCover],
-          domain: "groundeliteacademy.fr",
+          domain: "geanice.fr",
         },
       };
     }

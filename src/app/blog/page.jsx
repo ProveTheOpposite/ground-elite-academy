@@ -9,7 +9,7 @@ export const metadata = {
     description:
       "Découvrez nos dernières actualités : sport, compétition, etc... sur le club de lutte et grappling Ground Elite Academy.",
     siteName: "Ground Elite Academy",
-    domain: "groundeliteacademy.fr",
+    domain: "geanice.fr",
     type: "website",
     images: [
       {
@@ -25,7 +25,7 @@ export const metadata = {
     description:
       "Découvrez nos dernières actualités : sport, compétition, etc... sur le club de lutte et grappling Ground Elite Academy.",
     images: ["/seo-image.jpg"],
-    domain: "groundeliteacademy.fr",
+    domain: "geanice.fr",
   },
 };
 

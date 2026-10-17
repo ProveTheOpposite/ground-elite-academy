@@ -21,7 +21,7 @@ export const metadata = {
     description:
       "Notre équipe est là pour vous aider. Contactez-nous et nous vous répondrons dans les plus brefs délais.",
     siteName: "Ground Elite Academy",
-    domain: "groundeliteacademy.fr",
+    domain: "geanice.fr",
     type: "website",
     images: [
       {
@@ -37,7 +37,7 @@ export const metadata = {
     description:
       "Notre équipe est là pour vous aider. Contactez-nous et nous vous répondrons dans les plus brefs délais.",
     images: ["/seo-image.jpg"],
-    domain: "groundeliteacademy.fr",
+    domain: "geanice.fr",
   },
 };
 

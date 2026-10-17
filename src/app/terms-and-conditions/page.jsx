@@ -9,7 +9,7 @@ export const metadata = {
     title: "Termes et Conditions - Ground Elite Academy",
     description: "Découvrez les termes et conditions de notre site web.",
     siteName: "Ground Elite Academy",
-    domain: "groundeliteacademy.fr",
+    domain: "geanice.fr",
     type: "website",
     images: [
       {
@@ -24,7 +24,7 @@ export const metadata = {
     title: "Termes et Conditions - Ground Elite Academy",
     description: "Découvrez les termes et conditions de notre site web.",
     images: ["/seo-image.jpg"],
-    domain: "groundeliteacademy.fr",
+    domain: "geanice.fr",
   },
 };
 

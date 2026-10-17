@@ -11,7 +11,7 @@ import JotaiProvider from "@/components/JotaiProvider";
 
 // Metadata
 export const metadata = {
-  metadataBase: new URL("https://www.groundeliteacademy.fr"),
+  metadataBase: new URL("https://www.geanice.fr"),
   title: "Club de lutte et grappling à Nice - GEA",
   description:
     "Ground Elite Academy à Nice, club de lutte et grappling ouvert à tous : enfant, ado et adulte, débutant ou confirmé. Ambiance conviviale, entraînement de qualité.",
@@ -31,7 +31,7 @@ export const metadata = {
     "ambiance conviviale",
     "entraînement de qualité",
   ],
-  authors: [{ name: "Ground Elite Academy", url: "groundeliteacademy.fr" }],
+  authors: [{ name: "Ground Elite Academy", url: "geanice.fr" }],
   creator: "Ground Elite Academy",
   publisher: "Ground Elite Academy",
   siteName: "Ground Elite Academy",
@@ -40,7 +40,7 @@ export const metadata = {
     description:
       "Ground Elite Academy à Nice, club de lutte et grappling ouvert à tous : enfant, ado et adulte, débutant ou confirmé. Ambiance conviviale, entraînement de qualité.",
     siteName: "Ground Elite Academy",
-    domain: "groundeliteacademy.fr",
+    domain: "geanice.fr",
     type: "website",
     images: [
       {
@@ -56,10 +56,10 @@ export const metadata = {
     description:
       "Ground Elite Academy à Nice, club de lutte et grappling ouvert à tous : enfant, ado et adulte, débutant ou confirmé. Ambiance conviviale, entraînement de qualité.",
     images: ["/seo-image.jpg"],
-    domain: "groundeliteacademy.fr",
+    domain: "geanice.fr",
   },
   type: "website",
-  domain: "groundeliteacademy.fr",
+  domain: "geanice.fr",
   locale: "fr",
 };
 

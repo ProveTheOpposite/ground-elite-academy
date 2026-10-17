@@ -1,0 +1,15 @@
+-Retrouver et changer le design de l'inscription (popup registration, page register)
+-Créer le middleware pour empecher accès page login lorsqu'on est connecté et vice-versa
+-Ajouter à l'inscription à coté, une card "Besoin d'aide ?" avec les boutons pour contacter le formulaire en popup, numéro de tél et email (comme RivieraConnecting)
+-Créer un hook permettant de sauvegarder dans le sessionStorage les données de tous les formulaires remplies pour éviter la perte des données lors d'un refresh page.
+-Persister les étapes d'inscription
+
+// Pour la fiche d'inscription
+Sur la page 1 :
+-Sur le bas de la page, retirer un trait rouge et rétrécir le morceau noir
+-Réagencer les champs dans un ordre logique (à voir)
+
+Sur la page 2 : 
+-Enlever tout les traits rouges et noirs
+-Retirer le titre
+-Laissez que le texte pour éco de l'encre
