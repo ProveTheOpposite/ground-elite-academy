@@ -3,7 +3,7 @@ import { collection, getDocs, orderBy, query } from "firebase/firestore";
 
 export default async function sitemap() {
   const baseUrl =
-    process.env.NEXT_PUBLIC_BASE_URL || "https://groundeliteacademy.fr";
+    process.env.NEXT_PUBLIC_BASE_URL || "https://geanice.fr";
 
   let articles = [];
 
