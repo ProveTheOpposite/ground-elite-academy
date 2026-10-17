@@ -1,119 +1,54 @@
-import { Checkbox } from "@/components/ui/checkbox";
-import { Label } from "@/components/ui/label";
-import { Controller } from "react-hook-form";
+import CheckboxField from "@/components/CheckboxField";
 
 const FormRulesRegulations = ({ control, errors }) => {
   return (
-    <div>
-      <p>Vous autorisez le club à :</p>
-      <div className="mb-10 flex flex-col gap-y-3 pt-3 pl-5">
-        <div className="flex items-baseline">
-          <Controller
-            name="nonRespectRulesRegulations"
-            control={control}
-            render={({ field }) => (
-              <Checkbox
-                id="nonRespectRulesRegulations"
-                checked={field.value || false}
-                onCheckedChange={field.onChange}
-                className={
-                  errors.nonRespectRulesRegulations ? "border-red-500" : ""
-                }
-              />
-            )}
-          />
-          <Label
-            htmlFor="nonRespectRulesRegulations"
-            className="ml-2 text-base font-normal"
-          >
-            À prendre toute disposition utile en cas de non-respect du règlement
-            intérieur du club, ainsi qu'en cas d'urgence.
-          </Label>
-        </div>
-
-        <div className="flex items-baseline">
-          <Controller
-            name="medical"
-            control={control}
-            render={({ field }) => (
-              <Checkbox
-                id="medical"
-                checked={field.value || false}
-                onCheckedChange={field.onChange}
-                className={errors.medical ? "border-red-500" : ""}
-              />
-            )}
-          />
-          <Label htmlFor="medical" className="ml-2 text-base font-normal">
-            Médicale / Chirurgicale en cas de nécessité.
-          </Label>
-        </div>
-
-        <div className="flex items-baseline">
-          <Controller
-            name="sharePhotosHimself"
-            control={control}
-            render={({ field }) => (
-              <Checkbox
-                id="sharePhotosHimself"
-                checked={field.value || false}
-                onCheckedChange={field.onChange}
-                className={errors.sharePhotosHimself ? "border-red-500" : ""}
-              />
-            )}
-          />
-          <Label
-            htmlFor="sharePhotosHimself"
-            className="ml-2 text-base font-normal"
-          >
-            À diffuser les photos auprès de ses partenaires, des compétitions,
-            et des éventuels supports internet utilisés par le club.
-          </Label>
-        </div>
-
-        <div className="mt-5">
-          <div className="flex items-baseline">
-            <Controller
-              name="rulesRegulations"
-              control={control}
-              render={({ field }) => (
-                <Checkbox
-                  id="rulesRegulations"
-                  checked={field.value || false}
-                  onCheckedChange={field.onChange}
-                  className={errors.rulesRegulations ? "border-red-500" : ""}
-                />
-              )}
-            />
-            <Label
-              htmlFor="rulesRegulations"
-              className="ml-2 inline items-baseline text-base font-bold"
-            >
-              Je certifie avoir pris connaissance des dispositions ci-dessus,
-              ainsi que du règlement intérieur de l'association du club.
-              <span className="text-red-500">*</span>
-            </Label>
-          </div>
-          {errors.rulesRegulations && (
-            <p className="mt-2 text-red-500">
-              {errors.rulesRegulations.message}
-            </p>
-          )}
-        </div>
+    <div className="space-y-6">
+      <div className="mb-4 rounded-lg border border-amber-500/50 bg-amber-500/10 p-4">
+        <p className="text-sm font-medium text-amber-900 dark:text-amber-100">
+          ⚠️ Important : Vous devrez présenter un certificat médical de moins
+          d'un mois lors de votre première visite.
+        </p>
       </div>
-      <p>
-        <strong className="text-[#b0181c]">Obligatoire :</strong>{" "}
-        <strong>
-          <u>
-            certificat médical d'aptitude de moins d'un mois à présenter au club
-          </u>
-        </strong>
-      </p>
 
-      <p className="mt-5">
-        Vous devrez valider votre adresse email pour finaliser votre
-        inscription.
-      </p>
+      <div className="border-border bg-muted/30 space-y-6 rounded-lg border p-6">
+        <CheckboxField
+          name="nonRespectRules"
+          control={control}
+          label="J'autorise le club à prendre toute disposition utile en cas de non-respect du règlement intérieur du club, ainsi qu'en cas d'urgence"
+        />
+
+        <CheckboxField
+          name="medical"
+          control={control}
+          label="Médicale / Chirurgicale en cas de nécessité"
+        />
+
+        <CheckboxField
+          name="diffusePhotosHimself"
+          control={control}
+          label="J'autorise le club à diffuser les photos auprès de ses partenaires, des compétitions, et des éventuels supports internet utilisés par le club"
+        />
+
+        <CheckboxField
+          name="rulesRegulations"
+          control={control}
+          label="J'ai lu et j'accepte les mesures mises en place par le club"
+          mandatory
+        />
+      </div>
+
+      {errors.rulesRegulations && (
+        <p className="text-destructive text-sm">
+          {errors.rulesRegulations.message}
+        </p>
+      )}
+
+      <div className="border-border bg-muted/30 rounded-lg border p-4">
+        <p className="text-muted-foreground text-sm">
+          Après validation, vous serez redirigé vers la page de connexion pour
+          accéder à votre compte.
+        </p>
+      </div>
     </div>
   );
 };

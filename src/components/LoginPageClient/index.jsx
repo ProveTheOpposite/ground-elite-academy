@@ -10,9 +10,11 @@ const LoginPageClient = () => {
 
   return (
     <div className="flex w-full flex-col items-center sm:max-w-[600px]">
-      <h2 className="mb-4 text-4xl font-bold">Connexion</h2>
+      <h2 className="mb-4 text-5xl font-bold">Connexion</h2>
 
-      <p className="mb-12">Connectez-vous à votre espace membre </p>
+      <p className="text-muted-foreground mb-12">
+        Connectez-vous à votre espace membre
+      </p>
 
       <LoginForm />
 

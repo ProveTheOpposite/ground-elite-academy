@@ -4,27 +4,14 @@ import { useScreenSize } from "@/hooks/useScreenSize";
 import { useAtom } from "jotai";
 import { useEffect, useState } from "react";
 import { useForm } from "react-hook-form";
-
-import {
-  ArrowLeft,
-  ArrowRight,
-  CircleAlert,
-  CircleAlertIcon,
-  CreditCard,
-  Loader2,
-  Mail,
-  Newspaper,
-  User,
-} from "lucide-react";
+import { useRouter } from "next/navigation";
 
 import FormEmailPassword from "./FormEmailPassword";
-import FormPersonalInformationKid from "./FormPersonalInformationKid";
-import FormPersonalInformationsAdulte from "./FormPersonalInformationsAdulte";
+import FormPersonalInformationParent from "./FormPersonalInformationParent";
+import FormPersonalInformationsAdult from "./FormPersonalInformationsAdult";
 import FormRulesRegulations from "./FormRulesRegulations";
-import StepBar from "./StepBar";
-import SuccessRegistrationPopup from "./SuccessRegistrationPopup";
+import FormPayment from "./FormPayment";
 
-import { Button } from "@/components/ui/button";
 import {
   Card,
   CardContent,
@@ -40,17 +27,29 @@ import {
 } from "firebase/auth";
 import { doc, setDoc } from "firebase/firestore";
 
-import { currentStepAtom } from "@/state/atoms/currentStep";
+import { currentStepAtom, currentSubstepAtom } from "@/state/atoms/currentStep";
+import { registrationTypeAtom } from "@/state/atoms/registrationType";
 
 import { yupResolver } from "@hookform/resolvers/yup";
-import * as yup from "yup";
 
+import { defaultValuesAdult } from "@/utils/defaultValuesAdult";
+import { defaultValuesParent } from "@/utils/defaultvaluesParent";
 import { getSchema } from "@/utils/schemaRegistration";
 
-let currentStepContent;
+import { Mail, Newspaper, User, Users } from "lucide-react";
+import { Button } from "../ui/button";
+import { ChevronLeft } from "lucide-react";
+import { Check } from "lucide-react";
+import { ChevronRight } from "lucide-react";
+import SuccessRegistrationPopup from "./SuccessRegistrationPopup";
+import { Loader2 } from "lucide-react";
+import { Alert, AlertDescription } from "../ui/alert";
+import { AlertTriangle } from "lucide-react";
 
-const RegistrationPageClient = ({ typePerson }) => {
+const RegistrationPageClient = () => {
   const [currentStep, setCurrentStep] = useAtom(currentStepAtom);
+  const [currentSubStep, setCurrentSubStep] = useAtom(currentSubstepAtom);
+  const [registrationType, setRegistrationType] = useAtom(registrationTypeAtom);
 
   const [showCongratulations, setShowCongratulations] = useState(false);
   const [isLoading, setIsLoading] = useState(false);
@@ -59,160 +58,112 @@ const RegistrationPageClient = ({ typePerson }) => {
 
   const screenSize = useScreenSize();
 
-  const stepSchemas = getSchema(typePerson === "adult");
+  const router = useRouter();
+  console.log(registrationType);
+
+  const stepSchemas = getSchema(registrationType === "adult");
 
   const {
     register,
     handleSubmit,
     trigger,
     control,
+    reset,
     formState: { errors },
   } = useForm({
-    resolver: yupResolver(stepSchemas[currentStep - 1]),
-    defaultValues: {
-      firstNameParent: "",
-      lastNameParent: "",
-      phoneNumber: "",
-      email: "",
-      password: "",
-      confirmPassword: "",
-      phoneNumberContactEmergency: "",
-      contactEmergency: "",
-      firstNameAdherent: "",
-      lastNameAdherent: "",
-      categoryAdherent: "",
-      dateOfBirthAdherent: null,
-      adressPostale: "",
-      nationalityAdherent: "",
-      sexeAdherent: "",
-      profileImageAdherent: null,
-      licence: {
-        fflutte: false,
-        cfjjb: false,
-      },
-      nonRespectRulesRegulations: false,
-      medical: false,
-      sharePhotosHimself: false,
-      rulesRegulations: false,
-      children: [
-        {
-          firstNameChild: "",
-          lastNameChild: "",
-          dateOfBirthChild: null,
-          nationalityChild: "",
-          sexeChild: "",
-          categoryChild: "",
-        },
-      ],
-    },
+    resolver: yupResolver(
+      currentStep === 3 && registrationType === "adult"
+        ? stepSchemas[2][currentSubStep - 1]
+        : stepSchemas[currentStep - 1],
+    ),
+    defaultValues:
+      registrationType === "adult" ? defaultValuesAdult : defaultValuesParent,
   });
 
+  console.log(errors);
+
+  // Reset error message when step changes
   useEffect(() => {
     setErrorMessage("");
-  }, [currentStep]);
+  }, [currentStep, currentSubStep]);
 
-  const steps =
-    typePerson === "adult"
-      ? [
-          {
-            id: 1,
-            title: "Compte",
-            description: "Créez votre compte",
-            icon: Mail,
-          },
-          {
-            id: 2,
-            title: "Profil",
-            description: "Information Personnelle",
-            icon: User,
-          },
-          {
-            id: 3,
-            title: "Règlement",
-            description: "Règlement intérieur",
-            icon: Newspaper,
-          },
-          // {
-          //   id: 4,
-          //   title: "Paiement",
-          //   description: "Informations de paiement",
-          //   icon: CreditCard,
-          // },
-        ]
-      : [
-          {
-            id: 1,
-            title: "Compte",
-            description: "Informations Parent",
-            icon: Mail,
-          },
-          {
-            id: 2,
-            title: "Profil",
-            description: "Informations Enfant(s)",
-            icon: User,
-          },
-          {
-            id: 3,
-            title: "Règlement",
-            description: "Règlement intérieur",
-            icon: Newspaper,
-          },
-          // {
-          //   id: 4,
-          //   title: "Paiement",
-          //   description: "Informations de paiement",
-          //   icon: CreditCard,
-          // },
-        ];
+  const totalSteps = 4;
+  const totalSubSteps = 3; // subSteps for step 3 (adult)
 
-  const prevStep = () => {
-    setCurrentStep((prev) => Math.max(prev - 1, 1));
-  };
+  const steps = [
+    {
+      id: 0,
+      title: "Créez votre compte",
+    },
+    {
+      id: 1,
+      title: "Informations de paiement",
+    },
+    {
+      id: 2,
+      title:
+        registrationType === "adult"
+          ? "Informations personnelles"
+          : "Informations du parent et des enfants",
+    },
+    {
+      id: 3,
+      title: "Règlement et autorisations",
+    },
+  ];
 
-  switch (currentStep) {
-    case 1:
-      currentStepContent = (
-        <FormEmailPassword
-          typePerson={typePerson}
-          register={register}
-          errors={errors}
-        />
-      );
-      break;
-    case 2:
-      currentStepContent =
-        typePerson === "adult" ? (
-          <FormPersonalInformationsAdulte
+  // display the content of the current step
+  const renderStepContent = () => {
+    switch (currentStep) {
+      case 1:
+        return <FormEmailPassword register={register} errors={errors} />;
+      case 2:
+        return (
+          <FormPayment control={control} registrationType={registrationType} />
+        );
+      case 3:
+        return registrationType === "adult" ? (
+          <FormPersonalInformationsAdult
             register={register}
             errors={errors}
             trigger={trigger}
             control={control}
+            currentSubStep={currentSubStep}
           />
         ) : (
-          <FormPersonalInformationKid
+          <FormPersonalInformationParent
             register={register}
             errors={errors}
             control={control}
           />
         );
-      break;
-    case 3:
-      currentStepContent = (
-        <FormRulesRegulations control={control} errors={errors} />
-      );
-      break;
-    default:
-      currentStepContent = (
-        <FormEmailPassword register={register} errors={errors} />
-      );
-  }
+      case 4:
+        return <FormRulesRegulations control={control} errors={errors} />;
+      default:
+        return <FormEmailPassword register={register} errors={errors} />;
+    }
+  };
 
+  const handleClickChangeRegistrationType = (type) => {
+    setRegistrationType(type);
+  };
+
+  console.log("step", currentStep);
+
+  // function to submit the form to create the user with Auth, then send email verification, then create user in firestore
   const onSubmit = async (data) => {
     try {
-      if (currentStep < stepSchemas.length) {
+      if (
+        registrationType === "adult" &&
+        currentStep === 3 &&
+        currentSubStep < totalSubSteps
+      ) {
+        setCurrentSubStep((prev) => prev + 1);
+      } else if (currentStep < stepSchemas.length) {
         setCurrentStep((prev) => prev + 1);
+        setCurrentSubStep(1);
       } else {
+        console.log(data);
         setIsLoading(true);
 
         // 1. create user
@@ -237,27 +188,32 @@ const RegistrationPageClient = ({ typePerson }) => {
             },
             body: JSON.stringify({
               ...data,
-              typePerson,
+              registrationType,
             }),
           },
         );
 
         setShowCongratulations(true);
+        setCurrentStep(1);
       }
     } catch (error) {
       console.log("Erreur lors de la création du user : ", error);
       switch (error.code) {
         case "auth/invalid-email":
-          setErrorMessage("L'adresse email est invalide.");
+          setErrorMessage("L'adresse email est syntaxiquement invalide.");
           break;
         case "auth/too-many-requests":
           setErrorMessage("Trop de tentatives. Veuillez réessayer plus tard.");
           break;
         case "auth/user-disabled":
-          setErrorMessage("Ce compte a été désactivé.");
+          setErrorMessage(
+            "Ce compte a été désactivé par notre administrateur. Veuillez nous contacter.",
+          );
           break;
         case "auth/email-already-in-use":
-          setErrorMessage("L'email est déjà utilisé par un utilisateur");
+          setErrorMessage(
+            "L'email est déjà utilisé par un utilisateur. Veuillez choisir un autre email.",
+          );
           break;
         default:
           setErrorMessage("Une erreur est survenue. Veuillez réessayer.");
@@ -267,97 +223,191 @@ const RegistrationPageClient = ({ typePerson }) => {
     }
   };
 
-  console.log("registration");
+  const handleClickPrevStep = () => {
+    if (
+      currentStep === 3 &&
+      registrationType === "adult" &&
+      currentSubStep > 1
+    ) {
+      setCurrentSubStep((prev) => Math.max(prev - 1, 1));
+    } else if (currentStep > 1) {
+      setCurrentStep((prev) => Math.max(prev - 1, 1));
+      if (currentStep - 1 === 3 && registrationType === "adult") {
+        setCurrentSubStep(totalSubSteps);
+      }
+    }
+  };
 
   return (
-    <div className="mt-[68px] flex flex-1 justify-center px-5 py-8 lg:mt-[78px]">
+    <div className="mt-[68px] flex flex-1 items-center justify-center px-5 py-8 lg:mt-[78px]">
       <SuccessRegistrationPopup
-        typePerson={typePerson}
+        registrationType={registrationType}
         showCongratulations={showCongratulations}
         setShowCongratulations={setShowCongratulations}
         userEmail={userEmail}
       />
 
-      <div className="w-full max-w-4xl">
-        <div className="mb-12 text-center">
-          <h1 className="mb-4 text-4xl font-bold text-gray-900">
-            Inscription {typePerson === "adulte" ? "Ado/Adulte" : "Enfant"}
-          </h1>
-
-          <p>
-            {typePerson === "adulte"
-              ? "Complétez vos informations personnelles"
-              : "Inscrivez-vous et ajoutez vos enfants"}
-          </p>
-        </div>
-
-        {/* Step bar */}
-        <StepBar steps={steps} />
-
-        {/* Card */}
-        <form className="mx-auto max-w-4xl" onSubmit={handleSubmit(onSubmit)}>
-          <Card className="border-0 bg-white/80 pb-10 shadow-xl backdrop-blur-sm">
-            <CardHeader className="pb-6 text-center">
-              <CardTitle className="text-2xl font-bold text-gray-900">
-                Informations du {steps[currentStep - 1].title.toLowerCase()}
+      <div className="w-full max-w-2xl">
+        <Card className="shadow-2xl">
+          {/* Header of the form */}
+          <CardHeader className="space-y-4">
+            <div className="flex items-center justify-between">
+              <CardTitle className="text-3xl font-bold text-balance">
+                Inscription{" "}
+                {currentStep !== 1 // Ajouter currentSubStep si problème d'affichage
+                  ? registrationType === "adult"
+                    ? ": Adulte"
+                    : ": Enfant"
+                  : ""}
               </CardTitle>
-              <CardDescription className="text-gray-600">
-                {steps[currentStep - 1].description}
-              </CardDescription>
-            </CardHeader>
 
-            <CardContent
-              className={`${screenSize === "mobile" ? "pb-14" : ""} `}
-            >
-              <p className="mb-6">
-                Les champs marqués par un astérisque (
-                <span className="text-red-500">*</span>) sont obligatoires.
-              </p>
-              <div className="space-y-4">{currentStepContent}</div>
+              <span className="text-muted-foreground text-sm">
+                Étape {currentStep} sur {totalSteps}{" "}
+                {currentStep === 3 &&
+                  registrationType === "adult" &&
+                  `(${currentSubStep}/${totalSubSteps})`}
+              </span>
+            </div>
 
+            <CardDescription className="text-base">
+              Créez votre compte en quelques étapes simples
+            </CardDescription>
+
+            {currentStep === 1 && (
+              <div className="bg-muted flex gap-2 rounded-lg p-1">
+                <button
+                  type="button"
+                  onClick={() => handleClickChangeRegistrationType("adult")}
+                  className={`flex flex-1 items-center justify-center gap-2 rounded-md px-4 py-2.5 text-sm font-medium transition-all ${
+                    registrationType === "adult"
+                      ? "bg-background text-foreground shadow-sm"
+                      : "text-muted-foreground hover:text-foreground"
+                  }`}
+                >
+                  <User className="h-4 w-4" />
+                  Inscription Adulte
+                </button>
+                <button
+                  type="button"
+                  onClick={() => handleClickChangeRegistrationType("parent")}
+                  className={`flex flex-1 items-center justify-center gap-2 rounded-md px-4 py-2.5 text-sm font-medium transition-all ${
+                    registrationType === "parent"
+                      ? "bg-background text-foreground shadow-sm"
+                      : "text-muted-foreground hover:text-foreground"
+                  }`}
+                >
+                  <Users className="h-4 w-4" />
+                  Inscription Enfant
+                </button>
+              </div>
+            )}
+
+            {/* Progress indicator */}
+            <div className="flex gap-2">
+              {Array.from({ length: totalSteps }).map((_, index) => (
+                <div
+                  key={index}
+                  className={`h-2 flex-1 rounded-full transition-all duration-300 ${
+                    index + 1 < currentStep
+                      ? "bg-[#b0181c]"
+                      : index + 1 === currentStep
+                        ? "bg-[#b0181c]"
+                        : "bg-muted"
+                  }`}
+                />
+              ))}
+            </div>
+
+            {currentStep === 3 && registrationType === "adult" && (
+              <div className="flex gap-2 pt-2">
+                {Array.from({ length: totalSubSteps }).map((_, index) => (
+                  <div
+                    key={index}
+                    className={`h-1.5 flex-1 rounded-full transition-all duration-300 ${
+                      index + 1 <= currentSubStep
+                        ? "bg-[#b0181c]/60"
+                        : "bg-muted"
+                    }`}
+                  />
+                ))}
+              </div>
+            )}
+          </CardHeader>
+
+          {/* Content of the form */}
+          <CardContent>
+            <form onSubmit={handleSubmit(onSubmit)}>
+              {/* Title of the step */}
+              <div className="mb-6 flex items-center gap-3">
+                <div className="text-primary-foreground flex h-10 w-10 items-center justify-center rounded-full bg-[#b0181c] font-semibold">
+                  {currentStep}
+                </div>
+                <h3 className="text-xl font-semibold">
+                  {steps[currentStep - 1].title}
+                </h3>
+              </div>
+
+              {/* Content of the step */}
+              {renderStepContent()}
+
+              {/* Error message */}
               {errorMessage && (
-                <p className="mt-6 flex items-center gap-2 font-bold text-red-500">
-                  <CircleAlert className="h-5 w-5" />
-                  {errorMessage}
-                </p>
+                <Alert
+                  variant="destructive"
+                  className="mt-6 border-red-200 bg-red-50/80 backdrop-blur-sm"
+                >
+                  <AlertTriangle className="h-4 w-4" />
+                  <AlertDescription className="flex">
+                    {errorMessage}
+                  </AlertDescription>
+                </Alert>
               )}
-            </CardContent>
-          </Card>
 
-          {/* Buttons Navigation */}
-          <div
-            className={`mt-6 flex items-center justify-between ${
-              screenSize === "mobile"
-                ? "fixed right-0 bottom-0 left-0 border-t bg-white p-4 shadow-lg"
-                : ""
-            }`}
-          >
-            <Button
-              type="button"
-              variant="outline"
-              onClick={prevStep}
-              disabled={currentStep === 1}
-              className="flex items-center gap-2 border-gray-300 bg-transparent"
-            >
-              <ArrowLeft className="h-4 w-4" />
-              Précédent
-            </Button>
-
-            <Button
-              type="submit"
-              className="flex min-w-[100px] items-center gap-2 bg-[#b0181c] hover:bg-[#7d2a2d]"
-            >
-              {isLoading ? (
-                <Loader2 className="!h-5 !w-5 animate-spin" />
-              ) : (
-                <>
-                  {currentStep === stepSchemas.length ? "Valider" : "Suivant"}
-                  <ArrowRight className="h-4 w-4" />
-                </>
-              )}
-            </Button>
-          </div>
-        </form>
+              {/* Navigation buttons */}
+              <div
+                className={`${
+                  screenSize === "mobile"
+                    ? "fixed right-0 bottom-0 left-0 bg-white p-3"
+                    : "border-border mt-6 border-t pt-6"
+                } flex gap-3 text-sm`}
+              >
+                <Button
+                  type="button"
+                  variant="outline"
+                  onClick={handleClickPrevStep}
+                  disabled={currentStep === 1} // rajouter && currentSubStep === 1 si l'effet n'est pas bien géré
+                  className="h-11 flex-1 bg-transparent"
+                >
+                  <ChevronLeft className="mr-2 h-4 w-4" />
+                  Précédent
+                </Button>
+                <Button
+                  type="submit"
+                  // disabled={!isStepValid()}
+                  className="h-11 flex-1 bg-[#b0181c] hover:bg-[#b0181c]/90"
+                >
+                  {currentStep === totalSteps ? (
+                    <>
+                      {isLoading ? (
+                        <Loader2 className="mr-2 h-4 w-4 animate-spin" />
+                      ) : (
+                        <>
+                          <Check className="mr-2 h-4 w-4" />
+                          Terminer
+                        </>
+                      )}
+                    </>
+                  ) : (
+                    <>
+                      Suivant
+                      <ChevronRight className="ml-2 h-4 w-4" />
+                    </>
+                  )}
+                </Button>
+              </div>
+            </form>
+          </CardContent>
+        </Card>
       </div>
     </div>
   );

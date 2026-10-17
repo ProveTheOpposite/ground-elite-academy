@@ -95,6 +95,7 @@ const ResetPasswordPopup = ({ showPopup, setShowPopup }) => {
               {...register("email")}
               type="email"
               placeholder="Entrez votre email"
+              className="h-11"
             />
             {errors.email && (
               <p className="mt-2 pl-2 text-sm text-red-500">
@@ -105,7 +106,7 @@ const ResetPasswordPopup = ({ showPopup, setShowPopup }) => {
 
           <Button
             type="submit"
-            className="mt-6 w-full bg-[#b0181c] p-2 text-white hover:bg-[#7d2a2d]"
+            className="mt-6 w-full bg-[#b0181c] p-5 text-white hover:bg-[#7d2a2d]"
             disabled={loading}
           >
             {loading ? "Envoi en cours..." : "Envoyer"}

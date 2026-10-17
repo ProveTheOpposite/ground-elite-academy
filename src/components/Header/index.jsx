@@ -31,6 +31,8 @@ import {
   AlertDialogTitle,
   AlertDialogTrigger,
 } from "../ui/alert-dialog";
+import { LogIn } from "lucide-react";
+import { UserPlus } from "lucide-react";
 
 // header link items
 const headerList = {
@@ -118,7 +120,7 @@ const Header = () => {
 
   return (
     <header
-      className={`${headerBackgroundClass} 3xl:px-44 fixed top-0 left-0 z-50 flex h-[68px] w-full items-center justify-between backdrop-blur-md xl:h-[78px] xl:px-14 xl:pl-10 2xl:px-32`}
+      className={`${headerBackgroundClass} 3xl:px-64 fixed top-0 left-0 z-50 flex h-[68px] w-full items-center justify-between backdrop-blur-md xl:h-[78px] xl:px-14 xl:pl-10 2xl:px-32`}
     >
       <div className="w-full px-4">
         <div className="flex h-16 items-center justify-between">
@@ -188,19 +190,19 @@ const Header = () => {
 
               {!loading
                 ? showDropdown && (
-                    <div className="absolute top-[110%] right-0 z-50 flex w-40 flex-col gap-y-1.5 rounded-md bg-white p-1 shadow-lg">
+                    <div className="absolute top-[110%] right-0 z-50 flex w-40 flex-col gap-y-1 rounded-md bg-white py-2 shadow-lg">
                       {isLogin ? (
                         <>
                           <button
                             onClick={() => handleClickNavigateTo("/profile")}
-                            className="flex items-center gap-x-2 rounded-md p-2 text-sm transition-colors hover:bg-gray-100"
+                            className="flex items-center gap-x-2 p-2 text-sm transition-colors hover:bg-gray-100"
                           >
                             <User className="h-4 w-4" />
                             Mon profil
                           </button>
                           <button
                             onClick={() => setIsLogoutClicked(true)}
-                            className="flex items-center gap-x-2 rounded-md p-2 text-sm text-red-600 transition-colors hover:bg-[#fef2f2]"
+                            className="flex items-center gap-x-2 p-2 text-sm text-red-600 transition-colors hover:bg-[#fef2f2]"
                           >
                             <LogOut className="h-4 w-4" />
                             Se déconnecter
@@ -210,18 +212,20 @@ const Header = () => {
                         <>
                           <button
                             onClick={() => handleClickNavigateTo("/login")}
-                            className="flex rounded-md p-2 text-sm transition-colors hover:bg-gray-100"
+                            className="flex items-center gap-x-2 p-2 text-sm transition-colors hover:bg-gray-100"
                           >
+                            <LogIn className="h-4 w-4" />
                             Se connecter
                           </button>
 
                           <button
-                            className="flex rounded-md p-2 text-sm transition-colors hover:bg-gray-100"
+                            className="flex items-center gap-x-2 p-2 text-sm transition-colors hover:bg-gray-100"
                             onClick={() => {
                               setShowPopup(true);
                               setMobileMenuOpen(false);
                             }}
                           >
+                            <UserPlus className="h-4 w-4" />
                             Rejoignez-nous
                           </button>
                         </>
@@ -251,7 +255,7 @@ const Header = () => {
                   </AlertDialogHeader>
                   <AlertDialogFooter>
                     <AlertDialogCancel>Annuler</AlertDialogCancel>
-                    <AlertDialogAction onClick={logOut}>
+                    <AlertDialogAction variant="destructive" onClick={logOut}>
                       Se déconnecter
                     </AlertDialogAction>
                   </AlertDialogFooter>

@@ -16,66 +16,87 @@ export const POST = async (req, { params }) => {
   try {
     const { uid } = await params;
     const data = await req.json();
-    const { typePerson } = data;
+    const { registrationType } = data;
 
     // for the image profile
-    let profileImageUrl = null;
+    // let profileImageUrl = null;
 
-    if (data.profileImage?.[0]) {
-      const file = data.profileImage[0];
-      const storageRef = ref(
-        storage,
-        `profileImages/${uid}/profile.${file.type.split("/")[1]}`,
-      );
-      await uploadBytes(storageRef, file);
-      profileImageUrl = await getDownloadURL(storageRef);
-    }
+    // if (data.profileImage?.[0]) {
+    //   const file = data.profileImage[0];
+    //   const storageRef = ref(
+    //     storage,
+    //     `profileImages/${uid}/profile.${file.type.split("/")[1]}`,
+    //   );
+    //   await uploadBytes(storageRef, file);
+    //   profileImageUrl = await getDownloadURL(storageRef);
+    // }
 
     // for the user data
     const adulteData = {
       role: "adulte/ado",
-      email: data.email,
-      phoneNumber: data.phoneNumber,
-      phoneNumberContactEmergency: data.phoneNumberContactEmergency,
-      adressPostale: data.adressPostale,
-      contactEmergency: data.contactEmergency,
-      firstName: data.firstNameAdherent,
-      lastName: data.lastNameAdherent,
-      category: data.categoryAdherent,
-      dateOfBirth: data.dateOfBirthAdherent,
-      licence: data.licence,
-      sexe: data.sexeAdherent,
-      rulesRegulations: data.rulesRegulations,
-      nonRespectRulesRegulations: data.nonRespectRulesRegulations,
-      nationalityAdherent: data.nationalityAdherent,
-      medical: data.medical,
-      sharePhotosHimself: data.sharePhotosHimself,
-      profileImage: profileImageUrl,
       registerWithSite: true,
       createdAt: new Date(),
+      // step 1
+      email: data.email,
+      // step 2
+      paymentMethod: data.paymentMethod,
+      subscriptionType: data.subscriptionType,
+      alreadyPaid: data.alreadyPaid,
+      // step 3
+      // sub step 1
+      firstName: data.firstName,
+      lastName: data.lastName,
+      dateOfBirth: data.dateOfBirth,
+      placeOfBirth: data.placeOfBirth,
+      nationality: data.nationality,
+      // sub step 2
+      address: data.address,
+      postalCode: data.postalCode,
+      city: data.city,
+      phoneNumber: data.phoneNumber,
+      contactEmergency: data.contactEmergency,
+      phoneNumberEmergency: data.phoneNumberEmergency,
+      // sub step 3
+      sexe: data.sexe,
+      category: data.category,
+      licences: data.licences,
+      noteMedical: data.noteMedical,
+      // step 4
+      nonRespectRules: data.nonRespectRules,
+      medical: data.medical,
+      diffusePhotosHimself: data.diffusePhotosHimself,
+      rulesRegulations: data.rulesRegulations,
+      // profileImage: profileImageUrl,
     };
     const parentData = {
       role: "parent",
-      email: data.email,
-      children: data.children,
-      adressPostale: data.adressPostale,
-      firstNameParent: data.firstNameParent,
-      lastNameParent: data.lastNameParent,
-      licence: data.licence,
-      phoneNumber: data.phoneNumber,
-      contactEmergency: `${data.firstNameParent} ${data.lastNameParent}`,
-      children: data.children,
-      rulesRegulations: data.rulesRegulations,
-      nonRespectRulesRegulations: data.nonRespectRulesRegulations,
-      medical: data.medical,
-      sharePhotosHimself: data.sharePhotosHimself,
-      profileImage: profileImageUrl,
       registerWithSite: true,
       createdAt: new Date(),
+      // step 1
+      email: data.email,
+      // step 2
+      paymentMethod: data.paymentMethod,
+      subscriptionType: data.subscriptionType,
+      alreadyPaid: data.alreadyPaid,
+      // step 3
+      firstName: data.firstName,
+      lastName: data.lastName,
+      phoneNumber: data.phoneNumber,
+      address: data.address,
+      postalCode: data.postalCode,
+      city: data.city,
+      contactEmergency: `${data.firstName} ${data.lastName}`,
+      phoneNumberEmergency: data.phoneNumber,
+      children: data.children,
+      // step 4
+      nonRespectRules: data.nonRespectRules,
+      medical: data.medical,
+      diffusePhotosHimself: data.diffusePhotosHimself,
+      rulesRegulations: data.rulesRegulations,
     };
 
     const userRef = doc(db, "users", uid);
-    const payload = typePerson === "adulte" ? adulteData : parentData;
+    const payload = registrationType === "adult" ? adulteData : parentData;
 
     await setDoc(userRef, payload);
 
@@ -134,38 +155,38 @@ export const PUT = async (req, { params }) => {
     const { uid } = await params;
     const editedData = await req.json();
 
-    const safeData = sanitizeUserData(editedData);
+    const safeData = sanitizeUserData(editedData, ["id", "createdAt"]);
 
     const userRef = doc(db, "users", uid);
     const userSnap = await getDoc(userRef);
 
-    let profileImageUrl = userSnap.data().profileImage;
+    // let profileImageUrl = userSnap.data().profileImage;
 
     // Si le profileImage est modifié
-    const newImage = safeData.profileImage;
+    // const newImage = safeData.profileImage;
 
-    if (newImage !== profileImageUrl) {
-      const prevProfileImage = userSnap.data().profileImage;
-      if (prevProfileImage) {
-        // Extraire le chemin depuis l’URL
-        const path = prevProfileImage.split("/o/")[1].split("?")[0]; // "profileImages%2Fuid%2Fprofile.jpg"
+    // if (newImage !== profileImageUrl) {
+    //   const prevProfileImage = userSnap.data().profileImage;
+    //   if (prevProfileImage) {
+    //     // Extraire le chemin depuis l’URL
+    //     const path = prevProfileImage.split("/o/")[1].split("?")[0]; // "profileImages%2Fuid%2Fprofile.jpg"
 
-        const filePath = decodeURIComponent(path); // "profileImages/uid/profile.jpg"
+    //     const filePath = decodeURIComponent(path); // "profileImages/uid/profile.jpg"
 
-        const oldRef = ref(storage, filePath);
-        await deleteObject(oldRef);
-      }
-      const { type, data } = newImage;
+    //     const oldRef = ref(storage, filePath);
+    //     await deleteObject(oldRef);
+    //   }
+    //   const { type, data } = newImage;
 
-      const buffer = Buffer.from(data, "base64");
+    //   const buffer = Buffer.from(data, "base64");
 
-      const storageRef = ref(
-        storage,
-        `profileImages/${uid}/profile.${type.split("/")[1]}`,
-      );
-      await uploadBytes(storageRef, buffer, { contentType: type });
-      profileImageUrl = await getDownloadURL(storageRef);
-    }
+    //   const storageRef = ref(
+    //     storage,
+    //     `profileImages/${uid}/profile.${type.split("/")[1]}`,
+    //   );
+    //   await uploadBytes(storageRef, buffer, { contentType: type });
+    //   profileImageUrl = await getDownloadURL(storageRef);
+    // }
 
     if (!userSnap.exists()) {
       return NextResponse.json(
@@ -176,7 +197,7 @@ export const PUT = async (req, { params }) => {
 
     await setDoc(
       userRef,
-      { ...safeData, profileImage: profileImageUrl },
+      { ...safeData }, // rajouter profileImage: profileImageUrl le moment venu
       { merge: true },
     );
 

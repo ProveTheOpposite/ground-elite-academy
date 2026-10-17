@@ -1,6 +1,7 @@
 "use client";
 
 import { useRouter } from "next/navigation";
+import { useSetAtom } from "jotai";
 
 import {
   Card,
@@ -17,14 +18,18 @@ import {
   DialogTitle,
 } from "@/components/ui/dialog";
 
-import { Clock } from "lucide-react";
-import { User, Users, CreditCard } from "lucide-react";
+import { registrationTypeAtom } from "@/state/atoms/registrationType";
+
+import { User, Users, CreditCard, Clock } from "lucide-react";
 
 export default function RegistrationPopup({ open, onOpenChange }) {
+  const setRegistrationType = useSetAtom(registrationTypeAtom);
+
   const router = useRouter();
 
   const handleNavigate = (typePerson) => {
-    router.push(`/registration/${typePerson}`);
+    router.push(`/registration`);
+    setRegistrationType(typePerson);
     onOpenChange(false);
   };
 

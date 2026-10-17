@@ -6,13 +6,14 @@ export const defaultValuesParent = {
   // step 2
   paymentMethod: "",
   subscriptionType: "",
+  alreadyPaid: "",
   // step 3
-  firstNameParent: "",
-  lastNameParent: "",
+  firstName: "",
+  lastName: "",
   phoneNumber: "",
   address: "",
-  contactEmergency: "",
-  phoneNumberContactEmergency: "",
+  postalCode: "",
+  city: "",
   children: [
     {
       firstNameChild: "",
@@ -22,10 +23,16 @@ export const defaultValuesParent = {
       nationalityChild: "",
       sexeChild: "",
       categoryChild: "", // Loisir ou Compétiteur
+      licencesChild: {
+        ffl: false,
+        cfjjb: false,
+      },
+      noteMedicalChild: "", // medical or what else
     },
   ],
   // step 4
-  diffusePhotosHimself: false,
+  nonRespectRules: false,
   medical: false,
+  diffusePhotosHimself: false,
   rulesRegulations: false,
 };

@@ -51,19 +51,13 @@ const LoginForm = () => {
       console.log("Erreur login : ", error);
 
       switch (error.code) {
-        case "auth/invalid-email":
-          setErrorMessage("L'adresse email est invalide.");
-          break;
         case "auth/email-already-in-use":
           setErrorMessage(
-            "L'email que vous avez renseigné est déjà utilisé par un utilisateur",
+            "L'email que vous avez renseigné est déjà utilisé par un utilisateur.",
           );
           break;
         case "auth/user-not-found":
           setErrorMessage("Aucun utilisateur trouvé avec cet email.");
-          break;
-        case "auth/wrong-password":
-          setErrorMessage("Mot de passe incorrect.");
           break;
         case "auth/too-many-requests":
           setErrorMessage("Trop de tentatives. Veuillez réessayer plus tard.");
@@ -94,7 +88,7 @@ const LoginForm = () => {
             {...register("email")}
             type="email"
             placeholder="Email"
-            className="border border-gray-300 p-2"
+            className="h-11 border border-gray-300"
           />
           {errors.email && (
             <p className="mt-2 pl-2 text-sm text-red-500">
@@ -107,7 +101,7 @@ const LoginForm = () => {
             {...register("password")}
             type={showPassword ? "text" : "password"}
             placeholder="Mot de passe"
-            className="mb-2 border border-gray-300 p-2"
+            className="mb-3 h-11 border border-gray-300"
           />
           <span
             onClick={() => setShowPopup(true)}
@@ -126,7 +120,7 @@ const LoginForm = () => {
             type="button"
             variant="ghost"
             size="sm"
-            className="absolute top-0 right-0 h-[36px] px-3 py-2 hover:bg-transparent"
+            className="absolute top-1 right-0 h-[36px] px-3 py-2 hover:bg-transparent"
             onClick={() => setShowPassword(!showPassword)}
           >
             {showPassword ? (
@@ -141,7 +135,7 @@ const LoginForm = () => {
 
         <Button
           type="submit"
-          className="bg-[#b0181c] p-2 text-white hover:bg-[#7d2a2d]"
+          className="bg-[#b0181c] p-5 text-white hover:bg-[#7d2a2d]"
           disabled={loading}
         >
           {loading ? "Connexion en cours..." : "Se connecter"}

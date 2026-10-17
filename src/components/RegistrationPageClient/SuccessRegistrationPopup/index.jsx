@@ -16,7 +16,7 @@ import { CheckCircle, Heart } from "lucide-react";
 import { currentStepAtom } from "@/state/atoms/currentStep";
 
 const SuccessRegistrationPopup = ({
-  typePerson,
+  registrationType,
   showCongratulations,
   setShowCongratulations,
   userEmail,
@@ -30,7 +30,7 @@ const SuccessRegistrationPopup = ({
 
   const router = useRouter();
 
-  // console.log("verifié ? ", user?.emailVerified);
+  console.log("Email vérifié ? ", user?.emailVerified);
 
   const handleRefresh = async () => {
     if (!user) return;
@@ -47,6 +47,8 @@ const SuccessRegistrationPopup = ({
         setShowCongratulations(open);
         if (!open && isVerified) {
           router.push("/profile");
+        } else if (!open && !isVerified) {
+          router.push("/login");
         }
       }}
     >
@@ -55,14 +57,14 @@ const SuccessRegistrationPopup = ({
           <div className="mx-auto flex h-16 w-16 items-center justify-center rounded-full bg-green-100">
             <CheckCircle className="h-8 w-8 text-green-600" />
           </div>
-          <DialogTitle className="font-serif text-2xl text-green-700">
+          <DialogTitle className="text-2xl text-green-700">
             Félicitations ! 🎉
           </DialogTitle>
           <DialogDescription className="space-y-5 text-base">
             <span className="text-foreground block font-medium">
-              {typePerson === "adulte"
+              {registrationType === "adult"
                 ? "Vous êtes maintenant inscrit(e) dans notre club !"
-                : "Votre/Vos enfant(s) sont maintenant inscrit(es) dans notre club !"}
+                : "Votre/Vos enfant(s) sont maintenant inscrit(s) dans notre club !"}
             </span>
             <span className="flex items-center justify-center gap-2 text-[#b0181c]">
               <Heart className="h-4 w-4" />

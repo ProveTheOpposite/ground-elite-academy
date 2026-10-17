@@ -1,7 +1,48 @@
+Ground Elite Academy
+
 04/04:
--Objectifs: le menu de liens avec se connecter et s'inscrire ; pop up de l'inscription ; étape 1, 2, 3 et 4 des adultes
+-Objectifs: le menu de liens avec se connecter et s'inscrire ; pop up de l'inscription ; étape 1, 2, 3 (adultes) et 4 
 -Accomplissements: Menu des liens ; Popup de l'inscription
 
 05/04:
--Objectifs: étape 1, 2, 3 et 4 des adultes
--Accomplissements: 
+-Objectifs: étape 1, 2, 3 (parents) et 4 
+-Accomplissements: Rien
+
+06/04:
+-Objectifs: ceux du 5 avril
+-Accomplissements: étape 1
+
+08/04:
+-Objectifs: étape 2, 3 (parents et adultes) et 4 
+-Accomplissements: étape 2
+
+09/04:
+-Objectifs: finir les étapes 3 (parents et adultes) et 4 | Régler les problèmes de design erreur par-ci par-là et validation yup étape 3
+-Accomplissements: problèmes design erreur et validation yup régler. Etape 3 parents et 4 fini
+
+11/04: 
+-Objectifs: étape 3 (adultes) et créer le user avec sa page de profil
+-Accomplissements: étape 3 (adultes) terminé => page inscription fini
+
+12/04:
+-Objectifs: terminer toute la création du user et la page profil
+-Accomplissements: création du user fini
+
+16/04:
+-Objectifs: régler les détails de la page de profil comme afficher quelques champs manquants, photo de profil, etc..
+-Accomplissements: refactorisation du composant ProfilePageClient
+
+17/04:
+-Objectifs: celle du 16 avril
+-Accomplissements: Je sais plus
+
+21/04: 
+-Objectifs: celle du 16 avril
+-Accomplissements: ajouté les champs restants
+
+22/04:
+-Objectifs: Optimiser les fonctions pour minimiser le nombre de rendu (A faire en dernier)
+-Accomplissements: note medical ajouté pour chaque enfant
+
+13/05:
+-Objectifs: configurer le proxy 

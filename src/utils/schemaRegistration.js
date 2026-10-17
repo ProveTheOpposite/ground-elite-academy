@@ -2,90 +2,79 @@ import * as yup from "yup";
 
 export const getSchema = (isAdult) => {
   return [
+    // Step 1
     yup.object({
-      firstNameParent: isAdult
-        ? yup.string().optional()
-        : yup.string().required("Prénom parent requis"),
-      lastNameParent: isAdult
-        ? yup.string().optional()
-        : yup.string().required("Nom parent requis"),
-      adressPostale: isAdult
-        ? yup.string().optional()
-        : yup.string().required("Adresse postale requise"),
-      phoneNumber: isAdult
-        ? yup.string().optional()
-        : yup.string().required("Numéro de téléphone requis"),
       email: yup.string().email("Email invalide").required("Email requis"),
       password: yup
         .string()
         .required("Mot de passe requis")
-        .min(6, "Minimum 6 caractères"),
+        .min(2, "Minimum 2 caractères"),
       confirmPassword: yup
         .string()
         .required("Confirmer le mot de passe")
         .oneOf([yup.ref("password")], "Les mots de passe ne correspondent pas"),
     }),
+    // Step 2
     yup.object({
-      firstNameAdherent: isAdult
-        ? yup.string().required("Prénom requis")
-        : yup.string().optional(),
-      lastNameAdherent: isAdult
-        ? yup.string().required("Nom requis")
-        : yup.string().optional(),
-      phoneNumber: isAdult
-        ? yup.string().required("Numéro de téléphone requis")
-        : yup.string().optional(),
-      categoryAdherent: isAdult
-        ? yup.string().required("Choisissez votre catégorie")
-        : yup.string().optional(),
-      dateOfBirthAdherent: isAdult
-        ? yup
-            .date("Date de naissance invalide")
-            .nullable()
-            .required("Date de naissance requise")
-        : yup.date().nullable().optional(),
-      adressPostale: isAdult
-        ? yup.string().required("Adresse postale requise")
-        : yup.string().optional(),
-      nationalityAdherent: isAdult
-        ? yup.string().required("Nationalité requise")
-        : yup.string().optional(),
-      contactEmergency: isAdult
-        ? yup.string().required("Personne d'urgence requise")
-        : yup.string().optional(),
-      phoneNumberContactEmergency: isAdult
-        ? yup.string().required("Numéro de téléphone requis")
-        : yup.string().optional(),
-      sexeAdherent: isAdult
-        ? yup.string().required("Choisissez votre genre")
-        : yup.string().optional(),
-      licence: yup
-        .object({
-          fflutte: yup.boolean(),
-          cfjjb: yup.boolean(),
-        })
-        .test(
-          "at-least-one",
-          "Vous devez sélectionner au moins une licence",
-          (value) => {
-            return value.fflutte || value.cfjjb;
-          },
-        ),
-      children: isAdult
-        ? yup
-            .array()
-            .of(
-              yup.object({
-                firstNameChild: yup.string().optional(),
-                lastNameChild: yup.string().optional(),
-                dateOfBirthChild: yup.date().nullable().optional(),
-                nationalityChild: yup.string().optional(),
-                sexeChild: yup.string().optional(),
-                categoryChild: yup.string().optional(),
-              }),
-            )
-            .optional()
-        : yup
+      paymentMethod: yup.string().required("Choisissez un mode de paiement"),
+      subscriptionType: yup
+        .string()
+        .required("Choisissez un type d'abonnement"),
+      alreadyPaid: yup.string().required("Choisissez une réponse"),
+    }),
+    // Step 3
+    isAdult
+      ? [
+          // sub step 1
+          yup.object({
+            firstName: yup.string().required("Prénom requis"),
+            lastName: yup.string().required("Nom requis"),
+            dateOfBirth: yup
+              .date("Date de naissance invalide")
+              .nullable()
+              .required("Date de naissance requise"),
+            placeOfBirth: yup.string().required("Lieu de naissance requis"),
+            nationality: yup.string().required("Nationalité requise"),
+          }),
+          // sub step 2
+          yup.object({
+            address: yup.string().required("Adresse postale requise"),
+            postalCode: yup.string().required("Code postal requis"),
+            city: yup.string().required("Ville requise"),
+            phoneNumber: yup.string().required("Numéro de téléphone requis"),
+            contactEmergency: yup
+              .string()
+              .required("Personne d'urgence requise"),
+            phoneNumberEmergency: yup
+              .string()
+              .required("Numéro de téléphone urgence requis"),
+          }),
+          // sub step 3
+          yup.object({
+            sexe: yup.string().required("Choisissez votre genre"),
+            category: yup.string().required("Choisissez votre catégorie"),
+            licences: yup
+              .object({
+                ffl: yup.boolean(),
+                cfjjb: yup.boolean(),
+              })
+              .test(
+                "at-least-one",
+                "Vous devez sélectionner au moins une licence",
+                (value) => {
+                  return value.ffl || value.cfjjb;
+                },
+              ),
+          }),
+        ]
+      : yup.object({
+          firstName: yup.string().required("Prénom requis"),
+          lastName: yup.string().required("Nom requis"),
+          phoneNumber: yup.string().required("Numéro de téléphone requis"),
+          address: yup.string().required("Adresse requise"),
+          postalCode: yup.string().required("Code postal requis"),
+          city: yup.string().required("Ville requise"),
+          children: yup
             .array()
             .of(
               yup.object({
@@ -97,19 +86,38 @@ export const getSchema = (isAdult) => {
                   .date()
                   .nullable()
                   .required("Date de naissance de l'enfant requise"),
+                placeOfBirthChild: yup
+                  .string()
+                  .required("Lieu de naissance de l'enfant requis"),
                 nationalityChild: yup.string().required("Nationalité requise"),
                 sexeChild: yup
                   .string()
                   .required("Choisissez le genre de l'enfant"),
                 categoryChild: yup.string().required("Choisissez la catégorie"),
+                licencesChild: yup
+                  .object({
+                    ffl: yup.boolean(),
+                    cfjjb: yup.boolean(),
+                  })
+                  .test(
+                    "at-least-one",
+                    "Vous devez sélectionner au moins une licence",
+                    (value) => {
+                      return value.ffl || value.cfjjb;
+                    },
+                  ),
               }),
             )
             .min(1, "Ajoutez au moins un enfant"),
-    }),
+        }),
+    // Step 4
     yup.object({
       rulesRegulations: yup
         .boolean()
-        .oneOf([true], "Veuillez accepter les règles et réglementations"),
+        .oneOf(
+          [true],
+          "Vous devez accepter la charte d'utilisation pour continuer",
+        ),
     }),
   ];
 };

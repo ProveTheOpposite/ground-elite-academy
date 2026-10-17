@@ -1,5 +1,5 @@
-export const sanitizeUserData = (data) => {
-  const forbiddenFields = ["id", "createdAt"]; // champs jamais modifiables
+export const sanitizeUserData = (data, excludeFields = []) => {
+  const forbiddenFields = ["id", ...excludeFields]; // champs jamais modifiables
 
   const cleanData = { ...data };
 
@@ -9,5 +9,5 @@ export const sanitizeUserData = (data) => {
     }
   });
 
-  return cleanData;
+  return cleanData; // recevoir les données sans id et les champs exclus
 };
