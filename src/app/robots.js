@@ -6,6 +6,6 @@ export default function robots() {
         allow: "/",
       },
     ],
-    sitemap: "https://groundeliteacademy.fr/sitemap.xml",
+    sitemap: "https://geanice.fr/sitemap.xml",
   };
 }
