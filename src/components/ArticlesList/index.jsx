@@ -1,14 +1,12 @@
 "use client";
 
 import { useRouter } from "next/navigation";
-import { useEffect, useMemo, useState } from "react";
+import { useEffect, useState } from "react";
 
 import Link from "next/link";
 
 import ArticlesListSkeleton from "./components/ArticlesListSkeleton";
 import ArticleCard from "./components/ArticleCard";
-
-import useArticleCover from "@/hooks/useArticleCover";
 
 const ArticlesList = () => {
   const [articlesData, setArticlesData] = useState([]);
@@ -21,21 +19,20 @@ const ArticlesList = () => {
     const fetchEvents = async () => {
       try {
         setLoading(true);
-        const res = await fetch(
-          `${process.env.NEXT_PUBLIC_BASE_URL}/api/articles`,
-          {
-            next: {
-              revalidate: 172800,
-            },
+        const res = await fetch("/api/articles", {
+          next: {
+            revalidate: 172800,
           },
-        );
+        });
 
         if (!res.ok) throw new Error("Erreur serveur");
 
         const data = await res.json();
         setArticlesData(data);
       } catch (error) {
-        console.error(error);
+        console.error(
+          "Une erreur est survenue lors de la récupération des articles coté client.",
+        );
         setErrorFetch(error.message);
       } finally {
         setLoading(false);
