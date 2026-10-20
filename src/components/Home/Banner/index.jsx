@@ -39,7 +39,7 @@ const Banner = () => {
             <Button
               onClick={() => router.push("/contact-us")}
               size="xl"
-              className="w-[220px] bg-[#b0181c] font-semibold text-white hover:bg-[#7d2a2d] sm:mr-4 md:py-7 lg:text-base 2xl:text-lg"
+              className="w-55 bg-[#b0181c] font-semibold text-white hover:bg-[#7d2a2d] sm:mr-4 md:py-7 lg:text-base 2xl:text-lg"
             >
               <Phone className="mr-2 h-5 w-5 lg:h-8 lg:w-8" />
               Contactez-nous
@@ -47,7 +47,7 @@ const Banner = () => {
 
             <Button
               size="xl"
-              className="w-[220px] border border-white/30 bg-transparent text-white transition-all duration-300 hover:border-white/60 hover:bg-red-600/20 md:py-7 lg:text-base 2xl:text-lg"
+              className="w-55 border border-white/30 bg-transparent text-white transition-all duration-300 hover:border-white/60 hover:bg-red-600/20 md:py-7 lg:text-base 2xl:text-lg"
             >
               <a
                 className="flex items-center"
