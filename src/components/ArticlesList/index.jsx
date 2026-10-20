@@ -7,6 +7,7 @@ import Link from "next/link";
 
 import ArticlesListSkeleton from "./components/ArticlesListSkeleton";
 import ArticleCard from "./components/ArticleCard";
+import ErrorFetchArticlesData from "./components/ErrorFetchArticlesData";
 
 const ArticlesList = () => {
   const [articlesData, setArticlesData] = useState([]);
@@ -59,7 +60,7 @@ const ArticlesList = () => {
   }
 
   if (errorFetch) {
-    return <p className="text-red-500">{errorFetch}</p>;
+    return <ErrorFetchArticlesData />;
   }
 
   return (
