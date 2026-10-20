@@ -6,14 +6,14 @@ import { collection, getDocs, orderBy, query } from "firebase/firestore";
 export const GET = async () => {
   try {
     const articlesCollection = collection(db, "articles");
-    const q = query(articlesCollection, orderBy("dateOfPublication", "desc")); // Tri croissant
+    const q = query(articlesCollection, orderBy("dateOfPublication", "desc")); // tri décroissant
 
     const articlesSnapshot = await getDocs(q);
     const articlesData = articlesSnapshot.docs.map((doc) => doc.data());
 
     return NextResponse.json(articlesData);
   } catch (e) {
-    console.error("Erreur lors de la récupération des articles:", e);
+    console.error("Erreur lors de la récupération des articles");
     return NextResponse.json(
       { error: "Une erreur s'est produite lors du chargement des articles" },
       { status: 500 },

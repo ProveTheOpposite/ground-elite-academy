@@ -31,9 +31,9 @@ export const metadata = {
 
 const BlogPage = () => {
   return (
-    <div className="mt-[68px] xl:mt-[78px]">
+    <div className="mt-17 xl:mt-19.5">
       <section className="relative overflow-hidden px-4 py-20 sm:px-6 lg:px-8">
-        <div className="absolute inset-0 bg-gradient-to-r from-red-600/10 to-blue-600/10"></div>
+        <div className="absolute inset-0 bg-linear-to-r from-red-600/10 to-blue-600/10"></div>
         <div className="relative mx-auto max-w-7xl text-center">
           <h1 className="mb-6 text-4xl font-bold text-gray-900 lg:text-5xl">
             L'Actualité du Club
