@@ -39,12 +39,12 @@ const Schedule = () => {
                   </li>
                   <li className="flex items-center">
                     <span className="mr-3 h-2 w-2 rounded-full bg-gray-400"></span>
-                    <span className="font-medium">Mercredi : </span> 19h00 -
+                    <span className="font-medium">Mercredi : </span> 17h00 -
                     20h30
                   </li>
                   <li className="flex items-center">
                     <span className="mr-3 h-2 w-2 rounded-full bg-gray-400"></span>
-                    <span className="font-medium">Samedi : </span> 15h30 - 17h30
+                    <span className="font-medium">Samedi : </span> 14h00 - 16h00
                   </li>
                 </ul>
               </div>
@@ -103,6 +103,20 @@ const Schedule = () => {
                 <div className="rounded-lg border bg-white p-4 shadow-sm">
                   <div className="mb-5 flex items-center justify-between">
                     <span className="text-sm font-medium text-gray-700">
+                      Enfants
+                    </span>
+                    <span className="rounded bg-blue-500 px-2 py-1 text-xs font-medium text-white">
+                      Lutte
+                    </span>
+                  </div>
+                  <div className="text-center text-xl font-bold text-gray-900">
+                    17h00 - 18h30
+                  </div>
+                </div>
+
+                <div className="rounded-lg border bg-white p-4 shadow-sm">
+                  <div className="mb-5 flex items-center justify-between">
+                    <span className="text-sm font-medium text-gray-700">
                       Adultes
                     </span>
                     <span className="rounded bg-red-600 px-2 py-1 text-xs font-medium text-white">
@@ -110,7 +124,7 @@ const Schedule = () => {
                     </span>
                   </div>
                   <div className="text-center text-xl font-bold text-gray-900">
-                    19h00 - 20h30
+                    18h30 - 20h30
                   </div>
                 </div>
               </div>
@@ -170,7 +184,7 @@ const Schedule = () => {
                     </span>
                   </div>
                   <div className="text-center text-xl font-bold text-gray-900">
-                    15h30 - 17h30
+                    14h00 - 16h00
                   </div>
                 </div>
               </div>
@@ -203,7 +217,10 @@ const Schedule = () => {
                     <h4 className="font-semibold text-gray-900">Enfants</h4>
                   </div>
                   <div className="text-sm text-gray-700">
-                    <p>Toujours Lutte - Lundi & Jeudi 17h30-18h45</p>
+                    <p>
+                      Toujours Lutte - Lundi & Jeudi 17h30-18h45 | Mercredi
+                      17h00-18h30
+                    </p>
                   </div>
                 </div>
               </div>
