@@ -126,7 +126,7 @@ const questions = [
     {
       question: "Combien de temps dure une séance d'entraînement ?",
       answer:
-        "Une séance d'entraînement dure une 1h pour les enfants et 2h pour les adultes.",
+        "Une séance d'entraînement, le lundi et le jeudi, dure une 1h15 pour les enfants et 1h45 pour les adultes. Et pour le mercredi, une séance d'entraînement dure 1h30 pour les enfants et 2h pour les adultes le mercredi et samedi.",
       indexQuestion: 1,
     },
     {
