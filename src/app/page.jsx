@@ -1,6 +1,6 @@
 "use client";
 
-import { useState } from "react";
+import { useEffect, useState } from "react";
 
 import AboutUs from "@/components/Home/AboutUs";
 import Banner from "@/components/Home/Banner";
@@ -12,11 +12,22 @@ import Subscriptions from "@/components/Home/Subscriptions";
 import Team from "@/components/Home/Team";
 
 export default function HomePage() {
-  const [showPopup, setShowPopup] = useState(true);
+  const [showPopup, setShowPopup] = useState(false);
+
+  useEffect(() => {
+    const hasClosedPopup = localStorage.getItem("domain-popup-closed");
+
+    setShowPopup(hasClosedPopup !== "true");
+  }, []);
+
+  const handleClosePopup = () => {
+    localStorage.setItem("domain-popup-closed", "true");
+    setShowPopup(false);
+  };
 
   return (
     <>
-      {showPopup && <PopupNewDomain onClose={() => setShowPopup(false)} />}
+      {showPopup && <PopupNewDomain onClose={handleClosePopup} />}
       <Banner />
       <AboutUs />
       <Team />
