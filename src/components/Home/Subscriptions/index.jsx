@@ -45,82 +45,7 @@ const subscriptions = {
       notIncluded: [
         "Tenue de sport GEA non incluse",
         "Frais d'adhésion en supplément",
-      ],
-      feeNote: "+50,00€ de frais d'adhésion",
-      isPopular: true,
-    },
-  ],
-  fourFirstMonths: [
-    {
-      title: "Enfant",
-      ageRange: "5-13 ans",
-      price: "100,00 €",
-      period: "/sept-déc",
-      description: "L'abonnement enfant : de 5 à 13 ans",
-      benefits: [
-        "Accès aux deux disciplines (lutte et grappling)",
-        "Encadrement par des professionnels qualifiés",
-        "Accès aux compétitions",
-      ],
-      notIncluded: [
-        "Tenue de sport GEA non incluse",
-        "Frais d'adhésion en supplément",
-      ],
-      feeNote: "+50,00€ de frais d'adhésion",
-      isPopular: true,
-    },
-    {
-      title: "Adulte",
-      ageRange: "14+ ans",
-      price: "150,00 €",
-      period: "/sept-déc",
-      description: "L'abonnement adulte : 14 ans et plus",
-      benefits: [
-        "Accès aux deux disciplines (lutte et grappling)",
-        "Encadrement par des professionnels qualifiés",
-        "Accès aux compétitions",
-      ],
-      notIncluded: [
-        "Tenue de sport GEA non incluse",
-        "Frais d'adhésion en supplément",
-      ],
-      feeNote: "+50,00€ de frais d'adhésion",
-      isPopular: false,
-    },
-  ],
-  trimester: [
-    {
-      title: "Enfant",
-      ageRange: "5-13 ans",
-      price: "80,00 €",
-      period: "/3 mois",
-      description: "L'abonnement enfant : de 5 à 13 ans",
-      benefits: [
-        "Accès aux deux disciplines (lutte et grappling)",
-        "Encadrement par des professionnels qualifiés",
-        "Accès aux compétitions",
-      ],
-      notIncluded: [
-        "Tenue de sport GEA non incluse",
-        "Frais d'adhésion en supplément",
-      ],
-      feeNote: "+50,00€ de frais d'adhésion",
-      isPopular: false,
-    },
-    {
-      title: "Adulte",
-      ageRange: "14+ ans",
-      price: "120,00 €",
-      period: "/3 mois",
-      description: "L'abonnement adulte : 14 ans et plus",
-      benefits: [
-        "Accès aux deux disciplines (lutte et grappling)",
-        "Encadrement par des professionnels qualifiés",
-        "Accès aux compétitions",
-      ],
-      notIncluded: [
-        "Tenue de sport GEA non incluse",
-        "Frais d'adhésion en supplément",
+        "Possibilité de payer en plusieurs fois",
       ],
       feeNote: "+50,00€ de frais d'adhésion",
       isPopular: false,
@@ -130,7 +55,7 @@ const subscriptions = {
     {
       title: "Enfant",
       ageRange: "5-13 ans",
-      price: "295,00 €",
+      price: "320,00 €",
       period: "/an",
       description: "L'abonnement enfant : de 5 à 13 ans",
       benefits: [
@@ -139,14 +64,15 @@ const subscriptions = {
         "Accès aux compétitions",
         "Tenue de sport GEA offerte",
         "Frais d'adhésion compris",
+        "Possibilité de payer en x3",
       ],
       feeNote: "+0,00€ de frais d'adhésion",
-      isPopular: true,
+      isPopular: false,
     },
     {
       title: "Adulte",
       ageRange: "14+ ans",
-      price: "450,00 €",
+      price: "480,00 €",
       period: "/an",
       description: "L'abonnement adulte : 14 ans et plus",
       benefits: [
@@ -155,6 +81,7 @@ const subscriptions = {
         "Accès aux compétitions",
         "Tenue de sport GEA offerte",
         "Frais d'adhésion compris",
+        "Possibilité de payer en x3",
       ],
       feeNote: "+0,00€ de frais d'adhésion",
       isPopular: true,
@@ -198,7 +125,7 @@ const Subscriptions = () => {
             le 9ème jour du mois courant.
           </p>
 
-          <div className="flex flex-col justify-center gap-5 md:flex-row 2xl:mx-auto 2xl:w-[900px]">
+          <div className="flex flex-col justify-center gap-5 md:flex-row 2xl:mx-auto 2xl:w-225">
             {btnsNav.map((btn) => (
               <button
                 key={btn.key}
@@ -211,7 +138,7 @@ const Subscriptions = () => {
               >
                 {btn.label}
                 {btn.key === "year" && (
-                  <div className="absolute -top-2 -right-2 rounded-full bg-gradient-to-r from-orange-500 to-red-500 px-2 py-1 text-xs font-semibold text-white shadow-lg">
+                  <div className="absolute -top-2 -right-2 rounded-full bg-linear-to-r from-orange-500 to-red-500 px-2 py-1 text-xs font-semibold text-white shadow-lg">
                     Populaire
                   </div>
                 )}
