@@ -14,7 +14,7 @@ import { X } from "lucide-react";
 const PopupNewDomain = ({ onClose }) => {
   const [copied, setCopied] = useState(false);
 
-  const officialDomain = "https://geanice.fr";
+  const officialDomain = "https://www.geanice.fr";
 
   const handleCopy = async () => {
     try {
