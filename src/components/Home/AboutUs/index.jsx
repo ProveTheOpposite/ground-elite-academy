@@ -216,11 +216,11 @@ const AboutUs = () => {
                   </div>
                   <div className="flex items-center">
                     <Clock className="mr-2 h-4 w-4" />
-                    <span>Mercredi : 19h00 - 20h30</span>
+                    <span>Mercredi : 17h00 - 20h30</span>
                   </div>
                   <div className="flex items-center">
                     <Clock className="mr-2 h-4 w-4" />
-                    <span>Samedi : 15h30 - 17h30</span>
+                    <span>Samedi : 14h00 - 16h00</span>
                   </div>
                 </div>
               </CardContent>
