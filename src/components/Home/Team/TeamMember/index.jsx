@@ -31,7 +31,7 @@ const trainers = [
       "Expert en lutte libre",
     ],
     specialties: ["Créativité", "Pédagogie", "Technique"],
-    experience: "15+ ans",
+    experience: "16+ ans",
     description:
       "Nazim Djamalov, plusieurs fois champion de France et ancien membre de l'équipe nationale, est un entraîneur dont l'expérience et le talent sont reconnus au-delà des frontières.",
     fullDescription:
@@ -55,7 +55,7 @@ const trainers = [
       "Expert en grappling et lutte",
     ],
     specialties: ["Grappling", "Lutte", "Stratégie"],
-    experience: "7+ ans",
+    experience: "8+ ans",
     description:
       "Gaetan Houara, multiple champion de France et plusieurs fois champion d'Open de France, est un expert du grappling et de la lutte. Il est reconnu pour sa maîtrise technique et son sens stratégique.",
     fullDescription:
