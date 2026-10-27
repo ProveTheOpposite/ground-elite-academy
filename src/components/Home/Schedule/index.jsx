@@ -133,7 +133,7 @@ const Schedule = () => {
                 <div className="mb-3 flex items-center">
                   <span className="mr-2 text-lg">🥋</span>
                   <h4 className="font-semibold text-gray-900">
-                    Sports par jour
+                    Sports par jour (x4 par semaine pour les adultes)
                   </h4>
                 </div>
                 <div className="space-y-1 text-sm text-gray-700">
@@ -146,7 +146,9 @@ const Schedule = () => {
               <div>
                 <div className="mb-3 flex items-center">
                   <span className="mr-2 text-lg">👶</span>
-                  <h4 className="font-semibold text-gray-900">Enfants</h4>
+                  <h4 className="font-semibold text-gray-900">
+                    Enfants (x3 par semaine pour les enfants)
+                  </h4>
                 </div>
                 <div className="text-sm text-gray-700">
                   <p>

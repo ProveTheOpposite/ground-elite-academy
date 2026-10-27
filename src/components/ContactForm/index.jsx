@@ -267,7 +267,7 @@ const ContactForm = () => {
                 id="message"
                 name="message"
                 placeholder="Votre message ici..."
-                className="min-h-[140px] resize-y border-gray-200 focus:border-red-500 focus:ring-red-500"
+                className="min-h-35 resize-y border-gray-200 focus:border-red-500 focus:ring-red-500"
                 maxLength={600}
               />
               <div className="absolute right-3 bottom-3 text-xs text-gray-400">
