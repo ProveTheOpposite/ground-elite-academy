@@ -1,3 +1,5 @@
+import { BabyIcon, Users } from "lucide-react";
+
 const DayTraining = ({ day }) => {
   return (
     <div className="space-y-4">
@@ -7,11 +9,19 @@ const DayTraining = ({ day }) => {
       </div>
 
       {day.sessions.map((session, index) => (
-        <div key={index} className="rounded-lg border bg-white p-4 shadow-sm">
+        <div
+          key={index}
+          className={`${session.who === "Enfants" ? "border-amber-500" : "border-slate-600"} rounded-lg border-l-4 bg-white p-4 shadow-sm`}
+        >
           <div className="mb-5 flex items-center justify-between">
-            <span className="text-sm font-medium text-gray-700">
+            <div className="flex items-center gap-2 text-sm font-medium text-gray-700">
               {session.who}
-            </span>
+              {session.who === "Enfants" ? (
+                <BabyIcon className="h-4 w-4" />
+              ) : (
+                <Users className="h-4 w-4" />
+              )}
+            </div>
             <span
               className={`${session.sport === "Lutte" ? "bg-blue-500" : "bg-red-600"} rounded px-2 py-1 text-xs font-medium text-white`}
             >
