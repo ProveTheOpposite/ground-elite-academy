@@ -48,7 +48,7 @@ const days = [
       {
         time: "18h45 - 20h30",
         who: "Adultes",
-        sport: "Grappling",
+        sport: "Lutte",
       },
     ],
   },
