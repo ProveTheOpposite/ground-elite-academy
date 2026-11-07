@@ -28,7 +28,7 @@ export const generateMetadata = async ({ params }) => {
           currentArticle.descriptionArticle ||
           `Découvrez notre article sur ${currentArticle.titleArticle}, au club de lutte et grappling Ground Elite Academy (Nice).`,
         alternates: {
-          canonical: `/blog/${article}`,
+          canonical: `https://www.geanice.fr/blog/${article}`,
         },
         openGraph: {
           title: `${currentArticle.titleArticle}`,
