@@ -27,6 +27,9 @@ export const generateMetadata = async ({ params }) => {
         description:
           currentArticle.descriptionArticle ||
           `Découvrez notre article sur ${currentArticle.titleArticle}, au club de lutte et grappling Ground Elite Academy (Nice).`,
+        alternates: {
+          canonical: `/blog/${article}`,
+        },
         openGraph: {
           title: `${currentArticle.titleArticle}`,
           description:
@@ -62,7 +65,6 @@ export const generateMetadata = async ({ params }) => {
         "L'article que vous recherchez est introuvable ou une erreur est survenue. Découvrez nos autres articles sur la lutte et le grappling au club Ground Elite Academy à Nice.",
     };
   } catch (err) {
-    console.error(err);
     return {
       title: "Erreur lors du chargement de l'article",
       description:
