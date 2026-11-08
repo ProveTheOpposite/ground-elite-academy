@@ -52,7 +52,7 @@
   /* Pour le background du banner */
 
   .bg-banner-desktop-url {
-    background: url("../assets/images/home/bg-banner-desktop.jpg") no-repeat
+    background: url("../assets/images/home/bg-banner-desktop.png") no-repeat
       center center/cover;
   }
 

@@ -27,7 +27,8 @@ const Banner = () => {
       id="welcome"
       className={`${isMobile ? "bg-banner-mobile-url" : "bg-banner-desktop-url"} relative flex h-screen items-center justify-center px-5 sm:px-8 md:px-10 lg:px-16 2xl:px-28`}
     >
-      <div className="3xl:bottom-28 3xl:left-28 z-10 flex flex-col items-center md:w-[550px] lg:flex-row xl:absolute xl:bottom-20 xl:left-20 2xl:w-[750px]">
+      <div className="absolute inset-0 bg-black/35" />
+      <div className="3xl:bottom-28 3xl:left-28 z-10 flex flex-col items-center md:w-137.5 lg:flex-row xl:absolute xl:bottom-20 xl:left-20 2xl:w-187.5">
         <div className="mt-14 text-center sm:mt-0 xl:text-left">
           <h1 className="mb-8 text-3xl font-bold text-white md:text-4xl lg:leading-tight 2xl:text-5xl 2xl:leading-tight">
             Découvrez la <span className="text-[#b0181c]">Lutte</span> et le{" "}

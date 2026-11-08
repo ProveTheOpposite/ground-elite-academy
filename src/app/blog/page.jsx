@@ -13,7 +13,7 @@ export const metadata = {
     type: "website",
     images: [
       {
-        url: "/seo-image.jpg",
+        url: "/seo-image.png",
         width: 1200,
         height: 630,
       },
@@ -24,7 +24,7 @@ export const metadata = {
     title: "Découvrez nos dernières actualités - Ground Elite Academy",
     description:
       "Découvrez nos dernières actualités : sport, compétition, etc... sur le club de lutte et grappling Ground Elite Academy.",
-    images: ["/seo-image.jpg"],
+    images: ["/seo-image.png"],
     domain: "geanice.fr",
   },
 };

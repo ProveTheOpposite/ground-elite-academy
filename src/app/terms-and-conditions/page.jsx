@@ -13,7 +13,7 @@ export const metadata = {
     type: "website",
     images: [
       {
-        url: "/seo-image.jpg",
+        url: "/seo-image.png",
         width: 1200,
         height: 630,
       },
@@ -23,7 +23,7 @@ export const metadata = {
     card: "summary_large_image",
     title: "Termes et Conditions - Ground Elite Academy",
     description: "Découvrez les termes et conditions de notre site web.",
-    images: ["/seo-image.jpg"],
+    images: ["/seo-image.png"],
     domain: "geanice.fr",
   },
 };

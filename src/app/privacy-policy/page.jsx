@@ -13,7 +13,7 @@ export const metadata = {
     type: "website",
     images: [
       {
-        url: "/seo-image.jpg",
+        url: "/seo-image.png",
         width: 1200,
         height: 630,
       },
@@ -24,7 +24,7 @@ export const metadata = {
     title: "Politique de confidentialité - Ground Elite Academy",
     description:
       "Découvrez notre politique de confidentialité pour protéger vos données personnelles.",
-    images: ["/seo-image.jpg"],
+    images: ["/seo-image.png"],
     domain: "geanice.fr",
   },
 };

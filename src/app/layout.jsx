@@ -44,7 +44,7 @@ export const metadata = {
     type: "website",
     images: [
       {
-        url: "/seo-image.jpg",
+        url: "/seo-image.png",
         width: 1200,
         height: 630,
       },
@@ -55,7 +55,7 @@ export const metadata = {
     title: "Club de lutte et grappling à Nice - GEA",
     description:
       "Ground Elite Academy à Nice, club de lutte et grappling ouvert à tous : enfant, ado et adulte, débutant ou confirmé. Ambiance conviviale, entraînement de qualité.",
-    images: ["/seo-image.jpg"],
+    images: ["/seo-image.png"],
     domain: "geanice.fr",
   },
   type: "website",

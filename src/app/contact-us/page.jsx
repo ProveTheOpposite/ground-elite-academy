@@ -25,7 +25,7 @@ export const metadata = {
     type: "website",
     images: [
       {
-        url: "/seo-image.jpg",
+        url: "/seo-image.png",
         width: 1200,
         height: 630,
       },
@@ -36,7 +36,7 @@ export const metadata = {
     title: "Contactez-nous - Ground Elite Academy",
     description:
       "Notre équipe est là pour vous aider. Contactez-nous et nous vous répondrons dans les plus brefs délais.",
-    images: ["/seo-image.jpg"],
+    images: ["/seo-image.png"],
     domain: "geanice.fr",
   },
 };
