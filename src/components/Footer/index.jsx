@@ -75,7 +75,7 @@ const Footer = () => {
                   <MapPin width={18} height={18} className="min-w-[18px]" />
                 }
               >
-                10 Bd Comte de Falicon, 06100 Nice
+                10 Boulevard Comte de Falicon, 06100 Nice
               </ContactItem>
 
               <ContactItem
