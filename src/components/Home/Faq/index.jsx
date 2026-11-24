@@ -64,7 +64,7 @@ const questions = [
     {
       question: "Quels sont vos moyens de paiements ?",
       answer:
-        "Nous acceptons les paiements par carte bleu, chèque, espèces, pass sport et coupon sport.",
+        "Nous acceptons les paiements par carte bleue, chèque, espèces, pass sport et coupon sport.",
       indexQuestion: 4,
     },
   ],
