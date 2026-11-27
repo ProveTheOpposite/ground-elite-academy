@@ -2,9 +2,12 @@
 
 import { useRouter } from "next/navigation";
 import { useEffect, useState } from "react";
+import Image from "next/image";
 
 import { Button } from "@/components/ui/button";
+
 import { FileUp, Phone } from "lucide-react";
+import { Star } from "lucide-react";
 
 const Banner = () => {
   const [isMobile, setIsMobile] = useState(false);
@@ -35,6 +38,24 @@ const Banner = () => {
             <span className="text-[#b0181c]">Grappling</span> à Nice avec les
             experts de Ground Elite Academy
           </h1>
+
+          <div className="mb-8 flex items-center justify-center gap-4 xl:justify-start">
+            <div className="flex gap-1.5">
+              {Array.from([0, 1, 2, 3, 4]).map((value) => (
+                <Image
+                  key={value}
+                  src="/star-symbol-icon.svg"
+                  alt="Star Rate"
+                  width={25}
+                  height={25}
+                  className="w-auto object-contain" // because width changed so to keep the ratio
+                />
+              ))}
+            </div>
+
+            <span className="pl-32 font-bold text-white">5.0</span>
+            <span className="text-sm text-[#eee]">(+30 avis)</span>
+          </div>
 
           <div className="flex flex-col items-center gap-4 sm:flex-row sm:justify-center xl:justify-start">
             <Button
